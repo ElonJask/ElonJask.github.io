@@ -80,8 +80,8 @@
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
   <!-- Styles and Scripts -->
-  <link rel="stylesheet" href="{{ site.url }}/css/index.css">
-  <link rel="stylesheet" href="{{ site.url }}/css/jinkai.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/index.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css">
 
   {% if page.layout == "post" %}
   <script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js" async defer></script>
@@ -100,7 +100,7 @@
   <meta name="robots" content="index, follow">
 
   <!-- Feed -->
-  <link href="{{ site.url }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+  <link href="{{ site.baseurl }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
   <!-- Performance: Reduce render blocking -->
   <link rel="preconnect" href="https://giscus.app">

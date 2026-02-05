@@ -20,3 +20,5 @@
 
 - 修正：站点 URL 改为小写 https://elonjask.github.io，避免资源加载 404 导致样式错乱。
 
+- 修正：静态资源引用改为 `site.baseurl`（避免 `site.url` 导致 CSS/JS 404），并将 GitHub Actions 触发分支改为 `main`。
+
