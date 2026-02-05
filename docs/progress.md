@@ -33,3 +33,6 @@
 - 修正：站点 URL 改为 https://www.7fl.org，并将导航链接改为相对路径，避免点击文章跳转旧域名。
 - 更新：Giscus origins 增加 Vercel 域名与 www.7fl.org。
 
+- 已完成：彻底停用 GitHub Actions（删除 .github/workflows/jekyll.yml）。
+- 已完成：简化 robots.txt，保留允许抓取与 sitemap，避免阻塞 CSS/JS。
+
