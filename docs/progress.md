@@ -28,3 +28,5 @@
 - 已完成：清理 Tw93 文案残留（robots.txt、sw.js、en/about.md、CLAUDE.md、package-lock.json）。
 - 已完成：站点标题改为 ElonJask。
 
+- 修正：Giscus 评论样式与登录按钮显示（comment.css 不再隐藏 header；主题样式使用绝对 URL）。
+

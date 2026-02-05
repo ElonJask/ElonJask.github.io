@@ -99,8 +99,7 @@ main .gsc-loading-image {
   background-image: url("https://gw.alipayobjects.com/zos/k/xi/mona-loading-default.gif");
 }
 
-main .gsc-left-header .color-text-secondary,
-.gsc-header {
+main .gsc-left-header .color-text-secondary {
   display: none;
 }
 main .gsc-comment-box-textarea {
