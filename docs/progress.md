@@ -36,3 +36,5 @@
 - 已完成：彻底停用 GitHub Actions（删除 .github/workflows/jekyll.yml）。
 - 已完成：简化 robots.txt，保留允许抓取与 sitemap，避免阻塞 CSS/JS。
 
+- 已新增：文章页阅读进度条（顶部细线）与页面淡入/标题下划线动画（可被系统“减少动态效果”设置关闭）。
+

@@ -484,6 +484,79 @@ iframe {
   @include btn-base();
 }
 
+// Page Motion
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+#main {
+  animation: page-fade-in 360ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main {
+    animation: none;
+  }
+}
+
+@keyframes title-line-in {
+  from {
+    width: 0;
+  }
+  to {
+    width: 48px;
+  }
+}
+
+#post .post-title {
+  position: relative;
+}
+
+#post .post-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  margin-top: 10px;
+  background: rgba($primary, 0.25);
+  animation: title-line-in 520ms ease-out 120ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #post .post-title::after {
+    animation: none;
+    width: 48px;
+  }
+}
+
+// Reading Progress
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none;
+  background: transparent;
+}
+
+.reading-progress-bar {
+  height: 100%;
+  width: 100%;
+  background: rgba($primary, 0.85);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 120ms linear;
+}
+
 // Header
 .entry-header {
   position: relative;

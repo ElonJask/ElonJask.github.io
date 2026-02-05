@@ -5,6 +5,28 @@ window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequest
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  var progressBar = document.getElementById('J_reading_progress');
+  if (progressBar) {
+    var ticking = false;
+    var updateProgress = function () {
+      var doc = document.documentElement;
+      var scrollTop = doc.scrollTop || document.body.scrollTop;
+      var scrollHeight = doc.scrollHeight - doc.clientHeight;
+      var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
+      progressBar.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
+      ticking = false;
+    };
+    var onScroll = function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateProgress);
+      }
+    };
+    updateProgress();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  }
+
   var zoomImgs = Array.prototype.slice.call(document.querySelectorAll('.entry-content img'));
   if (zoomImgs.length > 0) {
 
