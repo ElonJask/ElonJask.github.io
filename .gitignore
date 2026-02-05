@@ -9,4 +9,4 @@ _config.gh-pages.yml
 .jekyll-cache
 .vscode
 Gemfile.lock
-
+.jekyll.log

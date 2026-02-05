@@ -1,37 +1,31 @@
 # Site Information
-title: Tw93
-description: "一个喜欢开源和折腾的工程师"
-url: https://tw93.fun
-repo: tw93/tw93.github.io
+title: ElonJask 的博客
+description: "写下自己的技术、生活与思考"
+url: https://ElonJask.github.io
+repo: ElonJask/ElonJask.github.io
 lang: zh-CN
 encoding: utf-8
-timezone: Africa/El_Aaiun
+timezone: Asia/Shanghai
 
 # Author Information (for SEO and AI crawlers)
 author:
-  name: Tw93
-  email: tw93@qq.com
-  url: https://tw93.fun
-  twitter: HiTw93
-  github: tw93
+  name: ElonJask
+  email: you@example.com
+  url: https://ElonJask.github.io
+  twitter: your_twitter
+  github: ElonJask
 
 # Social Media and External URLs
-github: tw93
-zhihu: tw93
-twitter: HiTw93
-v2ex: tw93
+github: ElonJask
+zhihu: your_zhihu
+twitter: your_twitter
+v2ex: your_v2ex
 menu:
-  - title: "Weekly"
-    url: "https://weekly.tw93.fun/"
-  - title: "GitHub"
-    url: "https://github.com/tw93"
-  - title: "Twitter"
-    url: "https://twitter.com/HiTw93"
   - title: "About"
     url: "/about.html"
 
 # SEO and Analytics
-google_analytics: G-KS7EDB6BRM
+google_analytics: ""
 
 # Build Settings
 paginate: 10
@@ -124,8 +118,13 @@ defaults:
         changefreq: monthly
 
 # Custom Site Settings
-showBuyCoffee: true
-payImage: //gw.alipayobjects.com/zos/k/vb/1.png
-assetUrl: //tw93.fun/images/
+showBuyCoffee: false
+payImage: ""
+assetUrl: ""
 defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 
+# Giscus Comments
+giscus:
+  repo_id: "R_kgDORI7mHQ"
+  category: "General"
+  category_id: "DIC_kwDORI7mHc4C15lz"
