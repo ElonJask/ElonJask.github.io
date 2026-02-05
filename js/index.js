@@ -27,6 +27,25 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('resize', onScroll);
   }
 
+  var backToTop = document.getElementById('J_back_to_top');
+  if (backToTop) {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var toggleBackToTop = function () {
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > 480) {
+        backToTop.classList.add('is-visible');
+      } else {
+        backToTop.classList.remove('is-visible');
+      }
+    };
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    window.addEventListener('resize', toggleBackToTop);
+    toggleBackToTop();
+  }
+
   var zoomImgs = Array.prototype.slice.call(document.querySelectorAll('.entry-content img'));
   if (zoomImgs.length > 0) {
 

@@ -79,11 +79,14 @@ iframe {
     font-weight: normal;
     margin: -5px 2px 0;
     position: relative;
-    time {
-      margin: 0 20px;
-    }
-    .reading-time {
-      margin-right: 20px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    time,
+    .reading-time,
+    span {
+      margin: 0;
     }
     .qr-text {
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA9ElEQVRYR9VXWw7DIAwbN+Yo3HjTJqUfqSI/FNaWvwpIjeOYMOac75cw1lrjuzz2xXeEUOMNdcM2APkkmRR0YgSsincwcBsAOSXVyVRGgoEc78TAYwBk1SOm2hnYBqCyhJxzVgMonl0F7QBYM6ycL2uAjWc7IdIADYBdyDqjGu93sTij0oAaqzQiVNeVdaNqyfPXA6jEhHKunrRaf2gA5bTrh6fLSBWNygxab1cB8gFWpLYRdaXkPgB2tWSIKfs2ZDUgA3BbMreM23rCvwNwU5B9wWZgGwDUw7EvICS+mLerwM15+TBh7wS2J2T7CdsJXQ1k5j7FF35r3ynsoAAAAABJRU5ErkJggg==)
@@ -558,6 +561,39 @@ iframe {
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 120ms linear;
+}
+
+// Back To Top
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 22px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid $comp-color;
+  background: $white;
+  color: $primary;
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 12px rgba($black, 0.08);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+@media (hover: hover) {
+  .back-to-top:hover {
+    box-shadow: 0 6px 16px rgba($black, 0.12);
+  }
 }
 
 // Header
