@@ -18,3 +18,5 @@
 
 - 已完成：写入 Giscus repo_id 与 category_id（来自你提供的脚本）。
 
+- 修正：站点 URL 改为小写 https://elonjask.github.io，避免资源加载 404 导致样式错乱。
+

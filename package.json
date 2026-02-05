@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "author": "Your Name <you@example.com>",
-  "homepage": "https://example.com",
+  "homepage": "https://elonjask.github.io",
   "repository": {
     "type": "git",
     "url": "https://github.com/ElonJask/ElonJask.github.io"
@@ -16,4 +16,3 @@
     "build": "bundle exec jekyll build"
   }
 }
-
