@@ -24,3 +24,7 @@
 
 - 修正：GitHub Actions runner 固定为 ubuntu-22.04，避免 ubuntu-24.04 被识别为 self-hosted 导致 Ruby 工具缓存不可用。
 
+- 已完成：移除历史遗留静态资源（images/、files/、github.html）与本地缓存文件。
+- 已完成：清理 Tw93 文案残留（robots.txt、sw.js、en/about.md、CLAUDE.md、package-lock.json）。
+- 已完成：站点标题改为 ElonJask。
+
