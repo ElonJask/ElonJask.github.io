@@ -9,6 +9,12 @@ body_id: post
     <h4 class="page-info">
       <span>Categories: {{page.categories}}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      {% assign reading_time = content | strip_html | number_of_words | divided_by: 300 | plus: 1 %}
+      {% if page.lang == 'en-US' or page.lang == 'en' %}
+      <span class="reading-time">{{ reading_time }} min read</span>
+      {% else %}
+      <span class="reading-time">阅读时间: {{ reading_time }} 分钟</span>
+      {% endif %}
       <div class="qr-text" id="J_qr_text">
         <div id="J_qr_code" class="qr-code" aria-label="QR code for this page" role="img"></div>
       </div>
