@@ -1,4 +1,4 @@
-# robots.txt for elonjask.github.io
+# robots.txt for www.7fl.org
 # Allow all search engines and AI crawlers
 
 User-agent: *
@@ -9,7 +9,7 @@ Disallow: /js/
 Disallow: /.git/
 
 # Sitemap
-Sitemap: https://elonjask.github.io/sitemap.xml
+Sitemap: https://www.7fl.org/sitemap.xml
 
 # AI Crawlers - Explicitly allow for better indexing
 User-agent: GPTBot

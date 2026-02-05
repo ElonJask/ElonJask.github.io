@@ -1,7 +1,7 @@
 # Site Information
 title: ElonJask
 description: "写下自己的技术、生活与思考"
-url: https://elonjask.github.io
+url: https://www.7fl.org
 repo: ElonJask/ElonJask.github.io
 lang: zh-CN
 encoding: utf-8
@@ -11,7 +11,7 @@ timezone: Asia/Shanghai
 author:
   name: ElonJask
   email: you@example.com
-  url: https://elonjask.github.io
+  url: https://www.7fl.org
   twitter: your_twitter
   github: ElonJask
 

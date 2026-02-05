@@ -30,3 +30,6 @@
 
 - 修正：Giscus 评论样式与登录按钮显示（comment.css 不再隐藏 header；主题样式使用绝对 URL）。
 
+- 修正：站点 URL 改为 https://www.7fl.org，并将导航链接改为相对路径，避免点击文章跳转旧域名。
+- 更新：Giscus origins 增加 Vercel 域名与 www.7fl.org。
+
