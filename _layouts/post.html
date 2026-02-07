@@ -9,7 +9,14 @@ body_id: post
     <h4 class="page-info">
       <span>Categories: {{page.categories}}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
-      {% assign reading_time = content | strip_html | number_of_words | divided_by: 300 | plus: 1 %}
+      {% comment %}
+        Liquid 内置的 number_of_words 在部分环境不可用，导致阅读时间始终为 1。
+        这里使用 split+size 计算词数：去掉 HTML 后按空格切分。
+        读取时间向上取整：(words + 299) / 300。
+      {% endcomment %}
+      {% assign words_array = content | strip_html | replace: "\n", " " | replace: "  ", " " | split: " " %}
+      {% assign words_count = words_array | size %}
+      {% assign reading_time = words_count | plus: 299 | divided_by: 300 %}
       {% if page.lang == 'en-US' or page.lang == 'en' %}
       <span class="reading-time">{{ reading_time }} min read</span>
       {% else %}
