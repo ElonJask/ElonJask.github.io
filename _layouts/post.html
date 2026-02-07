@@ -10,13 +10,21 @@ body_id: post
       <span>Categories: {{page.categories}}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
       {% comment %}
-        Liquid 内置的 number_of_words 在部分环境不可用，导致阅读时间始终为 1。
-        这里使用 split+size 计算词数：去掉 HTML 后按空格切分。
-        读取时间向上取整：(words + 299) / 300。
+        number_of_words 在部分环境不可用，改用手工计算：
+        - 先得到纯文本 plain
+        - ascii_words: 按空格切分，适用于英文
+        - char_count: 去空格后按字符计数，适用于中文
+        - 如果英文词数很少（<50），视为中文内容，用 char_count/2 估算“等效词数”
+        - 阅读时间向上取整：(est_words + 299) / 300
       {% endcomment %}
-      {% assign words_array = content | strip_html | replace: "\n", " " | replace: "  ", " " | split: " " %}
-      {% assign words_count = words_array | size %}
-      {% assign reading_time = words_count | plus: 299 | divided_by: 300 %}
+      {% assign plain = content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
+      {% assign ascii_words = plain | split: " " | size %}
+      {% assign char_count = plain | replace: " ", "" | split: "" | size %}
+      {% assign est_words = ascii_words %}
+      {% if ascii_words < 50 %}
+        {% assign est_words = char_count | divided_by: 2 %}
+      {% endif %}
+      {% assign reading_time = est_words | plus: 299 | divided_by: 300 %}
       {% if page.lang == 'en-US' or page.lang == 'en' %}
       <span class="reading-time">{{ reading_time }} min read</span>
       {% else %}
