@@ -1,5 +1,22 @@
 <div class="footer-wrapper">
   <footer role="contentinfo">
+    {% assign post_count = site.posts | size %}
+    {% assign total_chars = 0 %}
+    {% for post in site.posts %}
+      {% assign plain = post.content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
+      {% assign char_count = plain | replace: " ", "" | split: "" | size %}
+      {% assign total_chars = total_chars | plus: char_count %}
+    {% endfor %}
+    <div class="footer-stats" aria-label="站点统计">
+      <span class="footer-stat-chip">
+        <span class="footer-stat-number">{{ post_count }}</span>
+        <span class="footer-stat-label">篇文章</span>
+      </span>
+      <span class="footer-stat-chip">
+        <span class="footer-stat-number">{{ total_chars }}</span>
+        <span class="footer-stat-label">字</span>
+      </span>
+    </div>
 
     <a href="https://github.com/{{site.github}}" rel="nofollow" target="_blank" class="social-icon github-icon"
       aria-label="Follow on GitHub">
