@@ -452,43 +452,20 @@ iframe {
 }
 
 .footer-stats {
-  margin: 4px auto 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  padding: 6px 12px;
+  margin: 2px 0 10px;
   font-size: 12px;
-  color: #6f6f6f;
+  color: #8b8b8b;
   letter-spacing: 0.2px;
   font-variant-numeric: tabular-nums;
-  background: linear-gradient(180deg, rgba($white, 0.96), rgba($white, 0.76));
-  border: 1px solid rgba($border-color, 0.7);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px rgba($black, 0.08);
 
   @media #{$medium} {
-    padding: 7px 16px;
     font-size: 13px;
   }
-}
-
-.footer-stat-chip {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
 }
 
 .footer-stat-number {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  font-weight: 600;
-  color: $header-color;
-}
-
-.footer-stat-label {
-  color: #7a7a7a;
 }
 
 // Browser Upgrade
