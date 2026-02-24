@@ -14,7 +14,12 @@ lang: en-US
 ## Follow Me
 
 - [Github](https://github.com/{{site.github}})
+{% if site.twitter and site.twitter != "" %}
 - [Twitter](https://twitter.com/{{site.twitter}})
+{% endif %}
+{% if site.zhihu and site.zhihu != "" %}
 - [Zhihu](https://www.zhihu.com/people/{{site.zhihu}})
+{% endif %}
+{% if site.v2ex and site.v2ex != "" %}
 - [V2EX](https://www.v2ex.com/member/{{site.v2ex}})
-
+{% endif %}

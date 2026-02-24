@@ -10,16 +10,16 @@ timezone: Asia/Shanghai
 # Author Information (for SEO and AI crawlers)
 author:
   name: ElonJask
-  email: you@example.com
+  email: ""
   url: https://www.7fl.org
-  twitter: your_twitter
+  twitter: ""
   github: ElonJask
 
 # Social Media and External URLs
 github: ElonJask
-zhihu: your_zhihu
-twitter: your_twitter
-v2ex: your_v2ex
+zhihu: ""
+twitter: ""
+v2ex: ""
 menu:
   - title: "About"
     url: "/about.html"

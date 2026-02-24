@@ -13,7 +13,12 @@ hideHomeActive: true
 ## 关注我
 
 - [Github](https://github.com/{{site.github}})
+{% if site.twitter and site.twitter != "" %}
 - [Twitter](https://twitter.com/{{site.twitter}})
+{% endif %}
+{% if site.zhihu and site.zhihu != "" %}
 - [知乎](https://www.zhihu.com/people/{{site.zhihu}})
+{% endif %}
+{% if site.v2ex and site.v2ex != "" %}
 - [V2EX](https://www.v2ex.com/member/{{site.v2ex}})
-
+{% endif %}

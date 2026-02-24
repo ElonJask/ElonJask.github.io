@@ -5,6 +5,7 @@ date: 2026-02-06 10:00:00
 summary: "Between history and the stars, I bring my gaze back to people."
 categories: Share
 lang: en-US
+translation_key: walk-outward
 ---
 
 I often read history late at night. I watch heroes stream by like fish crossing a river, and dynasties rise and fall like tides. One page is filled with prosperity and boldness, the next turns into smoke and ash. Those names are dazzling, almost blinding; yet after the brightness, silence arrives. The longer I look, the more I start to wonder: what can our struggles and convictions really leave behind?

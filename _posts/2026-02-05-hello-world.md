@@ -4,6 +4,7 @@ title: "你好，世界"
 date: 2026-02-05 10:00:00
 summary: "这是你的第一篇文章，用来验证站点是否正常运行。"
 categories: Share
+translation_key: hello-world
 ---
 
 欢迎来到你的新博客！
@@ -42,4 +43,3 @@ categories: Share
 ## 结束语
 
 欢迎你留下评论，一起交流。
-

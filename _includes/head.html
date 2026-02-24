@@ -49,8 +49,10 @@
   {% assign twitter_image = page.feature | default:
   "https://gw.alicdn.com/imgextra/i3/O1CN01cSkdn72AKKBDPm829_!!6000000008184-2-tps-2664-2664.png" %}
   <meta name="twitter:card" content="{% if page.feature %}summary_large_image{% else %}summary{% endif %}">
+  {% if site.twitter and site.twitter != "" %}
   <meta name="twitter:creator" content="@{{ site.twitter }}">
-  <meta name="twitter:site" content="{{ site.url }}">
+  <meta name="twitter:site" content="@{{ site.twitter }}">
+  {% endif %}
   <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
   <meta name="twitter:title" content="{{ page.title }} - {{ site.title }}">
   <meta name="twitter:description" content="{{ page.summary }}">
@@ -63,13 +65,49 @@
   <link rel="canonical" href="{{ canonical }}">
 
   <!-- Hreflang for multilingual content -->
-  {% if page.url contains '/en/' %}
-  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url }}" />
-  <link rel="alternate" hreflang="zh" href="{{ site.url }}{{ page.url | remove: '/en' }}" />
-  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url | remove: '/en' }}" />
+  {% assign zh_url = nil %}
+  {% assign en_url = nil %}
+  {% if page.collection == 'posts' or page.collection == 'posts_en' %}
+    {% assign pair_key = page.translation_key %}
+    {% if pair_key %}
+      {% assign zh_post = site.posts | where: "translation_key", pair_key | first %}
+      {% assign en_post = site.posts_en | where: "translation_key", pair_key | first %}
+    {% endif %}
+    {% if page.collection == 'posts' %}
+      {% assign zh_url = page.url %}
+      {% if en_post %}
+        {% assign en_url = en_post.url %}
+      {% endif %}
+    {% else %}
+      {% assign en_url = page.url %}
+      {% if zh_post %}
+        {% assign zh_url = zh_post.url %}
+      {% endif %}
+    {% endif %}
+  {% elsif page.url contains '/en/' %}
+    {% assign en_url = page.url %}
+    {% assign zh_candidate = page.url | remove_first: '/en' %}
+    {% assign zh_page = site.pages | where: "url", zh_candidate | first %}
+    {% if zh_page %}
+      {% assign zh_url = zh_page.url %}
+    {% endif %}
   {% else %}
-  <link rel="alternate" hreflang="zh" href="{{ site.url }}{{ page.url }}" />
-  <link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ page.url }}" />
+    {% assign zh_url = page.url %}
+    {% assign en_candidate = '/en' | append: page.url %}
+    {% assign en_page = site.pages | where: "url", en_candidate | first %}
+    {% if en_page %}
+      {% assign en_url = en_page.url %}
+    {% endif %}
+  {% endif %}
+  {% if zh_url %}
+  <link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ zh_url }}" />
+  {% endif %}
+  {% if en_url %}
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ en_url }}" />
+  {% endif %}
+  {% if zh_url %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ zh_url }}" />
+  {% else %}
   <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url }}" />
   {% endif %}
 
@@ -97,7 +135,11 @@
   <meta http-equiv="cleartype" content="on">
   <meta name="format-detection" content="telephone=no">
   <meta name="author" content="{{ site.author.name | default: site.title }}">
+  {% if page.noindex or page.is404 %}
+  <meta name="robots" content="noindex, follow">
+  {% else %}
   <meta name="robots" content="index, follow">
+  {% endif %}
 
   <!-- Feed -->
   <link href="{{ site.baseurl }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
@@ -120,8 +162,8 @@
       "name": "{{ site.author.name | default: site.title }}",
       "url": "{{ site.author.url | default: site.url }}",
       "sameAs": [
-        "https://github.com/{{ site.author.github }}",
-        "https://twitter.com/{{ site.author.twitter }}"
+        "https://github.com/{{ site.author.github }}"{% if site.author.twitter and site.author.twitter != "" %},
+        "https://twitter.com/{{ site.author.twitter }}"{% endif %}
       ]
     },
     "publisher": {

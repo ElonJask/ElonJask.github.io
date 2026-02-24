@@ -5,6 +5,7 @@ date: 2026-02-17 20:00:00
 summary: "A holiday return home, a difficult reunion, and a clear reset for 2026."
 categories: Share
 lang: en-US
+translation_key: homecoming-2026
 ---
 
 The annual leave I had been waiting for finally arrived. After a 12-hour high-speed train ride, I made it home.
@@ -63,4 +64,3 @@ These are not slogans. They are constraints I want to execute in real life.
 For you, and for myself, in 2026:
 
 May work go smoothly, may health stay steady, and may what we truly seek become what we truly gain.
-
