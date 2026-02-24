@@ -30,12 +30,17 @@ module Jekyll
       input.gsub(/<img\s+[^>]*src="([^"]+)"[^>]*>/) do |img_tag|
         src = $1
         new_src = CDNImageFilter.append_oss_params(src)
+        updated_tag = src != new_src ? img_tag.sub(src, new_src) : img_tag
 
-        if src != new_src
-          img_tag.sub(src, new_src)
-        else
-          img_tag
+        unless updated_tag =~ /\sdecoding=/i
+          updated_tag = updated_tag.sub('<img', '<img decoding="async"')
         end
+
+        unless updated_tag =~ /\sloading=/i
+          updated_tag = updated_tag.sub('<img', '<img loading="lazy"')
+        end
+
+        updated_tag
       end
     end
 

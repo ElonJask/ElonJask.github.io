@@ -1,7 +1,6 @@
 <head>
   <meta charset="utf-8">
-  <title>{% if page.layout == 'post' or page.hideHomeActive or page.is404 %}{{ page.title }} - {% endif %}{{ site.title
-    }}</title>
+  <title>{% if page.layout == 'home' and page.title %}{{ page.title }}{% elsif page.layout == 'post' or page.hideHomeActive or page.is404 %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   {% if page.summary %}
   <meta name="description" content="{{ page.summary | strip_html | truncate: 160 }}">
   {% else %}
@@ -9,6 +8,25 @@
   {% endif %}
   {% if page.tags %}
   <meta name="keywords" content="{{ page.tags | join: ', ' }}">
+  {% endif %}
+  {% if site.google_site_verification and site.google_site_verification != "" %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+  {% endif %}
+  {% assign is_post = false %}
+  {% if page.collection == 'posts' or page.collection == 'posts_en' or page.layout == "post" %}
+    {% assign is_post = true %}
+  {% endif %}
+  {% assign is_en_page = false %}
+  {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+    {% assign is_en_page = true %}
+  {% endif %}
+  {% assign use_jinkai = false %}
+  {% if is_post and is_en_page == false %}
+    {% assign use_jinkai = true %}
+  {% endif %}
+  {% assign enable_giscus = false %}
+  {% if is_post and page.comments != false %}
+    {% assign enable_giscus = true %}
   {% endif %}
 
   <!-- Viewport and Theme Color -->
@@ -112,22 +130,29 @@
   {% endif %}
 
   <!-- DNS Prefetch & Preconnect for Performance -->
-  <link rel="dns-prefetch" href="https://gw.alipayobjects.com">
   <link rel="dns-prefetch" href="https://gw.alicdn.com">
+  {% if use_jinkai %}
+  <link rel="dns-prefetch" href="https://gw.alipayobjects.com">
   <link rel="preconnect" href="https://gw.alipayobjects.com" crossorigin>
+  {% endif %}
+  {% if site.google_analytics and site.google_analytics != "" %}
   <link rel="preconnect" href="https://www.googletagmanager.com">
+  {% endif %}
+  {% if enable_giscus %}
+  <link rel="preconnect" href="https://giscus.app">
+  <link rel="dns-prefetch" href="https://giscus.app">
+  {% endif %}
 
   <!-- Styles and Scripts -->
   <link rel="stylesheet" href="{{ site.baseurl }}/css/index.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css">
-
-  {% if page.layout == "post" %}
-  <script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js" async defer></script>
+  {% if use_jinkai %}
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css"></noscript>
   {% endif %}
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/png"
-    href="https://gw.alicdn.com/imgextra/i4/O1CN01XYYPwL1uheeXASHIQ_!!6000000006069-2-tps-420-420.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="{{ site.baseurl }}/images/favicon.png">
 
   <!-- Additional Meta Tags -->
   <meta name="HandheldFriendly" content="True">
@@ -143,10 +168,6 @@
 
   <!-- Feed -->
   <link href="{{ site.baseurl }}/feed.xml" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
-
-  <!-- Performance: Reduce render blocking -->
-  <link rel="preconnect" href="https://giscus.app">
-  <link rel="dns-prefetch" href="https://giscus.app">
 
   <!-- Structured Data for SEO and AI Crawlers -->
   {% if page.layout == "post" %}
@@ -171,7 +192,7 @@
       "name": "{{ site.title }}",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://gw.alicdn.com/imgextra/i4/O1CN01XYYPwL1uheeXASHIQ_!!6000000006069-2-tps-420-420.png"
+        "url": "{{ site.url }}/images/favicon.png"
       }
     },
     "description": "{{ page.summary | default: page.excerpt | strip_html | truncate: 160 | default: site.description }}",

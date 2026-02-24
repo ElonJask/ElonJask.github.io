@@ -60,7 +60,7 @@
 <script type="text/javascript" src="{{ site.baseurl }}/js/index.js" defer></script>
 <script type="text/javascript" src="{{ site.baseurl }}/js/search.js" defer></script>
 
-{% if site.google_analytics %}
+{% if site.google_analytics and site.google_analytics != "" %}
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag () {
@@ -105,15 +105,6 @@
         links[i].target = "_blank";
       }
     }
-
-    // The second image is the cover image, both of which could do with some optimization
-    const images = document.querySelectorAll('.entry-content img');
-    images.forEach((img, index) => {
-      if (index > 1) {
-        img.setAttribute('loading', 'lazy');
-        img.setAttribute('decoding', 'async');
-      }
-    });
 
     // Full screen button
     const fullscreenBtn = document.getElementById("fullscreenBtn");
