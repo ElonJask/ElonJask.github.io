@@ -21,7 +21,7 @@
     {% assign is_en_page = true %}
   {% endif %}
   {% assign use_jinkai = false %}
-  {% if is_post and is_en_page == false %}
+  {% if site.use_jinkai_font and is_post and is_en_page == false %}
     {% assign use_jinkai = true %}
   {% endif %}
   {% assign enable_giscus = false %}

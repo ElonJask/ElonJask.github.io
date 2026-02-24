@@ -84,3 +84,4 @@
   - 文章图片在构建阶段注入加载策略：统一 `loading=\"lazy\" + decoding=\"async\"`，降低首屏与长文并发图片请求压力。
 - 已完成：本地 Lighthouse 复测（mobile, localhost）得分提升至 `100`，指标约为 `FCP 0.9s / LCP 1.4s / TBT 0ms`。
 - 已完成：文章页性能复测（mobile, localhost）得分约 `74`（此前约 `57`），瓶颈主要转为外链大图体积与中文字体文件体积。
+- 已完成：新增 `use_jinkai_font` 开关并默认关闭，统一首页与文章页字体粗细观感，避免页面间字体观感不一致。

@@ -26,6 +26,7 @@ menu:
 
 # SEO and Analytics
 google_analytics: ""
+google_site_verification: ""
 
 # Build Settings
 paginate: 10
@@ -122,6 +123,7 @@ showBuyCoffee: false
 payImage: ""
 assetUrl: ""
 defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+use_jinkai_font: false
 
 # Giscus Comments
 giscus:
