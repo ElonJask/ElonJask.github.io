@@ -90,3 +90,10 @@
 - 已完成：`vercel.json` 增加图片长期缓存头（`max-age=31536000, immutable`）与 `sw.js` 重新验证策略。
 - 已完成：本地 Lighthouse 复测（文章页 mobile）约 `97`，LCP 约 `2.6s`，主要剩余为通用样式/脚本未按页面拆分。
 - 已完成：新增 `docs/WRITING_RULES.md`（面向人类与 AI 的写作/SEO/性能规范）并在 `README.md` 增加入口说明。
+- 已完成：重构 `README.md`，补齐项目结构、部署流程、写作规范入口、SEO/统计配置说明。
+- 已完成：新增多引擎站点验证配置项（Bing/Baidu）并在 `head` 模板注入对应验证 meta。
+- 已完成：新增 `baidu_tongji` 可选配置，保持按需加载，默认空值不引入额外请求。
+- 已完成：写入 GA4 Measurement ID（`google_analytics: G-H2Z2T321VZ`），启用站点访问统计采集。
+- 已完成：按 DNS 验证方案移除 `google_site_verification` 配置项与对应模板注入，减少冗余配置。
+- 已完成：移除 Bing/Baidu 验证与统计注入逻辑，配置侧改为仅保留 GA 与 51.LA。
+- 已完成：接入 51.LA 同步脚本（`LA_COLLECT + LA.init`）并写入站点 ID/CK。

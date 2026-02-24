@@ -25,8 +25,9 @@ menu:
     url: "/about.html"
 
 # SEO and Analytics
-google_analytics: ""
-google_site_verification: ""
+google_analytics: "G-H2Z2T321VZ"
+la51_id: "3P7LtP2KotCouKTE"
+la51_ck: "3P7LtP2KotCouKTE"
 
 # Build Settings
 paginate: 10

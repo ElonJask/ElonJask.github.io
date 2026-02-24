@@ -9,9 +9,6 @@
   {% if page.tags %}
   <meta name="keywords" content="{{ page.tags | join: ', ' }}">
   {% endif %}
-  {% if site.google_site_verification and site.google_site_verification != "" %}
-  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
-  {% endif %}
   {% assign is_post = false %}
   {% if page.collection == 'posts' or page.collection == 'posts_en' or page.layout == "post" %}
     {% assign is_post = true %}

@@ -87,6 +87,16 @@
 </script>
 {% endif %}
 
+{% if site.la51_id and site.la51_id != "" and site.la51_ck and site.la51_ck != "" %}
+<script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+<script>
+  LA.init({
+    id: "{{ site.la51_id }}",
+    ck: "{{ site.la51_ck }}"
+  });
+</script>
+{% endif %}
+
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
