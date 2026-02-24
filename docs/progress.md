@@ -89,3 +89,4 @@
 - 已完成：为上述文章图片补齐 `width/height` 与语义化 `alt`，修复 `unsized-images` 审计项。
 - 已完成：`vercel.json` 增加图片长期缓存头（`max-age=31536000, immutable`）与 `sw.js` 重新验证策略。
 - 已完成：本地 Lighthouse 复测（文章页 mobile）约 `97`，LCP 约 `2.6s`，主要剩余为通用样式/脚本未按页面拆分。
+- 已完成：新增 `docs/WRITING_RULES.md`（面向人类与 AI 的写作/SEO/性能规范）并在 `README.md` 增加入口说明。

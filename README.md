@@ -13,6 +13,7 @@
 
 - 中文文章：`_posts/YYYY-MM-DD-title.md`
 - 英文文章：`_posts_en/YYYY-MM-DD-title.md`
+- 强烈建议先阅读：`docs/WRITING_RULES.md`
 
 模板示例：
 
@@ -30,6 +31,5 @@ categories: Share
 
 ## 部署
 
-- GitHub Pages：push 到 `main`，GitHub Actions 自动构建发布。
+- 当前推荐：Vercel 自动部署（push 到 `main` 后自动发布）。
 - 自建服务器：执行 `bundle exec jekyll build`，上传 `_site/`。
-
