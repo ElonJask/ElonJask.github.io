@@ -4,5 +4,34 @@
       "LANG": "en_US.UTF-8",
       "RUBYOPT": "-E utf-8"
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/images/posts/(.*)\\.(webp|png|jpg|jpeg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/favicon.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
 }

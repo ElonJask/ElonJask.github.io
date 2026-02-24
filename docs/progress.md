@@ -85,3 +85,7 @@
 - 已完成：本地 Lighthouse 复测（mobile, localhost）得分提升至 `100`，指标约为 `FCP 0.9s / LCP 1.4s / TBT 0ms`。
 - 已完成：文章页性能复测（mobile, localhost）得分约 `74`（此前约 `57`），瓶颈主要转为外链大图体积与中文字体文件体积。
 - 已完成：新增 `use_jinkai_font` 开关并默认关闭，统一首页与文章页字体粗细观感，避免页面间字体观感不一致。
+- 已完成：将《我的 Mac 效率工具清单（2026）》中英文图片迁移为本地 WebP 资源（`/images/posts/mac-apps-2026/*.webp`），显著降低图片体积。
+- 已完成：为上述文章图片补齐 `width/height` 与语义化 `alt`，修复 `unsized-images` 审计项。
+- 已完成：`vercel.json` 增加图片长期缓存头（`max-age=31536000, immutable`）与 `sw.js` 重新验证策略。
+- 已完成：本地 Lighthouse 复测（文章页 mobile）约 `97`，LCP 约 `2.6s`，主要剩余为通用样式/脚本未按页面拆分。
