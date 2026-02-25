@@ -401,45 +401,43 @@ iframe {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0 28px;
-  @media #{$medium} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
 }
 
 .tag-index-item {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba($text-color, 0.1);
-  &:target {
-    background-color: rgba($text-color, 0.04);
-    border-radius: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom-color: transparent;
-  }
+  margin: 0;
 }
 
 .tag-index-name {
-  @include text-overflow();
-  display: inline-block;
+  display: inline;
   color: rgba($text-color, 0.9);
   text-decoration: none;
   border-bottom: 1px dotted rgba($text-color, 0.3);
+  font-size: 16px;
+  line-height: 1.6;
   &:hover {
     border-bottom-style: solid;
   }
 }
 
-.tag-index-count {
-  font-size: 13px;
-  color: rgba($text-color, 0.58);
-  white-space: nowrap;
+.tag-post-groups {
+  margin-top: 18px;
+}
+
+.tag-post-group {
+  margin-bottom: 18px;
+  padding-top: 6px;
+  &:target {
+    scroll-margin-top: 74px;
+  }
+}
+
+.tag-post-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.35;
 }
 
 .list-inline {
