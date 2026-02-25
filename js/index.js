@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tocBody.innerHTML = '';
       tocBody.appendChild(tocList);
       tocRoot.hidden = false;
-      if (window.matchMedia('(min-width: 48em)').matches) {
+      if (window.matchMedia('(min-width: 80em)').matches) {
         tocRoot.open = true;
       }
 
