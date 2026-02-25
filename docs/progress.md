@@ -125,3 +125,5 @@
 - 已完成：按反馈移除标签数量显示，标签点击后直接定位到该标签文章列表区块。
 - 已完成：按“仅用 Vercel”策略移除全部自建 GitHub Actions 工作流（`indexnow`/`seo-health`/`lighthouse`）。
 - 已完成：移除 IndexNow key 文件与 SEO 自动化文档，仓库回归最小维护面。
+- 已完成：删除仓库 Secret `INDEXNOW_KEY`，避免无用敏感配置残留。
+- 已完成：GitHub Pages 切换到 `legacy + gh-pages` 源分支，避免 `main` 分支继续触发 Pages 构建。
