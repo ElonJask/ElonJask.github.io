@@ -57,8 +57,12 @@
   </footer>
 </div>
 
-<script type="text/javascript" src="{{ site.baseurl }}/js/index.js" defer></script>
-<script type="text/javascript" src="{{ site.baseurl }}/js/search.js" defer></script>
+{% assign asset_version = site.asset_version %}
+{% unless asset_version and asset_version != "" %}
+  {% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
+{% endunless %}
+<script type="text/javascript" src="{{ '/js/index.js' | relative_url }}?v={{ asset_version }}" defer></script>
+<script type="text/javascript" src="{{ '/js/search.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
 {% if site.google_analytics and site.google_analytics != "" %}
 <script>
@@ -100,7 +104,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js');
+      navigator.serviceWorker.register('{{ '/sw.js' | relative_url }}');
     });
   }
 

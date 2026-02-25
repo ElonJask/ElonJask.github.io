@@ -140,11 +140,16 @@
   <link rel="dns-prefetch" href="https://giscus.app">
   {% endif %}
 
+  {% assign asset_version = site.asset_version %}
+  {% unless asset_version and asset_version != "" %}
+    {% assign asset_version = site.time | date: "%Y%m%d%H%M%S" %}
+  {% endunless %}
+
   <!-- Styles and Scripts -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/index.css">
+  <link rel="stylesheet" href="{{ '/css/index.css' | relative_url }}?v={{ asset_version }}">
   {% if use_jinkai %}
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="{{ site.baseurl }}/css/jinkai.css"></noscript>
+  <link rel="stylesheet" href="{{ '/css/jinkai.css' | relative_url }}?v={{ asset_version }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ '/css/jinkai.css' | relative_url }}?v={{ asset_version }}"></noscript>
   {% endif %}
 
   <!-- Favicon -->

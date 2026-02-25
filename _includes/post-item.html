@@ -1,6 +1,22 @@
+{% capture hide_featured_raw %}{{ include.hide_featured }}{% endcapture %}
+{% assign hide_featured_raw = hide_featured_raw | strip | downcase %}
+{% assign should_hide_featured = false %}
+{% if hide_featured_raw == "true" %}
+  {% assign should_hide_featured = true %}
+{% endif %}
 {% for post in include.posts %}
   {% assign is_hidden = post.hidden | default: post.hide %}
-  {% if is_hidden != true %}
+  {% capture featured_raw %}{{ post.featured }}{% endcapture %}
+  {% assign featured_raw = featured_raw | strip | downcase %}
+  {% assign is_featured = false %}
+  {% if featured_raw == "true" %}
+    {% assign is_featured = true %}
+  {% endif %}
+  {% assign skip_post = false %}
+  {% if should_hide_featured == true and is_featured == true %}
+    {% assign skip_post = true %}
+  {% endif %}
+  {% if is_hidden != true and skip_post != true %}
     <a href="{{ post.url | relative_url }}" rel="bookmark" title="{{ post.title }}" itemprop="url" class="header-href">
       <article class="hentry">
         <h2 class="entry-title">{{ post.title }}</h2>
