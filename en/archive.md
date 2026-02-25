@@ -7,10 +7,10 @@ hideHomeActive: true
 lang: en-US
 ---
 
-{% assign grouped_posts = site.posts_en | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% assign grouped_posts = site.posts_en | sort: "date" | reverse | group_by_exp: "post", "post.date | date: '%Y'" %}
 
 <div class="archive-page">
-  <p class="archive-note">Browse posts by year.</p>
+  <p class="archive-note">Browse posts by year (newest first).</p>
 
   {% for group in grouped_posts %}
     {% assign visible_count = 0 %}

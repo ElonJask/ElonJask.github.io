@@ -7,10 +7,10 @@ hideHomeActive: true
 lang: zh-CN
 ---
 
-{% assign grouped_posts = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% assign grouped_posts = site.posts | sort: "date" | reverse | group_by_exp: "post", "post.date | date: '%Y'" %}
 
 <div class="archive-page">
-  <p class="archive-note">按年份查看文章。</p>
+  <p class="archive-note">按年份查看文章（最新在前）。</p>
 
   {% for group in grouped_posts %}
     {% assign visible_count = 0 %}
