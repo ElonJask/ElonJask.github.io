@@ -16,7 +16,7 @@ body_id: post
       <span>
         Tags:
         {% for tag in page.tags %}
-          <a href="{{ tag_base }}#tag-{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          <a href="{{ tag_base | relative_url }}?tag={{ tag | slugify }}#tag-posts">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
         {% endfor %}
       </span>
       {% endif %}
@@ -26,7 +26,7 @@ body_id: post
         - 先得到纯文本 plain
         - ascii_words: 按空格切分，适用于英文
         - char_count: 去空格后按字符计数，适用于中文
-        - 如果英文词数很少（<50），视为中文内容，用 char_count/2 估算“等效词数”
+        - 如果英文词数很少（<50），视为中文内容，按字符数估算
         - 阅读时间向上取整：(est_words + 299) / 300
       {% endcomment %}
       {% assign plain = content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
@@ -34,7 +34,7 @@ body_id: post
       {% assign char_count = plain | replace: " ", "" | split: "" | size %}
       {% assign est_words = ascii_words %}
       {% if ascii_words < 50 %}
-        {% assign est_words = char_count | divided_by: 2 %}
+        {% assign est_words = char_count %}
       {% endif %}
       {% assign reading_time = est_words | plus: 299 | divided_by: 300 %}
       {% if page.lang == 'en-US' or page.lang == 'en' %}
@@ -46,6 +46,14 @@ body_id: post
         <div id="J_qr_code" class="qr-code" aria-label="QR code for this page" role="img"></div>
       </div>
     </h4>
+    {% assign is_en_post = false %}
+    {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+      {% assign is_en_post = true %}
+    {% endif %}
+    <details class="post-toc" id="J_post_toc" hidden>
+      <summary>{% if is_en_post %}Contents{% else %}目录{% endif %}</summary>
+      <div class="post-toc-body" id="J_post_toc_body"></div>
+    </details>
     {{ content | cdn_image_filter }}
     {% include buy-me-coffee.html %}
   </div>

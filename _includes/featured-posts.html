@@ -1,0 +1,33 @@
+{% assign is_en = include.is_en | default: false %}
+{% assign featured_limit = include.limit | default: 2 %}
+{% assign visible_featured = 0 %}
+{% for post in include.posts %}
+  {% assign is_hidden = post.hidden | default: post.hide %}
+  {% if is_hidden != true %}
+    {% assign visible_featured = visible_featured | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if visible_featured > 0 %}
+<section class="featured-posts" aria-label="{% if is_en %}Featured posts{% else %}精选文章{% endif %}">
+  <div class="featured-posts-head">
+    <h2>{% if is_en %}Featured{% else %}精选{% endif %}</h2>
+  </div>
+  <div class="featured-posts-list">
+    {% assign rendered = 0 %}
+    {% for post in include.posts %}
+      {% assign is_hidden = post.hidden | default: post.hide %}
+      {% if is_hidden != true and rendered < featured_limit %}
+        <a href="{{ post.url | relative_url }}" class="featured-post-card" rel="bookmark">
+          <h3>{{ post.title }}</h3>
+          {% if post.summary %}
+          <p>{{ post.summary }}</p>
+          {% endif %}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        </a>
+        {% assign rendered = rendered | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

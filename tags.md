@@ -8,15 +8,20 @@ lang: zh-CN
 ---
 
 {% assign tags_map = site.posts_tags %}
+{% assign tags_page_url = '/tags.html' | relative_url %}
 
 <div class="tag-index">
-  <p class="tag-index-note">点击标签，查看该标签下的文章。</p>
+  <p class="tag-index-note">点击标签，筛选该标签下的文章。</p>
 
   {% if tags_map and tags_map.size > 0 %}
     <ul class="tag-index-list">
+      <li class="tag-index-item">
+        <a href="{{ tags_page_url }}" class="tag-index-name" data-tag-slug="">全部</a>
+      </li>
       {% for item in tags_map %}
         {% assign tag_name = item[0] %}
         {% assign tag_posts = item[1] %}
+        {% assign tag_slug = tag_name | slugify %}
         {% assign visible_tag_posts = 0 %}
         {% for post in tag_posts %}
           {% assign is_hidden = post.hidden | default: post.hide %}
@@ -26,16 +31,17 @@ lang: zh-CN
         {% endfor %}
         {% if visible_tag_posts > 0 %}
           <li class="tag-index-item">
-            <a href="#tag-{{ tag_name | slugify }}" class="tag-index-name">{{ tag_name }}</a>
+            <a href="{{ tags_page_url }}?tag={{ tag_slug }}#tag-posts" class="tag-index-name" data-tag-slug="{{ tag_slug }}">{{ tag_name }}</a>
           </li>
         {% endif %}
       {% endfor %}
     </ul>
 
-    <div class="tag-post-groups">
+    <div class="tag-post-groups" id="tag-posts">
       {% for item in tags_map %}
         {% assign tag_name = item[0] %}
         {% assign tag_posts = item[1] %}
+        {% assign tag_slug = tag_name | slugify %}
         {% assign visible_tag_posts = 0 %}
         {% for post in tag_posts %}
           {% assign is_hidden = post.hidden | default: post.hide %}
@@ -44,7 +50,7 @@ lang: zh-CN
           {% endif %}
         {% endfor %}
         {% if visible_tag_posts > 0 %}
-          <section class="tag-post-group" id="tag-{{ tag_name | slugify }}">
+          <section class="tag-post-group" id="tag-{{ tag_slug }}" data-tag-slug="{{ tag_slug }}">
             <h2 class="tag-post-title">#{{ tag_name }}</h2>
             <ul class="tag-post-list">
               {% for post in tag_posts %}
@@ -65,3 +71,40 @@ lang: zh-CN
     <p>当前还没有标签。</p>
   {% endif %}
 </div>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var activeSlug = (params.get('tag') || '').trim().toLowerCase();
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.tag-post-group'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.tag-index-name[data-tag-slug]'));
+    if (!groups.length || !links.length) return;
+
+    links.forEach(function (link) {
+      var slug = (link.dataset.tagSlug || '').toLowerCase();
+      if (activeSlug === slug) {
+        link.classList.add('active');
+      }
+    });
+
+    if (!activeSlug) {
+      links[0] && links[0].classList.add('active');
+      return;
+    }
+
+    var hasMatch = false;
+    groups.forEach(function (group) {
+      var slug = (group.dataset.tagSlug || '').toLowerCase();
+      var visible = slug === activeSlug;
+      group.hidden = !visible;
+      if (visible) hasMatch = true;
+    });
+
+    if (!hasMatch) {
+      groups.forEach(function (group) {
+        group.hidden = false;
+      });
+      links[0] && links[0].classList.add('active');
+    }
+  })();
+</script>

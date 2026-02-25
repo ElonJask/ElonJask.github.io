@@ -25,6 +25,8 @@ menu:
     url: "/about.html"
   - title: "Tags"
     url: "/tags.html"
+  - title: "Archive"
+    url: "/archive.html"
 
 # SEO and Analytics
 google_analytics: "G-H2Z2T321VZ"
@@ -127,6 +129,7 @@ payImage: ""
 assetUrl: ""
 defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 use_jinkai_font: false
+home_featured_limit: 2
 
 # Giscus Comments
 giscus:

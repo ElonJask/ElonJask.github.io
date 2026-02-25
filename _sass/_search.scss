@@ -173,6 +173,15 @@
   font-size: 15px;
 }
 
+.search-empty-state,
+.search-loading,
+.search-error {
+  padding: 40px 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
 // Search Result Item
 // --------------------------------------------------
 .search-result-item {
@@ -184,6 +193,10 @@
 
   &:hover {
     background-color: #f3f4f6;
+  }
+
+  &.selected {
+    background-color: #eceff3;
   }
 }
 
@@ -199,7 +212,7 @@
   }
 }
 
-.search-result-excerpt {
+.search-result-summary {
   display: block;
   font-size: 14px;
   color: #6b7280;
@@ -221,6 +234,7 @@
 .search-result-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 8px;
   font-size: 12px;
@@ -247,6 +261,13 @@
     width: 14px;
     height: 14px;
   }
+}
+
+.search-result-tags {
+  display: inline-flex;
+  align-items: center;
+  max-width: 45%;
+  @include text-overflow();
 }
 
 // Search Footer

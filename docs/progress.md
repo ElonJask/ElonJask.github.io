@@ -127,3 +127,11 @@
 - 已完成：移除 IndexNow key 文件与 SEO 自动化文档，仓库回归最小维护面。
 - 已完成：删除仓库 Secret `INDEXNOW_KEY`，避免无用敏感配置残留。
 - 已完成：GitHub Pages 切换到 `legacy + gh-pages` 源分支，避免 `main` 分支继续触发 Pages 构建。
+- 已完成：标签页升级为可分享筛选链接（`/tags.html?tag=xxx`、`/en/tags.html?tag=xxx`），支持“全部/All”快速恢复。
+- 已完成：文章页标签链接改为指向筛选 URL，减少跳转后再手动定位成本。
+- 已完成：搜索模块升级为中英双语文案与标签匹配，补齐空态/加载态/错误态样式，提升可用性。
+- 已完成：文章页新增轻量目录（TOC，基于 `h2/h3` 自动生成），桌面端默认展开并支持滚动高亮。
+- 已完成：新增中英文归档页（`/archive.html`、`/en/archive.html`）并加入导航。
+- 已完成：首页新增“精选文章”模块（`featured: true`），保持风格简洁且不引入额外依赖。
+- 已完成：新增模块链接统一改为 `relative_url`，避免域名切换/预览环境跳转异常。
+- 已完成：本地构建验证通过（Ruby 3.1.6 + Bundler 2.3.27，`bundle exec jekyll build`）。

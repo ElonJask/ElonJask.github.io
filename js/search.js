@@ -5,6 +5,14 @@
   let searchModal, searchInput, searchResults, searchBtn, searchClose;
   let selectedIndex = -1;
   let isDataLoaded = false;
+  let searchSource = '/search.json';
+  let i18n = {
+    empty: 'Type to search posts...',
+    loading: 'Loading search index...',
+    noResults: 'No matching posts found',
+    error: 'Failed to load search data',
+    tagLabel: 'Tags'
+  };
 
   // Initialize
   function init() {
@@ -15,6 +23,13 @@
     searchClose = document.getElementById('search-close');
 
     if (!searchModal || !searchInput || !searchResults) return;
+
+    searchSource = searchModal.dataset.source || '/search.json';
+    i18n.empty = searchModal.dataset.emptyText || i18n.empty;
+    i18n.loading = searchModal.dataset.loadingText || i18n.loading;
+    i18n.noResults = searchModal.dataset.noResultsText || i18n.noResults;
+    i18n.error = searchModal.dataset.errorText || i18n.error;
+    i18n.tagLabel = searchModal.dataset.tagLabel || i18n.tagLabel;
 
     bindEvents();
   }
@@ -107,7 +122,7 @@
 
   // Load search data
   function loadSearchData() {
-    fetch('/search.json')
+    fetch(searchSource)
       .then(response => response.json())
       .then(data => {
         searchData = data;
@@ -129,7 +144,7 @@
     }
 
     if (!isDataLoaded) {
-      searchResults.innerHTML = '<div class="search-loading">Loading...</div>';
+      searchResults.innerHTML = `<div class="search-loading">${i18n.loading}</div>`;
       return;
     }
 
@@ -142,11 +157,16 @@
       : searchData.filter(post => post.lang === 'zh-CN');
 
     const results = filteredData.filter(post => {
-      return post.title.toLowerCase().includes(query) ||
-             post.summary.toLowerCase().includes(query) ||
-             post.content.toLowerCase().includes(query) ||
-             post.categories.some(cat => cat.toLowerCase().includes(query)) ||
-             (post.tags || []).some(tag => tag.toLowerCase().includes(query));
+      const title = (post.title || '').toLowerCase();
+      const summary = (post.summary || '').toLowerCase();
+      const content = (post.content || '').toLowerCase();
+      const categories = Array.isArray(post.categories) ? post.categories : [];
+      const tags = Array.isArray(post.tags) ? post.tags : [];
+      return title.includes(query) ||
+             summary.includes(query) ||
+             content.includes(query) ||
+             categories.some(cat => (cat || '').toLowerCase().includes(query)) ||
+             tags.some(tag => (tag || '').toLowerCase().includes(query));
     });
 
     displayResults(results, query);
@@ -154,7 +174,7 @@
 
   // Show empty state
   function showEmptyState() {
-    searchResults.innerHTML = '<div class="search-empty-state">Type to search articles...</div>';
+    searchResults.innerHTML = `<div class="search-empty-state">${i18n.empty}</div>`;
   }
 
   // Display search results
@@ -162,14 +182,17 @@
     selectedIndex = -1;
 
     if (results.length === 0) {
-      searchResults.innerHTML = '<div class="search-no-results">No results found</div>';
+      searchResults.innerHTML = `<div class="search-no-results">${i18n.noResults}</div>`;
       return;
     }
 
     const html = results.slice(0, 10).map((post, index) => {
       const highlightedTitle = highlightText(post.title, query);
-      const highlightedSummary = highlightText(post.summary || post.content, query);
-      const category = post.categories[0] || '';
+      const highlightedSummary = highlightText(post.summary || post.content || '', query);
+      const categories = Array.isArray(post.categories) ? post.categories : [];
+      const category = categories[0] || '';
+      const tags = Array.isArray(post.tags) ? post.tags.slice(0, 2) : [];
+      const tagsText = tags.length ? `<span class="search-result-tags">${i18n.tagLabel}: ${tags.join(', ')}</span>` : '';
 
       return `
         <a href="${post.url}" class="search-result-item" data-index="${index}" role="option">
@@ -179,6 +202,7 @@
           </div>
           <div class="search-result-meta">
             ${category ? `<span class="search-result-category">${category}</span>` : ''}
+            ${tagsText}
             <span class="search-result-date">${post.date}</span>
           </div>
         </a>
@@ -246,7 +270,7 @@
 
   // Show error
   function showError() {
-    searchResults.innerHTML = '<div class="search-error">Failed to load search data</div>';
+    searchResults.innerHTML = `<div class="search-error">${i18n.error}</div>`;
   }
 
   // Debounce
