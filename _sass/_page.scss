@@ -439,59 +439,212 @@ iframe {
 }
 
 .tag-archive {
-  .tag-archive-intro {
-    margin-top: 0;
+  .tag-hero {
+    margin-bottom: 18px;
+    padding: 18px 16px;
+    border-radius: $border-radius;
+    border: 1px solid rgba($text-color, 0.08);
+    background: linear-gradient(145deg, #fcfcfd 0%, #f2f4f7 100%);
+    h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    p {
+      margin: 0;
+      color: rgba($text-color, 0.7);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    @media #{$medium} {
+      padding: 24px 24px;
+      h1 {
+        font-size: 34px;
+      }
+    }
+  }
+
+  .tag-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .tag-metric {
+    border-radius: $border-radius;
+    border: 1px solid rgba($text-color, 0.08);
+    background-color: #f8f9fb;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    .tag-metric-value {
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: rgba($text-color, 0.95);
+    }
+    .tag-metric-label {
+      margin-top: 2px;
+      font-size: 13px;
+      color: rgba($text-color, 0.62);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+  }
+
+  .tag-toolbar {
     margin-bottom: 16px;
-    color: rgba($text-color, 0.7);
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba($text-color, 0.68);
+      font-size: 14px;
+    }
+  }
+
+  .tag-toolbar-input {
+    display: flex;
+    gap: 8px;
+    input {
+      flex: 1;
+      min-width: 0;
+      height: 40px;
+      border: 1px solid rgba($text-color, 0.16);
+      border-radius: 10px;
+      padding: 0 12px;
+      background-color: $white;
+      color: rgba($text-color, 0.92);
+      font-size: 15px;
+      &:focus {
+        outline: none;
+        border-color: rgba($text-color, 0.32);
+        box-shadow: 0 0 0 2px rgba($text-color, 0.08);
+      }
+    }
+    button {
+      height: 40px;
+      padding: 0 14px;
+      border: 1px solid rgba($text-color, 0.14);
+      border-radius: 10px;
+      background-color: #f8f9fb;
+      color: rgba($text-color, 0.86);
+      cursor: pointer;
+      &:hover {
+        background-color: #eef1f5;
+      }
+    }
+    @media #{$small} {
+      button {
+        min-width: 72px;
+      }
+    }
   }
 }
 
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 10px 9px;
+  margin-bottom: 20px;
 }
 
 .tag-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-size: 14px;
-  line-height: 1;
-  padding: 9px 12px;
+  line-height: 1.2;
+  padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba($text-color, 0.15);
-  color: rgba($text-color, 0.85);
+  border: 1px solid rgba($text-color, 0.16);
+  color: rgba($text-color, 0.88);
+  background-color: #f8f9fb;
   text-decoration: none;
-  span {
-    font-size: 12px;
-    color: rgba($text-color, 0.6);
+  &:hover {
+    background-color: #eef1f5;
+    border-color: rgba($text-color, 0.28);
   }
+  .tag-chip-name {
+    @include text-overflow();
+    max-width: 210px;
+  }
+  .tag-chip-count {
+    font-size: 12px;
+    min-width: 22px;
+    text-align: center;
+    border-radius: 999px;
+    padding: 1px 6px;
+    background-color: rgba($text-color, 0.08);
+    color: rgba($text-color, 0.72);
+  }
+}
+
+.tag-section-list {
+  display: grid;
+  gap: 10px;
 }
 
 .tag-section {
-  margin-bottom: 28px;
-  h2 {
-    margin: 0 0 12px;
-    font-size: 22px;
+  margin-bottom: 0;
+  border: 1px solid rgba($text-color, 0.1);
+  border-radius: 12px;
+  background-color: #fbfcfe;
+  padding: 10px 12px;
+  @media #{$medium} {
+    padding: 14px 16px;
   }
 }
 
+.tag-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba($text-color, 0.08);
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+  .tag-section-count {
+    font-size: 13px;
+    color: rgba($text-color, 0.62);
+    white-space: nowrap;
+  }
+}
+
+.tag-empty {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: $border-radius;
+  border: 1px dashed rgba($text-color, 0.16);
+  color: rgba($text-color, 0.66);
+  background-color: rgba($text-color, 0.03);
+}
+
 .tag-post-list {
-  margin: 0;
+  margin: 8px 0 0;
   padding-left: 0;
   list-style: none;
   li {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 12px;
-    padding: 7px 0;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba($text-color, 0.12);
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 2px;
+    }
   }
   a {
     @include need-dotted();
     flex: 1;
+    min-width: 0;
+    text-underline-offset: 2px;
   }
   time {
     font-size: 13px;

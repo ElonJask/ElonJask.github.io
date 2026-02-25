@@ -117,3 +117,5 @@
 - 已完成：接入 `lycheeverse/lychee-action`（`seo-health.yml`），对 README/About/中英文文章做失效链接巡检。
 - 已完成：接入 `treosh/lighthouse-ci-action`（`lighthouse.yml`），定时输出线上页面性能与 SEO 报告。
 - 已完成：新增 `docs/SEO_AUTOMATION.md`，统一说明开源工具职责、触发机制与必配项（`INDEXNOW_KEY`）。
+- 已完成：创建并上线 IndexNow key 文件（根路径 `<key>.txt`）并写入仓库 Secret `INDEXNOW_KEY`。
+- 已完成：重做中英文标签页（信息卡片 + 搜索筛选 + 分组列表），提升可读性与可检索性。
