@@ -129,7 +129,6 @@ payImage: ""
 assetUrl: ""
 defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 use_jinkai_font: false
-home_featured_limit: 2
 
 # Giscus Comments
 giscus:

@@ -7,7 +7,6 @@ categories: Share
 tags: [homecoming, new-year, life-notes]
 lang: en-US
 translation_key: homecoming-2026
-featured: true
 ---
 
 The annual leave I had been waiting for finally arrived. After a 12-hour high-speed train ride, I made it home.

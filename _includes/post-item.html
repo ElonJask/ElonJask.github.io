@@ -1,7 +1,6 @@
 {% for post in include.posts %}
   {% assign is_hidden = post.hidden | default: post.hide %}
-  {% assign is_featured = post.featured | default: false %}
-  {% if is_hidden != true and (include.hide_featured != true or is_featured != true) %}
+  {% if is_hidden != true %}
     <a href="{{ post.url | relative_url }}" rel="bookmark" title="{{ post.title }}" itemprop="url" class="header-href">
       <article class="hentry">
         <h2 class="entry-title">{{ post.title }}</h2>
