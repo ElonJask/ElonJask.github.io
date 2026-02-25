@@ -159,36 +159,47 @@ iframe {
 }
 
 .post-toc {
-  margin: 8px 0 16px;
-  border: 1px solid rgba($text-color, 0.1);
-  border-radius: $border-radius;
-  background-color: #fafbfc;
+  margin: 10px 0 18px;
+  border-top: 1px solid rgba($text-color, 0.16);
+  border-bottom: 1px solid rgba($text-color, 0.1);
+  background-color: transparent;
 
   summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
     list-style: none;
-    padding: 9px 12px;
-    font-size: 15px;
-    color: rgba($text-color, 0.75);
+    padding: 8px 0;
+    font-size: 14px;
+    color: rgba($text-color, 0.62);
+    letter-spacing: 0.4px;
     user-select: none;
     &::-webkit-details-marker {
       display: none;
     }
     &::after {
-      content: "▾";
-      float: right;
+      content: "+";
       color: rgba($text-color, 0.5);
-      transition: transform 0.2s ease;
+      font-size: 18px;
+      line-height: 1;
+      transition: color 0.2s ease;
     }
   }
 
   &[open] summary::after {
-    transform: rotate(180deg);
+    content: "−";
+  }
+
+  @media (hover: hover) {
+    summary:hover::after {
+      color: rgba($text-color, 0.78);
+    }
   }
 }
 
 .post-toc-body {
-  padding: 0 12px 10px;
+  padding: 2px 0 8px;
 }
 
 .post-toc-list {
@@ -197,25 +208,53 @@ iframe {
   padding: 0;
   li {
     margin: 0;
-    padding: 4px 0;
+    padding: 0;
   }
   .toc-level-h3 {
-    padding-left: 14px;
+    margin-left: 14px;
   }
   a {
-    display: inline-block;
+    display: block;
+    position: relative;
+    padding: 6px 0 6px 10px;
     color: rgba($text-color, 0.72);
-    border-bottom: 1px dotted transparent;
+    border-bottom: 0;
     text-decoration: none;
-    line-height: 1.5;
+    line-height: 1.45;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 4px;
+      height: 1px;
+      background-color: rgba($text-color, 0.32);
+      transform: translateY(-50%);
+      transition: width 0.2s ease, background-color 0.2s ease;
+    }
     &:hover {
       color: rgba($text-color, 0.95);
-      border-bottom-color: rgba($text-color, 0.3);
+      &::before {
+        width: 8px;
+        background-color: rgba($text-color, 0.55);
+      }
     }
     &.active {
       color: rgba($text-color, 0.96);
-      border-bottom-color: rgba($text-color, 0.45);
+      font-weight: 600;
+      &::before {
+        width: 10px;
+        height: 2px;
+        background-color: rgba($text-color, 0.72);
+      }
     }
+  }
+  .toc-level-h2 > a {
+    font-size: 16px;
+  }
+  .toc-level-h3 > a {
+    font-size: 14px;
+    color: rgba($text-color, 0.64);
   }
 }
 
