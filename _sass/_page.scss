@@ -88,6 +88,11 @@ iframe {
     span {
       margin: 0;
     }
+    a {
+      color: inherit;
+      border-bottom: 1px dotted rgba($text-color, 0.45);
+      text-decoration: none;
+    }
     .qr-text {
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA9ElEQVRYR9VXWw7DIAwbN+Yo3HjTJqUfqSI/FNaWvwpIjeOYMOac75cw1lrjuzz2xXeEUOMNdcM2APkkmRR0YgSsincwcBsAOSXVyVRGgoEc78TAYwBk1SOm2hnYBqCyhJxzVgMonl0F7QBYM6ycL2uAjWc7IdIADYBdyDqjGu93sTij0oAaqzQiVNeVdaNqyfPXA6jEhHKunrRaf2gA5bTrh6fLSBWNygxab1cB8gFWpLYRdaXkPgB2tWSIKfs2ZDUgA3BbMreM23rCvwNwU5B9wWZgGwDUw7EvICS+mLerwM15+TBh7wS2J2T7CdsJXQ1k5j7FF35r3ynsoAAAAABJRU5ErkJggg==)
         no-repeat;
@@ -381,6 +386,117 @@ iframe {
     a {
       color: $text-color;
     }
+  }
+}
+
+.related-posts {
+  margin: 0 0 15px 0;
+  padding: 20px 15px;
+  background-color: $white;
+  @media #{$medium} {
+    margin: 20px 10px;
+    padding: 22px 30px;
+    border-radius: $border-radius;
+  }
+  @media #{$large} {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    padding: 32px 80px;
+  }
+}
+
+.related-posts-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.related-posts-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba($text-color, 0.15);
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+  a {
+    @include need-dotted();
+    flex: 1;
+  }
+  time {
+    font-size: 13px;
+    color: rgba($text-color, 0.58);
+    white-space: nowrap;
+  }
+}
+
+.tag-archive {
+  .tag-archive-intro {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: rgba($text-color, 0.7);
+  }
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba($text-color, 0.15);
+  color: rgba($text-color, 0.85);
+  text-decoration: none;
+  span {
+    font-size: 12px;
+    color: rgba($text-color, 0.6);
+  }
+}
+
+.tag-section {
+  margin-bottom: 28px;
+  h2 {
+    margin: 0 0 12px;
+    font-size: 22px;
+  }
+}
+
+.tag-post-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 0;
+  }
+  a {
+    @include need-dotted();
+    flex: 1;
+  }
+  time {
+    font-size: 13px;
+    color: rgba($text-color, 0.58);
+    white-space: nowrap;
   }
 }
 

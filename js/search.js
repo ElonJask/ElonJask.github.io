@@ -145,7 +145,8 @@
       return post.title.toLowerCase().includes(query) ||
              post.summary.toLowerCase().includes(query) ||
              post.content.toLowerCase().includes(query) ||
-             post.categories.some(cat => cat.toLowerCase().includes(query));
+             post.categories.some(cat => cat.toLowerCase().includes(query)) ||
+             (post.tags || []).some(tag => tag.toLowerCase().includes(query));
     });
 
     displayResults(results, query);

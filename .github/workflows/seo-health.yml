@@ -1,0 +1,22 @@
+name: seo-health
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
+
+jobs:
+  broken-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in content files
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --root-dir "$(pwd)" --verbose --no-progress --exclude-mail --accept 200,206,429 --max-retries 2 --retry-wait-time 2 './README.md' './about.md' './en/about.md' './_posts/**/*.md' './_posts_en/**/*.md'
+          fail: false
+          output: lychee/out.md

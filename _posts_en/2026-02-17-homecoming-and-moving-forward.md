@@ -4,6 +4,7 @@ title: "Homecoming, Then Forward"
 date: 2026-02-17 20:00:00
 summary: "A holiday return home, a difficult reunion, and a clear reset for 2026."
 categories: Share
+tags: [homecoming, new-year, life-notes]
 lang: en-US
 translation_key: homecoming-2026
 ---

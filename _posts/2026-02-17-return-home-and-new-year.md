@@ -4,6 +4,7 @@ title: "归乡之后，继续向前"
 date: 2026-02-17 20:00:00
 summary: "一次年假返乡、一段久别重逢，以及新一年对生活与自我的重新整理。"
 categories: Share
+tags: [返乡, 新年计划, 生活记录]
 translation_key: homecoming-2026
 ---
 

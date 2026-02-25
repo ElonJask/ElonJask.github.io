@@ -72,9 +72,11 @@ rg -n "https?://.*\.(png|jpg|jpeg|webp|gif)" _posts _posts_en
 ├── _includes/             # 公共模板（head/footer/giscus）
 ├── _layouts/              # 页面布局
 ├── _plugins/              # 自定义插件
+├── .github/workflows/     # 开源自动化（IndexNow/链接巡检/Lighthouse）
 ├── css/                   # 样式
 ├── js/                    # 脚本
 ├── images/                # 本地图片资源
+├── docs/SEO_AUTOMATION.md # SEO 自动化工具链说明
 ├── docs/WRITING_RULES.md  # 写作/SEO/性能规范（强烈建议先读）
 └── docs/progress.md       # 项目进展记录
 ```
@@ -202,6 +204,16 @@ la51_ck: "3P7LtP2KotCouKTE"
 - Bing Webmaster Tools：提交 `https://www.7fl.org/sitemap.xml`
 - 百度搜索资源平台：提交 `https://www.7fl.org/sitemap.xml`
 
+### 2.1 开源自动化（推荐）
+
+已接入三套开源工具：
+
+1. `bojieyang/indexnow-action`：自动提交 IndexNow
+2. `lycheeverse/lychee-action`：定期检查失效链接
+3. `treosh/lighthouse-ci-action`：定期跑 Lighthouse 报告
+
+详细配置见：`docs/SEO_AUTOMATION.md`
+
 ### 3) 提交后预期
 
 - 收录不会实时生效，通常需要几天到几周。
@@ -210,6 +222,7 @@ la51_ck: "3P7LtP2KotCouKTE"
 ## 维护约定
 
 - 进展记录：`docs/progress.md`
+- SEO 自动化：`docs/SEO_AUTOMATION.md`
 - 写作规范：`docs/WRITING_RULES.md`
 - 保持主分支可构建：每次改动后至少执行一次 `bundle exec jekyll build`
 

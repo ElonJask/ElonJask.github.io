@@ -1,0 +1,62 @@
+{% assign is_en_page = false %}
+{% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+  {% assign is_en_page = true %}
+{% endif %}
+
+{% if is_en_page %}
+  {% assign related_source = site.posts_en %}
+  {% assign related_title = "Related Posts" %}
+{% else %}
+  {% assign related_source = site.posts %}
+  {% assign related_title = "相关文章" %}
+{% endif %}
+
+{% assign related_limit = 3 %}
+{% assign related_count = 0 %}
+{% assign shown_urls = "|" %}
+
+<section class="related-posts" aria-label="{{ related_title }}">
+  <h3 class="related-posts-title">{{ related_title }}</h3>
+  <ul class="related-posts-list">
+    {% for post in related_source %}
+      {% assign is_hidden = post.hidden | default: post.hide %}
+      {% if related_count < related_limit and post.url != page.url and is_hidden != true and page.tags and post.tags %}
+        {% assign has_common_tag = false %}
+        {% for tag in page.tags %}
+          {% if post.tags contains tag %}
+            {% assign has_common_tag = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if has_common_tag %}
+          {% capture current_token %}|{{ post.url }}|{% endcapture %}
+          {% unless shown_urls contains current_token %}
+            <li>
+              <a href="{{ post.url }}">{{ post.title }}</a>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            </li>
+            {% assign related_count = related_count | plus: 1 %}
+            {% assign shown_urls = shown_urls | append: post.url | append: "|" %}
+          {% endunless %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if related_count < related_limit %}
+      {% for post in related_source %}
+        {% assign is_hidden = post.hidden | default: post.hide %}
+        {% if related_count < related_limit and post.url != page.url and is_hidden != true %}
+          {% capture current_token %}|{{ post.url }}|{% endcapture %}
+          {% unless shown_urls contains current_token %}
+            <li>
+              <a href="{{ post.url }}">{{ post.title }}</a>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            </li>
+            {% assign related_count = related_count | plus: 1 %}
+            {% assign shown_urls = shown_urls | append: post.url | append: "|" %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </ul>
+</section>

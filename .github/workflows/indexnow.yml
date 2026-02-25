@@ -1,0 +1,34 @@
+name: indexnow-submit
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "_posts/**"
+      - "_posts_en/**"
+      - "_config.yml"
+      - "tags.md"
+      - "en/tags.md"
+  workflow_dispatch:
+  schedule:
+    - cron: "20 3 * * *"
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip when secret is missing
+        if: ${{ secrets.INDEXNOW_KEY == '' }}
+        run: echo "INDEXNOW_KEY is empty, skip submit."
+
+      - name: Submit sitemap URLs to IndexNow
+        if: ${{ secrets.INDEXNOW_KEY != '' }}
+        uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: https://www.7fl.org/sitemap.xml
+          key: ${{ secrets.INDEXNOW_KEY }}
+          key-location: https://www.7fl.org/${{ secrets.INDEXNOW_KEY }}.txt
+          endpoint: api.indexnow.org
+          limit: 100
+          failure-strategy: error

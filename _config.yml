@@ -23,6 +23,8 @@ v2ex: ""
 menu:
   - title: "About"
     url: "/about.html"
+  - title: "Tags"
+    url: "/tags.html"
 
 # SEO and Analytics
 google_analytics: "G-H2Z2T321VZ"

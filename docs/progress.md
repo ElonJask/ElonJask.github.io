@@ -97,3 +97,23 @@
 - 已完成：按 DNS 验证方案移除 `google_site_verification` 配置项与对应模板注入，减少冗余配置。
 - 已完成：移除 Bing/Baidu 验证与统计注入逻辑，配置侧改为仅保留 GA 与 51.LA。
 - 已完成：接入 51.LA 同步脚本（`LA_COLLECT + LA.init`）并写入站点 ID/CK。
+
+## 2026-02-25
+- 已完成：为全部中英文文章补齐 `tags`，增强文章级关键词覆盖。
+- 已完成：新增 `Tags` 导航入口与中英文标签归档页（`/tags.html`、`/en/tags.html`），提升站内主题聚合与爬虫可发现性。
+- 已完成：新增 `_plugins/tag_indexes.rb`，统一构建中文/英文标签索引（`posts_tags`、`posts_en_tags`）。
+- 已完成：文章页元信息新增可点击标签锚点，直接跳转对应标签归档区块。
+- 已完成：文章页新增“相关文章”模块（按同标签优先，数量不足时回退最近文章），强化内链结构。
+- 已完成：搜索数据源 `search.json` 增加 `tags` 字段并扩展正文摘要长度，提升站内检索召回。
+- 已完成：新增索引提交脚本 `scripts/seo/submit_indexing.py`，支持：
+  - Google Search Console API 提交 sitemap；
+  - IndexNow URL 提交；
+  - 百度资源平台 URL 提交；
+  - `--git-range` 按提交差异自动生成文章 URL；
+  - `--dry-run` 与 `--insecure` 运行模式。
+- 已完成：新增 `docs/INDEXING_GUIDE.md` 与 `npm run seo:submit:*` 命令，提供可执行的索引提交流程。
+- 已完成：按“优先开源工具”策略移除自研索引提交脚本（`scripts/seo/submit_indexing.py`）。
+- 已完成：接入 `bojieyang/indexnow-action`（`indexnow.yml`），自动提交站点地图 URL 到 IndexNow。
+- 已完成：接入 `lycheeverse/lychee-action`（`seo-health.yml`），对 README/About/中英文文章做失效链接巡检。
+- 已完成：接入 `treosh/lighthouse-ci-action`（`lighthouse.yml`），定时输出线上页面性能与 SEO 报告。
+- 已完成：新增 `docs/SEO_AUTOMATION.md`，统一说明开源工具职责、触发机制与必配项（`INDEXNOW_KEY`）。
