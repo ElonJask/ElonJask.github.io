@@ -6,7 +6,6 @@ summary: "一次年假返乡、一段久别重逢，以及新一年对生活与�
 categories: Share
 tags: [返乡, 新年计划, 生活记录]
 translation_key: homecoming-2026
-featured: true
 ---
 
 最近终于到了心心念念的年假。坐了 12 个小时高铁，我顺利到家。

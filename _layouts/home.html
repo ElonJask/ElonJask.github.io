@@ -3,21 +3,12 @@ layout: base
 ---
 
 {% if page.url contains '/en/' %}
-<!-- English articles -->
+<!-- English articles: list all articles without pagination -->
 {% assign current_posts = site.posts_en | sort: 'date' | reverse %}
-{% assign featured_posts = current_posts | where: "featured", true %}
-{% include featured-posts.html posts=featured_posts is_en=true %}
-{% include post-item.html posts=current_posts hide_featured='true' %}
+{% include post-item.html posts=current_posts %}
 {% else %}
-<!-- Chinese articles -->
-{% assign featured_posts = site.posts | where: "featured", true %}
-{% assign list_posts = paginator.posts | default: site.posts %}
-{% if paginator and paginator.page != 1 %}
-{% include post-item.html posts=list_posts %}
-{% else %}
-{% include featured-posts.html posts=featured_posts %}
-{% include post-item.html posts=list_posts hide_featured='true' %}
-{% endif %}
+<!-- Chinese articles: maintain original logic including pagination -->
+{% include post-item.html posts=paginator.posts %}
 {% include pagination.html %}
 {% endif %}
 {{ content }}
