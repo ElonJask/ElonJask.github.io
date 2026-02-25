@@ -17,18 +17,20 @@ on:
 jobs:
   submit:
     runs-on: ubuntu-latest
+    env:
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
     steps:
       - name: Skip when secret is missing
-        if: ${{ secrets.INDEXNOW_KEY == '' }}
+        if: ${{ env.INDEXNOW_KEY == '' }}
         run: echo "INDEXNOW_KEY is empty, skip submit."
 
       - name: Submit sitemap URLs to IndexNow
-        if: ${{ secrets.INDEXNOW_KEY != '' }}
+        if: ${{ env.INDEXNOW_KEY != '' }}
         uses: bojieyang/indexnow-action@v2
         with:
           sitemap-location: https://www.7fl.org/sitemap.xml
-          key: ${{ secrets.INDEXNOW_KEY }}
-          key-location: https://www.7fl.org/${{ secrets.INDEXNOW_KEY }}.txt
+          key: ${{ env.INDEXNOW_KEY }}
+          key-location: https://www.7fl.org/${{ env.INDEXNOW_KEY }}.txt
           endpoint: api.indexnow.org
           limit: 100
           failure-strategy: error
