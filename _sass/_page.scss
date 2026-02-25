@@ -523,11 +523,36 @@ iframe {
 }
 
 .archive-year-group {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba($text-color, 0.08);
+  padding-bottom: 4px;
+}
+
+.archive-year-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  padding: 4px 0 6px;
+  user-select: none;
+  &::-webkit-details-marker {
+    display: none;
+  }
+  &::after {
+    content: "+";
+    color: rgba($text-color, 0.45);
+    font-size: 18px;
+    line-height: 1;
+  }
+}
+
+.archive-year-group[open] .archive-year-summary::after {
+  content: "−";
 }
 
 .archive-year {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 22px;
   line-height: 1.3;
 }
@@ -597,6 +622,41 @@ iframe {
   padding-bottom: 6px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+}
+
+.pinned-strip-scroll {
+  position: relative;
+}
+
+.pinned-strip-scroll::before,
+.pinned-strip-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 10px;
+  width: 26px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.pinned-strip-scroll::before {
+  left: 0;
+  background: linear-gradient(to right, $white 26%, rgba($white, 0));
+}
+
+.pinned-strip-scroll::after {
+  right: 0;
+  background: linear-gradient(to left, $white 26%, rgba($white, 0));
+}
+
+.pinned-strip-scroll.has-overflow:not(.is-at-start)::before {
+  opacity: 1;
+}
+
+.pinned-strip-scroll.has-overflow:not(.is-at-end)::after {
+  opacity: 1;
 }
 
 .pinned-strip-track::-webkit-scrollbar {

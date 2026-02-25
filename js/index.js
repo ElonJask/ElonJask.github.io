@@ -46,6 +46,44 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleBackToTop();
   }
 
+  var pinnedScrollRoots = Array.prototype.slice.call(document.querySelectorAll('[data-pinned-scroll]'));
+  if (pinnedScrollRoots.length > 0) {
+    pinnedScrollRoots.forEach(function (root) {
+      var track = root.querySelector('.pinned-strip-track');
+      if (!track) return;
+
+      var tickingPinned = false;
+      var updatePinnedState = function () {
+        var maxLeft = track.scrollWidth - track.clientWidth;
+        var hasOverflow = maxLeft > 4;
+        root.classList.toggle('has-overflow', hasOverflow);
+
+        if (!hasOverflow) {
+          root.classList.add('is-at-start');
+          root.classList.add('is-at-end');
+          tickingPinned = false;
+          return;
+        }
+
+        var left = track.scrollLeft;
+        root.classList.toggle('is-at-start', left <= 2);
+        root.classList.toggle('is-at-end', left >= (maxLeft - 2));
+        tickingPinned = false;
+      };
+
+      var onPinnedScroll = function () {
+        if (!tickingPinned) {
+          tickingPinned = true;
+          window.requestAnimationFrame(updatePinnedState);
+        }
+      };
+
+      track.addEventListener('scroll', onPinnedScroll, { passive: true });
+      window.addEventListener('resize', onPinnedScroll);
+      updatePinnedState();
+    });
+  }
+
   var tocRoot = document.getElementById('J_post_toc');
   var tocBody = document.getElementById('J_post_toc_body');
   if (tocRoot && tocBody) {

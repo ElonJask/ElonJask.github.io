@@ -6,40 +6,39 @@
 {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
 {% assign is_en_nav = true %}
 {% endif %}
+{% assign nav_menu = site.menu_zh %}
+{% if is_en_nav %}
+{% assign nav_menu = site.menu_en %}
+{% endif %}
+{% unless nav_menu and nav_menu.size > 0 %}
+{% assign nav_menu = site.menu %}
+{% endunless %}
 <div class="header-menu" id="J_header">
   <ul class="header-item-container">
     <li class="header-item-title {{homeActive}}">
-      {% if page.url contains '/en/' %}
-      <a href="/en" class="title">{{ site.title }}</a>
+      {% if is_en_nav %}
+      <a href="{{ '/en' | relative_url }}" class="title">{{ site.title }}</a>
       {% else %}
-      <a href="/" class="title">{{ site.title }}</a>
+      <a href="{{ '/' | relative_url }}" class="title">{{ site.title }}</a>
       {% endif %}
     </li>
 
-    {% for menu in site.menu %}
+    {% for menu in nav_menu %}
     {% assign class = nil %}
     {% if (page.url contains menu.url and menu.url != '/') %}
     {% assign class = 'active' %}
     {% endif %}
-    {% assign menu_title = menu.title %}
-    {% if is_en_nav == false %}
-      {% if menu.url == '/about.html' %}
-      {% assign menu_title = '关于' %}
-      {% elsif menu.url == '/tags.html' %}
-      {% assign menu_title = '标签' %}
-      {% elsif menu.url == '/archive.html' %}
-      {% assign menu_title = '归档' %}
-      {% endif %}
-    {% endif %}
 
     {% if menu.url contains 'http://' or menu.url contains 'https://' %}
-    <li class="header-item-left {{class}}"><a href="{{menu.url}}" target="_blank" rel="noopener noreferrer">{{ menu_title }}</a></li>
+    <li class="header-item-left {{class}}"><a href="{{menu.url}}" target="_blank" rel="noopener noreferrer">{{ menu.title }}</a></li>
     {% else %}
-    {% if page.url contains '/en/' %}
-    <li class="header-item-left {{class}}"><a href="/en{{menu.url}}">{{ menu_title }}</a></li>
-    {% else %}
-    <li class="header-item-left {{class}}"><a href="{{menu.url}}">{{ menu_title }}</a></li>
+    {% assign menu_href = menu.url %}
+    {% if is_en_nav %}
+      {% unless menu_href contains '/en/' %}
+      {% assign menu_href = '/en' | append: menu_href %}
+      {% endunless %}
     {% endif %}
+    <li class="header-item-left {{class}}"><a href="{{ menu_href | relative_url }}">{{ menu.title }}</a></li>
     {% endif %}
     {% endfor %}
 

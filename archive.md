@@ -8,6 +8,7 @@ lang: zh-CN
 ---
 
 {% assign grouped_posts = site.posts | sort: "date" | reverse | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% assign current_year = "now" | date: "%Y" %}
 
 <div class="archive-page">
   <p class="archive-note">按年份查看文章（最新在前）。</p>
@@ -22,8 +23,10 @@ lang: zh-CN
     {% endfor %}
 
     {% if visible_count > 0 %}
-      <section class="archive-year-group">
-        <h2 class="archive-year">{{ group.name }}</h2>
+      <details class="archive-year-group"{% if group.name == current_year %} open{% endif %}>
+        <summary class="archive-year-summary">
+          <h2 class="archive-year">{{ group.name }}</h2>
+        </summary>
         <ul class="archive-list">
           {% for post in group.items %}
             {% assign is_hidden = post.hidden | default: post.hide %}
@@ -35,7 +38,7 @@ lang: zh-CN
             {% endif %}
           {% endfor %}
         </ul>
-      </section>
+      </details>
     {% endif %}
   {% endfor %}
 </div>

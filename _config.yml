@@ -20,7 +20,15 @@ github: ElonJask
 zhihu: ""
 twitter: ""
 v2ex: ""
-menu:
+# Header Menus
+menu_zh:
+  - title: "关于"
+    url: "/about.html"
+  - title: "标签"
+    url: "/tags.html"
+  - title: "归档"
+    url: "/archive.html"
+menu_en:
   - title: "About"
     url: "/about.html"
   - title: "Tags"
