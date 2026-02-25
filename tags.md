@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 标签
-summary: 按标签浏览文章。
+summary: 按标签浏览。
 comments: false
 hideHomeActive: true
 lang: zh-CN
@@ -9,11 +9,11 @@ lang: zh-CN
 
 {% assign tags_map = site.posts_tags %}
 
-<div class="tag-archive-simple">
-  <p class="tag-archive-note">按标签浏览，简洁聚合。</p>
+<div class="tag-index">
+  <p class="tag-index-note">全部标签（按字母排序）</p>
 
   {% if tags_map and tags_map.size > 0 %}
-    <div class="tag-cloud-simple">
+    <ul class="tag-index-list">
       {% for item in tags_map %}
         {% assign tag_name = item[0] %}
         {% assign tag_posts = item[1] %}
@@ -25,13 +25,13 @@ lang: zh-CN
           {% endif %}
         {% endfor %}
         {% if visible_tag_posts > 0 %}
-          <a id="tag-{{ tag_name | slugify }}" href="#tag-{{ tag_name | slugify }}" class="tag-pill-simple">
-            <span>{{ tag_name }}</span>
-            <em>{{ visible_tag_posts }}</em>
-          </a>
+          <li class="tag-index-item" id="tag-{{ tag_name | slugify }}">
+            <a href="#tag-{{ tag_name | slugify }}" class="tag-index-name">{{ tag_name }}</a>
+            <span class="tag-index-count">{{ visible_tag_posts }}</span>
+          </li>
         {% endif %}
       {% endfor %}
-    </div>
+    </ul>
   {% else %}
     <p>当前还没有标签。</p>
   {% endif %}
