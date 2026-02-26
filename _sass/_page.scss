@@ -324,68 +324,8 @@ iframe {
   }
 }
 
-.repo-time {
-  font-size: 17px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-///sections
-.content-header-title {
-  text-align: center;
-  margin: 30px 0 0;
-  h1 {
-    margin: 10px 20px;
-    font-weight: 700;
-    font-size: 22px;
-    color: #5c6469;
-    @media #{$medium} {
-      font-size: 30px;
-    }
-  }
-  h2 {
-    margin: 0;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #8b9299;
-    @media #{$medium} {
-      font-size: 25px;
-    }
-  }
-  p {
-    color: #5c6469;
-  }
-}
-
 // Single Post and Page
 // --------------------------------------------------
-.entry-meta {
-  font-size: 13px;
-  margin-top: 0;
-  color: #c9ced4;
-  a {
-    color: #c9ced4;
-  }
-  .tag {
-    display: inline-block;
-    margin: 4px;
-    color: $white;
-    border-radius: calc($border-radius / 2);
-    background-color: $header-color;
-    span {
-      float: left;
-      padding: 2px 6px;
-    }
-    .count {
-      background-color: #fff;
-      color: $header-color;
-      border-top-right-radius: calc($border-radius / 2);
-      border-top-left-radius: 0px;
-      border-bottom-right-radius: calc($border-radius / 2);
-      border-bottom-left-radius: 0;
-    }
-  }
-}
 
 #post,
 #page {
@@ -439,23 +379,6 @@ iframe {
       margin: 0 auto;
     }
   }
-  .entry-meta {
-    margin: 10px 0 20px;
-  }
-}
-
-.entry-tags {
-  display: block;
-  margin-bottom: 6px;
-}
-
-.year-heading {
-  margin-top: 0;
-}
-
-// Permalink icon for link post
-.permalink {
-  margin-right: 7px;
 }
 
 // Post Pagination Module
@@ -657,18 +580,6 @@ iframe {
   }
 }
 
-.list-inline {
-  padding-left: 0;
-  margin-left: -5px;
-  list-style: none;
-}
-
-.list-inline > li {
-  display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
 // Post Index
 // --------------------------------------------------
 #post-index {
@@ -739,45 +650,6 @@ iframe {
 .footer-stat-number {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-}
-
-// Browser Upgrade
-// --------------------------------------------------
-.upgrade {
-  padding: 10px;
-  text-align: center;
-}
-
-// Google Search
-// --------------------------------------------------
-#goog-fixurl {
-  ul {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-    li {
-      list-style-type: none;
-    }
-  }
-}
-
-#goog-wm-qt {
-  width: auto;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  padding: 8px 20px;
-  display: inline-block;
-  font-size: 15px;
-  background-color: $white;
-  color: $text-color;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #91979f;
-  border-radius: calc($border-radius / 2);
-}
-
-#goog-wm-sb {
-  @include btn-base();
 }
 
 // Page Motion
@@ -941,17 +813,6 @@ iframe {
   }
 }
 
-.header-item.language-icon svg {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-top: 9px;
-  margin-right: 4px;
-  @media #{$medium} {
-    margin-top: 11px;
-  }
-}
-
 .header-item {
   // Removed float: right in favor of flexbox in container
   padding-left: 8px;
@@ -1034,13 +895,6 @@ iframe {
     padding-right: 10px;
   }
 
-  // Large gap between text links group and functional group on desktop
-  &.header-item-social:last-of-type {
-    @media #{$medium} {
-      margin-right: 20px;
-    }
-  }
-
   a {
     vertical-align: middle;
     display: block; // Changed from table-cell
@@ -1062,32 +916,6 @@ iframe {
       color: $header-active;
     }
   }
-}
-
-// Hide social links on mobile
-.header-item-social {
-  display: flex; // Show GitHub on mobile (First Social Item)
-
-  // Hide subsequent social items (Twitter) on mobile
-  & + & {
-    display: none;
-  }
-
-  @media #{$medium} {
-    display: block;
-    // Show all social items on desktop
-    & + & {
-      display: block;
-    }
-  }
-}
-
-///sections
-.logo {
-  width: $menu-height;
-  height: $menu-height;
-  float: left;
-  padding: 10px;
 }
 
 .header-item-container {
@@ -1123,64 +951,11 @@ iframe {
       padding-left: 0;
     }
 
-    .logo-img {
-      display: block; // Ensure image is displayed
-      border-radius: 50%;
-      margin-top: -2px;
-      width: 36px;
-      height: 36px;
-      object-fit: cover;
-    }
   }
 }
 
 .header-href {
   display: block;
-}
-
-.video-container,
-.keynote-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 24px;
-  height: 0;
-  overflow: hidden;
-  iframe,
-  object,
-  embed,
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.keynote-container {
-  padding-bottom: 50.4%;
-  background-color: #fff;
-  .fullscreen-btn {
-    display: none;
-    @include btn-base();
-    position: absolute;
-    right: 0;
-    font-size: 13px;
-    letter-spacing: 1px;
-    bottom: -20px;
-    height: 32px;
-    width: 60px;
-    line-height: 32px;
-    padding: 0 8px;
-    opacity: 0.3;
-    border-width: 0;
-  }
-  @media #{$medium} {
-    padding-bottom: 53.2%;
-    .fullscreen-btn {
-      display: block;
-    }
-  }
 }
 
 .coffee {
@@ -1208,58 +983,12 @@ iframe {
   }
 }
 
-.img-zoom {
-  @media #{$medium} {
-    cursor: zoom-in;
-  }
-}
-
-.lazyload,
-.lazyloading {
-  filter: blur(5px);
-  transition: filter 400ms;
-}
-
-.lazyloaded {
-  filter: blur(0);
-}
-
-.share-img {
-  margin: 0 auto;
-  width: 0px;
-  height: 0px;
-  overflow: hidden;
-}
-
-.video {
-  margin-block-end: 1em;
-}
-
-.bg-img {
-  padding: 10px 15px 15px;
-  background: #171f32;
-  margin-top: -2px;
-  @media #{$medium} {
-    padding: 10px 30px 30px;
-  }
-}
-
-video.bg-img {
-  margin-block-start: -1em;
-}
-
 .btn-arrow {
   font-size: 20px;
   display: inline-block;
   vertical-align: middle;
   height: 42px;
   line-height: 42px;
-}
-
-.video-border {
-  padding: 24px;
-  background: url(https://gw.alipayobjects.com/zos/k/0d/UpT4s7.png) no-repeat
-    center;
 }
 
 .entry-content img {
