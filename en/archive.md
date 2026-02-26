@@ -11,8 +11,6 @@ lang: en-US
 {% assign current_year = "now" | date: "%Y" %}
 
 <div class="archive-page">
-  <p class="archive-note">Browse posts by year (newest first).</p>
-
   {% for group in grouped_posts %}
     {% assign visible_count = 0 %}
     {% for post in group.items %}

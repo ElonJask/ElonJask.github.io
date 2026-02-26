@@ -11,8 +11,6 @@ lang: zh-CN
 {% assign topics = site.topics_zh %}
 
 <div class="topic-index">
-  <p class="topic-index-note">以专题为主组织文章，标签不再作为主入口。</p>
-
   {% if topics and topics.size > 0 %}
     <ul class="topic-index-list">
       {% for topic in topics %}

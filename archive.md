@@ -11,8 +11,6 @@ lang: zh-CN
 {% assign current_year = "now" | date: "%Y" %}
 
 <div class="archive-page">
-  <p class="archive-note">按年份查看文章（最新在前）。</p>
-
   {% for group in grouped_posts %}
     {% assign visible_count = 0 %}
     {% for post in group.items %}

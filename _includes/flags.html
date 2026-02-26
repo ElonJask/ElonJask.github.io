@@ -42,14 +42,44 @@
 </li>
 {% endif %}
 {% else %}
-{% comment %} Not on a post page, use simple homepage links {% endcomment %}
-{% if page.url contains '/en/' %}
-<li class="header-item language-item">
-  <a href="/" class="language-switch" aria-label="Switch to Chinese">中</a>
-</li>
-{% else %}
-<li class="header-item language-item">
-  <a href="/en/" class="language-switch" aria-label="Switch to English">En</a>
-</li>
+{% comment %} Non-post pages: keep current path and only switch language prefix {% endcomment %}
+{% assign current_url = page.url | default: '/' | replace: '/index.html', '/' %}
+{% if current_url == '' %}
+{% assign current_url = '/' %}
 {% endif %}
+
+{% assign is_en_page = false %}
+{% if current_url == '/en' or current_url == '/en/' or current_url contains '/en/' %}
+{% assign is_en_page = true %}
+{% endif %}
+
+{% if is_en_page %}
+{% assign switch_url = current_url | replace_first: '/en', '' %}
+{% if switch_url == '' %}
+{% assign switch_url = '/' %}
+{% endif %}
+{% assign fallback_url = '/' %}
+{% assign switch_label = '中' %}
+{% assign switch_aria = 'Switch to Chinese' %}
+{% assign switch_title = '切换到中文页面' %}
+{% else %}
+{% if current_url == '/' %}
+{% assign switch_url = '/en/' %}
+{% else %}
+{% assign switch_url = '/en' | append: current_url %}
+{% endif %}
+{% assign fallback_url = '/en/' %}
+{% assign switch_label = 'En' %}
+{% assign switch_aria = 'Switch to English' %}
+{% assign switch_title = 'Switch to English page' %}
+{% endif %}
+
+{% assign switch_page = site.pages | where: "url", switch_url | first %}
+{% unless switch_page %}
+{% assign switch_url = fallback_url %}
+{% endunless %}
+
+<li class="header-item language-item">
+  <a href="{{ switch_url | relative_url }}" class="language-switch" aria-label="{{ switch_aria }}" title="{{ switch_title }}">{{ switch_label }}</a>
+</li>
 {% endif %}

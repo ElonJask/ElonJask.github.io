@@ -11,8 +11,6 @@ lang: en-US
 {% assign topics = site.topics_en %}
 
 <div class="topic-index">
-  <p class="topic-index-note">Topics are now the primary structure. Tags are no longer a main navigation entry.</p>
-
   {% if topics and topics.size > 0 %}
     <ul class="topic-index-list">
       {% for topic in topics %}
