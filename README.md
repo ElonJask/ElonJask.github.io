@@ -153,9 +153,10 @@ repo: ElonJask/ElonJask.github.io
 ```yml
 # SEO and Analytics
 umami:
-  script_url: "https://cloud.umami.is/script.js"
+  script_url: "/stats/script.js"
   website_id: ""
-  domains: "www.7fl.org,7fl.org"
+  data_host_url: "https://www.7fl.org/stats"
+  domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
   do_not_track: true
 ```
 
@@ -166,8 +167,9 @@ umami:
 
 ### `umami` 怎么填
 
-- `script_url`：Umami 脚本地址（云版默认 `https://cloud.umami.is/script.js`）。
+- `script_url`：Umami 脚本地址（当前通过 Vercel 反向代理为 `/stats/script.js`）。
 - `website_id`：Umami 站点 ID（必填）。
+- `data_host_url`：Umami 事件上报地址（当前为 `https://www.7fl.org/stats`）。
 - `domains`：统计域名白名单（建议含 `www` 与裸域）。
 - `do_not_track`：是否尊重浏览器 DNT（建议 `true`）。
 
@@ -175,9 +177,10 @@ umami:
 
 ```yml
 umami:
-  script_url: "https://cloud.umami.is/script.js"
+  script_url: "/stats/script.js"
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
-  domains: "www.7fl.org,7fl.org"
+  data_host_url: "https://www.7fl.org/stats"
+  domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
   do_not_track: true
 ```
 

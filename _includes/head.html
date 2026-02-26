@@ -140,6 +140,16 @@
   <link rel="preconnect" href="https://{{ umami_host }}" crossorigin>
   <link rel="dns-prefetch" href="https://{{ umami_host }}">
   {% endif %}
+  {% assign umami_script_src = umami_script %}
+  {% unless umami_script contains "://" %}
+  {% assign umami_script_src = umami_script | relative_url %}
+  {% endunless %}
+  <script defer src="{{ umami_script_src }}"
+    data-website-id="{{ site.umami.website_id }}"
+    data-auto-track="true"
+    {% if site.umami.domains and site.umami.domains != "" %}data-domains="{{ site.umami.domains }}"{% endif %}
+    {% if site.umami.data_host_url and site.umami.data_host_url != "" %}data-host-url="{{ site.umami.data_host_url }}"{% endif %}
+    {% if site.umami.do_not_track %}data-do-not-track="true"{% endif %}></script>
   {% endif %}
   {% if enable_giscus %}
   <link rel="preconnect" href="https://giscus.app">

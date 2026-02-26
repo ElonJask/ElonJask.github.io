@@ -150,3 +150,5 @@
 - 已完成：按反馈彻底移除首页置顶组件（模板/样式/脚本/文章 `featured` 标记全部清理），首页恢复极简文章列表。
 - 已完成：接入 Umami 统计（`cloud.umami.is`），支持 `_config.yml` 配置 `script_url/website_id/domains/do_not_track`，并在 `head` 增加按域名预连接以降低首访握手开销。
 - 已完成：按“只保留 Umami”策略移除 Google Analytics 与 51.LA 注入逻辑，清理对应配置项与 README 文档说明。
+- 已完成：Umami 升级为第一方代理接入（Vercel `rewrites` 将 `/stats/script.js` 与 `/stats/api/send` 转发到 `cloud.umami.is`），降低拦截导致的数据丢失概率。
+- 已完成：补充行为级统计埋点（阅读深度、目录点击、导航点击、语言切换、站内搜索、搜索结果点击、代码复制、外链点击、Read More 点击），从“仅访问量”升级为“访问+行为”分析。

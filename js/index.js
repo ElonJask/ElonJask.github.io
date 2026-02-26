@@ -3,17 +3,96 @@
  */
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
+(function () {
+  var queue = [];
+  var flushTimer = null;
+  var maxQueueSize = 100;
+
+  function canTrack() {
+    return window.umami && typeof window.umami.track === 'function';
+  }
+
+  function flushQueue() {
+    if (!canTrack() || queue.length === 0) return;
+    while (queue.length) {
+      var item = queue.shift();
+      try {
+        window.umami.track(item.name, item.data);
+      } catch (err) {
+        break;
+      }
+    }
+    if (queue.length === 0 && flushTimer) {
+      window.clearInterval(flushTimer);
+      flushTimer = null;
+    }
+  }
+
+  function ensureFlushTimer() {
+    if (flushTimer) return;
+    flushTimer = window.setInterval(function () {
+      flushQueue();
+    }, 800);
+  }
+
+  function track(name, data) {
+    if (!name) return;
+    var payload = (data && typeof data === 'object') ? data : {};
+    if (canTrack()) {
+      try {
+        window.umami.track(name, payload);
+      } catch (err) {}
+      return;
+    }
+    if (queue.length < maxQueueSize) {
+      queue.push({ name: name, data: payload });
+    }
+    ensureFlushTimer();
+  }
+
+  function trackOnce(key, name, data) {
+    var onceKey = 'umami_once_' + key;
+    try {
+      if (window.sessionStorage.getItem(onceKey)) return;
+      window.sessionStorage.setItem(onceKey, '1');
+    } catch (err) {}
+    track(name, data);
+  }
+
+  window.BlogAnalytics = {
+    track: track,
+    trackOnce: trackOnce,
+    flush: flushQueue
+  };
+
+  window.addEventListener('load', flushQueue);
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
+  var analytics = window.BlogAnalytics || { track: function () {}, trackOnce: function () {} };
 
   var progressBar = document.getElementById('J_reading_progress');
   if (progressBar) {
     var ticking = false;
+    var depthMilestones = [25, 50, 75, 100];
+    var reachedDepth = {};
     var updateProgress = function () {
       var doc = document.documentElement;
       var scrollTop = doc.scrollTop || document.body.scrollTop;
       var scrollHeight = doc.scrollHeight - doc.clientHeight;
       var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
       progressBar.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
+
+      var percent = Math.round(progress * 100);
+      depthMilestones.forEach(function (mark) {
+        if (percent >= mark && !reachedDepth[mark]) {
+          reachedDepth[mark] = true;
+          analytics.track('read_depth', {
+            percent: mark,
+            path: window.location.pathname
+          });
+        }
+      });
       ticking = false;
     };
     var onScroll = function () {
@@ -39,6 +118,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     };
     backToTop.addEventListener('click', function () {
+      analytics.track('back_to_top_click', {
+        path: window.location.pathname
+      });
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
     window.addEventListener('scroll', toggleBackToTop, { passive: true });
@@ -95,6 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
         var link = document.createElement('a');
         link.href = '#' + id;
         link.textContent = heading.textContent.trim();
+        link.dataset.tocIndex = String(index + 1);
+        link.addEventListener('click', function () {
+          analytics.track('toc_click', {
+            index: index + 1,
+            target: id
+          });
+        });
 
         item.appendChild(link);
         tocList.appendChild(item);
@@ -141,6 +230,52 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
+
+  document.querySelectorAll('.header-item-left a, .header-item-title a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      analytics.track('nav_click', {
+        label: (link.textContent || '').trim().slice(0, 40),
+        href: link.getAttribute('href') || ''
+      });
+    });
+  });
+
+  document.querySelectorAll('.language-switch').forEach(function (link) {
+    link.addEventListener('click', function () {
+      analytics.track('language_switch', {
+        to: (link.textContent || '').trim()
+      });
+    });
+  });
+
+  document.querySelectorAll('.social-icon').forEach(function (link) {
+    link.addEventListener('click', function () {
+      analytics.track('social_click', {
+        href: link.getAttribute('href') || ''
+      });
+    });
+  });
+
+  document.querySelectorAll('.read-more').forEach(function (link) {
+    link.addEventListener('click', function () {
+      analytics.track('read_more_click', {
+        href: link.getAttribute('href') || ''
+      });
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+    var link = target.closest('a');
+    if (!link || !link.href) return;
+    if (link.hostname === window.location.hostname) return;
+    if (link.classList.contains('social-icon')) return;
+    analytics.track('outbound_click', {
+      host: link.hostname || '',
+      href: link.href.slice(0, 200)
+    });
+  }, true);
 
   var zoomImgs = Array.prototype.slice.call(document.querySelectorAll('.entry-content img'));
   if (zoomImgs.length > 0) {
@@ -407,6 +542,7 @@ function loadScript(url, callback) {
 }
 
 function addCodeCopy() {
+  var analytics = window.BlogAnalytics || { track: function () {} };
   var highlights = document.querySelectorAll('.highlighter-rouge > div.highlight');
   highlights.forEach(function (highlight) {
     if (highlight.querySelector('.highlight-header')) return;
@@ -420,6 +556,9 @@ function addCodeCopy() {
     copyBtn.addEventListener('click', function () {
       var code = highlight.querySelector('pre').innerText;
       navigator.clipboard.writeText(code).then(function () {
+        analytics.track('code_copy', {
+          chars: code.length
+        });
         copyBtn.textContent = '✓ Copied';
         copyBtn.style.color = '#27c93f';
         setTimeout(function () {
@@ -428,6 +567,7 @@ function addCodeCopy() {
         }, 2000);
       })["catch"](function (err) {
         console.error('Failed to copy: ', err);
+        analytics.track('code_copy_fail');
         copyBtn.textContent = '✗ Failed';
         setTimeout(function () {
           copyBtn.textContent = 'Copy';

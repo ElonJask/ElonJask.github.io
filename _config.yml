@@ -38,9 +38,10 @@ menu_en:
 
 # SEO and Analytics
 umami:
-  script_url: "https://cloud.umami.is/script.js"
+  script_url: "/stats/script.js"
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
-  domains: "www.7fl.org,7fl.org"
+  data_host_url: "https://www.7fl.org/stats"
+  domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
   do_not_track: true
 
 # Build Settings

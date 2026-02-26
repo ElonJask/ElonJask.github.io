@@ -64,15 +64,6 @@
 <script type="text/javascript" src="{{ '/js/index.js' | relative_url }}?v={{ asset_version }}" defer></script>
 <script type="text/javascript" src="{{ '/js/search.js' | relative_url }}?v={{ asset_version }}" defer></script>
 
-{% if site.umami and site.umami.website_id and site.umami.website_id != "" %}
-  {% assign umami_script = site.umami.script_url | default: "https://cloud.umami.is/script.js" %}
-<script defer src="{{ umami_script }}"
-  data-website-id="{{ site.umami.website_id }}"
-  {% if site.umami.domains and site.umami.domains != "" %}data-domains="{{ site.umami.domains }}"{% endif %}
-  {% if site.umami.data_host_url and site.umami.data_host_url != "" %}data-host-url="{{ site.umami.data_host_url }}"{% endif %}
-  {% if site.umami.do_not_track %}data-do-not-track="true"{% endif %}></script>
-{% endif %}
-
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
