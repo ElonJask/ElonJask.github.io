@@ -24,7 +24,7 @@ v2ex: ""
 menu_zh:
   - title: "关于"
     url: "/about.html"
-  - title: "专题分类"
+  - title: "专题"
     url: "/topics"
   - title: "归档"
     url: "/archive.html"

@@ -36,6 +36,54 @@
   ],
   "rewrites": [
     {
+      "source": "/topics",
+      "destination": "/topics.html"
+    },
+    {
+      "source": "/topics/",
+      "destination": "/topics.html"
+    },
+    {
+      "source": "/en/topics",
+      "destination": "/en/topics.html"
+    },
+    {
+      "source": "/en/topics/",
+      "destination": "/en/topics.html"
+    },
+    {
+      "source": "/archive",
+      "destination": "/archive.html"
+    },
+    {
+      "source": "/archive/",
+      "destination": "/archive.html"
+    },
+    {
+      "source": "/en/archive",
+      "destination": "/en/archive.html"
+    },
+    {
+      "source": "/en/archive/",
+      "destination": "/en/archive.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/about/",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/en/about",
+      "destination": "/en/about.html"
+    },
+    {
+      "source": "/en/about/",
+      "destination": "/en/about.html"
+    },
+    {
       "source": "/stats/script.js",
       "destination": "https://cloud.umami.is/script.js"
     },
