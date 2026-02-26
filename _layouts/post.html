@@ -6,15 +6,39 @@ body_id: post
 <article class="hentry">
   <div class="entry-content {% if page.url contains '/en/' %}{% else %}heti{% endif %}">
     <h1 class="post-title entry-title">{{ page.title }}</h1>
+    {% assign is_en_post = false %}
+    {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+      {% assign is_en_post = true %}
+    {% endif %}
+    {% assign topic_defs = site.topics_zh %}
+    {% assign topic_base = '/topics' %}
+    {% if is_en_post %}
+      {% assign topic_defs = site.topics_en %}
+      {% assign topic_base = '/en/topics' %}
+    {% endif %}
+    {% assign topic_name = page.topic %}
+    {% if page.topic and topic_defs and topic_defs.size > 0 %}
+      {% for topic in topic_defs %}
+        {% if topic.key == page.topic %}
+          {% assign topic_name = topic.name %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     <h4 class="page-info">
-      <span>Categories: {{page.categories}}</span>
+      {% if page.categories and page.categories != "" %}
+      <span>{% if is_en_post %}Category{% else %}分类{% endif %}: {{ page.categories }}</span>
+      {% endif %}
+      {% if page.topic and page.topic != "" %}
+      <span>{% if is_en_post %}Topic{% else %}专题{% endif %}: <a href="{{ topic_base | relative_url }}?topic={{ page.topic }}#topic-posts">{{ topic_name }}</a></span>
+      {% endif %}
       {% if page.tags and page.tags.size > 0 %}
-      {% assign tag_base = '/tags.html' %}
-      {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
-        {% assign tag_base = '/en/tags.html' %}
+      {% assign tag_base = '/tags' %}
+      {% if is_en_post %}
+        {% assign tag_base = '/en/tags' %}
       {% endif %}
       <span>
-        Tags:
+        {% if is_en_post %}Tags{% else %}标签{% endif %}:
         {% for tag in page.tags %}
           <a href="{{ tag_base | relative_url }}?tag={{ tag | slugify }}#tag-posts">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
         {% endfor %}
@@ -46,10 +70,6 @@ body_id: post
         <div id="J_qr_code" class="qr-code" aria-label="QR code for this page" role="img"></div>
       </div>
     </h4>
-    {% assign is_en_post = false %}
-    {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
-      {% assign is_en_post = true %}
-    {% endif %}
     <details class="post-toc" id="J_post_toc" hidden>
       <summary>{% if is_en_post %}Contents{% else %}目录{% endif %}</summary>
       <div class="post-toc-body" id="J_post_toc_body"></div>

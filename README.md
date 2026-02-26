@@ -94,7 +94,8 @@ layout: post
 title: "文章标题"
 date: 2026-02-24 10:00:00 +0800
 summary: "一句话摘要，建议 60-140 字"
-categories: Share
+categories: Tech
+topic: blog-engineering
 tags: [jekyll, seo, performance]
 translation_key: your-post-key
 ---
@@ -106,6 +107,12 @@ translation_key: your-post-key
 lang: en-US
 ```
 
+固定专题（`topic`）当前使用以下 key：
+
+- `blog-engineering`
+- `mac-workflow`
+- `life-notes`
+
 ### 2) 发布前检查
 
 ```bash
@@ -115,7 +122,7 @@ bundle exec jekyll build
 确保：
 
 - 本地构建通过
-- `summary / tags / translation_key` 填写完整
+- `summary / categories / topic / tags / translation_key` 填写完整
 - 图片尽量使用本地 `webp`，并补齐 `alt + width + height`
 
 详细规则见：`docs/WRITING_RULES.md`

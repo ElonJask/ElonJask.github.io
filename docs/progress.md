@@ -152,3 +152,7 @@
 - 已完成：按“只保留 Umami”策略移除 Google Analytics 与 51.LA 注入逻辑，清理对应配置项与 README 文档说明。
 - 已完成：Umami 升级为第一方代理接入（Vercel `rewrites` 将 `/stats/script.js` 与 `/stats/api/send` 转发到 `cloud.umami.is`），降低拦截导致的数据丢失概率。
 - 已完成：补充行为级统计埋点（阅读深度、目录点击、导航点击、语言切换、站内搜索、搜索结果点击、代码复制、外链点击、Read More 点击），从“仅访问量”升级为“访问+行为”分析。
+- 已完成：建立固定专题体系（`blog-engineering` / `mac-workflow` / `life-notes`），新增中英文专题页（`/topics`、`/en/topics`）并将导航从“标签”切到“专题”。
+- 已完成：统一中英文文章元数据到固定专题（新增 `topic`，分类统一为 `Tech` / `Life`），减少一次性标签碎片化。
+- 已完成：文章列表与文章页增加专题内链，提升站内主题聚合与权重传递路径。
+- 已完成：修复细节项：`read-more` 绝对链接改为相对链接；中英 About 页面补齐本地化摘要，改善搜索摘要展示一致性。

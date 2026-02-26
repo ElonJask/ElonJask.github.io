@@ -174,11 +174,13 @@
       const title = (post.title || '').toLowerCase();
       const summary = (post.summary || '').toLowerCase();
       const content = (post.content || '').toLowerCase();
+      const topic = (post.topic || '').toLowerCase();
       const categories = Array.isArray(post.categories) ? post.categories : [];
       const tags = Array.isArray(post.tags) ? post.tags : [];
       return title.includes(query) ||
              summary.includes(query) ||
              content.includes(query) ||
+             topic.includes(query) ||
              categories.some(cat => (cat || '').toLowerCase().includes(query)) ||
              tags.some(tag => (tag || '').toLowerCase().includes(query));
     });

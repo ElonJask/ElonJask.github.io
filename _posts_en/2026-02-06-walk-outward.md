@@ -3,8 +3,9 @@ layout: post
 title: "Walk Outward"
 date: 2026-02-06 10:00:00
 summary: "Between history and the stars, I bring my gaze back to people."
-categories: Share
-tags: [reflection, growth, essays]
+categories: Life
+topic: life-notes
+tags: [life-notes, reflection, growth]
 lang: en-US
 translation_key: walk-outward
 ---

@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About
+title: 关于
+summary: "关于 ElonJask：技术方向、写作主题与联系方式。"
 permalink: /about.html
 hideHomeActive: true
 ---

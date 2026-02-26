@@ -1,11 +1,37 @@
 {% for post in include.posts %}
   {% assign is_hidden = post.hidden | default: post.hide %}
   {% if is_hidden != true %}
+    {% assign topic_defs = site.topics_zh %}
+    {% assign topic_base = '/topics' %}
+    {% assign is_en_post = false %}
+    {% if post.collection == 'posts_en' or post.lang == 'en-US' or post.lang == 'en' or post.url contains '/en/' %}
+      {% assign topic_defs = site.topics_en %}
+      {% assign topic_base = '/en/topics' %}
+      {% assign is_en_post = true %}
+    {% endif %}
+    {% assign topic_name = post.topic %}
+    {% if post.topic and topic_defs and topic_defs.size > 0 %}
+      {% for topic in topic_defs %}
+        {% if topic.key == post.topic %}
+          {% assign topic_name = topic.name %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     <a href="{{ post.url | relative_url }}" rel="bookmark" title="{{ post.title }}" itemprop="url" class="header-href">
       <article class="hentry">
         <h2 class="entry-title">{{ post.title }}</h2>
+        <div class="entry-meta">
+          <span>【{{ post.date | date: "%Y-%m-%d" }}】</span>
+          {% if post.topic and post.topic != "" %}
+          <span>
+            {% if is_en_post %}Topic{% else %}专题{% endif %}:
+            <a href="{{ topic_base | relative_url }}?topic={{ post.topic }}#topic-posts">{{ topic_name }}</a>
+          </span>
+          {% endif %}
+        </div>
         <div class="entry-content" data-nosnippet>
-          <span>【{{ post.date | date: "%Y-%m-%d" }}】</span>{{ post.summary }}
+          {{ post.summary }}
         </div>
       </article>
     </a>

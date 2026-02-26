@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+summary: "About ElonJask: focus areas, writing topics, and contact links."
 permalink: /en/about.html
 hideHomeActive: true
 lang: en-US

@@ -24,17 +24,38 @@ v2ex: ""
 menu_zh:
   - title: "关于"
     url: "/about.html"
-  - title: "标签"
-    url: "/tags.html"
+  - title: "专题"
+    url: "/topics"
   - title: "归档"
     url: "/archive.html"
 menu_en:
   - title: "About"
     url: "/about.html"
-  - title: "Tags"
-    url: "/tags.html"
+  - title: "Topics"
+    url: "/topics"
   - title: "Archive"
     url: "/archive.html"
+
+topics_zh:
+  - key: "blog-engineering"
+    name: "博客搭建"
+    summary: "Jekyll / Vercel / SEO / 评论系统等站点工程实践。"
+  - key: "mac-workflow"
+    name: "Mac 工作流"
+    summary: "围绕效率、稳定性与长期可用性的工具和工作流。"
+  - key: "life-notes"
+    name: "生活随笔"
+    summary: "关于成长、关系与个人节奏的长期记录。"
+topics_en:
+  - key: "blog-engineering"
+    name: "Blog Engineering"
+    summary: "Jekyll/Vercel/SEO/comment-system practices for this blog."
+  - key: "mac-workflow"
+    name: "Mac Workflow"
+    summary: "Tools and workflows focused on stable long-term productivity."
+  - key: "life-notes"
+    name: "Life Notes"
+    summary: "Personal essays on growth, relationships, and daily rhythms."
 
 # SEO and Analytics
 umami:

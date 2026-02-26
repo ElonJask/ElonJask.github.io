@@ -8,10 +8,10 @@ lang: zh-CN
 ---
 
 {% assign tags_map = site.posts_tags %}
-{% assign tags_page_url = '/tags.html' | relative_url %}
+{% assign tags_page_url = '/tags' | relative_url %}
 
 <div class="tag-index">
-  <p class="tag-index-note">点击标签，筛选该标签下的文章。</p>
+  <p class="tag-index-note">标签用于补充检索；长期内容请优先在“专题”页浏览。</p>
 
   {% if tags_map and tags_map.size > 0 %}
     <ul class="tag-index-list">

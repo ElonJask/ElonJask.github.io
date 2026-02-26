@@ -8,10 +8,10 @@ lang: en-US
 ---
 
 {% assign tags_map = site.posts_en_tags %}
-{% assign tags_page_url = '/en/tags.html' | relative_url %}
+{% assign tags_page_url = '/en/tags' | relative_url %}
 
 <div class="tag-index">
-  <p class="tag-index-note">Click a tag to filter posts under that tag.</p>
+  <p class="tag-index-note">Tags are for lightweight filtering. For stable content, use Topics.</p>
 
   {% if tags_map and tags_map.size > 0 %}
     <ul class="tag-index-list">
