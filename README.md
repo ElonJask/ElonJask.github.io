@@ -152,9 +152,6 @@ repo: ElonJask/ElonJask.github.io
 
 ```yml
 # SEO and Analytics
-google_analytics: ""
-la51_id: ""
-la51_ck: ""
 umami:
   script_url: "https://cloud.umami.is/script.js"
   website_id: ""
@@ -162,32 +159,10 @@ umami:
   do_not_track: true
 ```
 
-### `google_analytics` 怎么填
-
-填 GA4 的 Measurement ID，格式：`G-XXXXXXXXXX`。
-
-获取路径：
-
-1. 打开 Google Analytics（GA4）
-2. 管理 → 数据流（Web）
-3. 复制 Measurement ID（`G-` 开头）
-4. 写入 `_config.yml` 的 `google_analytics`
-
 ### Google Search Console 验证（当前推荐）
 
 当前站点使用 **DNS 验证**（域名提供商验证），不需要 `google_site_verification` 配置项。
 只要 Search Console 里显示“您是经过验证的所有者”即可。
-
-### `la51_id` / `la51_ck` 怎么填
-
-填 51.LA 控制台给你的站点 ID 与 CK，项目默认按同步脚本方式注入。
-
-示例：
-
-```yml
-la51_id: "3P7LtP2KotCouKTE"
-la51_ck: "3P7LtP2KotCouKTE"
-```
 
 ### `umami` 怎么填
 

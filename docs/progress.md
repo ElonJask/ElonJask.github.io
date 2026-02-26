@@ -149,3 +149,4 @@
 - 已完成：左侧目录卡片圆角与正文卡片统一（沿用 `$border-radius`），降低“方正割裂感”。
 - 已完成：按反馈彻底移除首页置顶组件（模板/样式/脚本/文章 `featured` 标记全部清理），首页恢复极简文章列表。
 - 已完成：接入 Umami 统计（`cloud.umami.is`），支持 `_config.yml` 配置 `script_url/website_id/domains/do_not_track`，并在 `head` 增加按域名预连接以降低首访握手开销。
+- 已完成：按“只保留 Umami”策略移除 Google Analytics 与 51.LA 注入逻辑，清理对应配置项与 README 文档说明。

@@ -37,9 +37,6 @@ menu_en:
     url: "/archive.html"
 
 # SEO and Analytics
-google_analytics: "G-H2Z2T321VZ"
-la51_id: "3P7LtP2KotCouKTE"
-la51_ck: "3P7LtP2KotCouKTE"
 umami:
   script_url: "https://cloud.umami.is/script.js"
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
