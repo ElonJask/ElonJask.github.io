@@ -159,3 +159,4 @@
 - 已完成：专题体系调整为固定三类（`life-essays`/`tech-notes`/`tool-sharing`），并同步重映射全部中英文文章。
 - 已完成：`/topics` 与 `/en/topics` 改为“专题分类页”直出结构（每个专题下直接展示文章列表），不再使用 query 过滤交互。
 - 已完成：下线标签体系主入口（删除 `tags.md`、`en/tags.md` 与 `tag_indexes` 插件），文章页不再展示标签聚合入口，标签字段改为可选补充信息。
+- 已完成：移除专题页顶部索引列表与提示文案，并清理未使用的 `topic-index-*` 与 `archive-note` 样式，压缩 CSS 体积以优先性能与 SEO 稳定性。
