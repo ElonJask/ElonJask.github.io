@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Topics
-summary: Browse posts by fixed topics.
+title: Topic Categories
+summary: "Browse posts by fixed topics: life essays, tech notes, and tool sharing."
 permalink: /en/topics
 comments: false
 hideHomeActive: true
@@ -9,19 +9,14 @@ lang: en-US
 ---
 
 {% assign topics = site.topics_en %}
-{% assign topics_page_url = '/en/topics' | relative_url %}
 
 <div class="topic-index">
-  <p class="topic-index-note">Topics are stable content pillars; tags are lightweight filters.</p>
+  <p class="topic-index-note">Topics are now the primary structure. Tags are no longer a main navigation entry.</p>
 
   {% if topics and topics.size > 0 %}
     <ul class="topic-index-list">
-      <li class="topic-index-item">
-        <a href="{{ topics_page_url }}" class="topic-index-name" data-topic-key="">All</a>
-      </li>
       {% for topic in topics %}
-        {% assign key = topic.key %}
-        {% assign topic_posts = site.posts_en | where: "topic", key | sort: "date" | reverse %}
+        {% assign topic_posts = site.posts_en | where: "topic", topic.key | sort: "date" | reverse %}
         {% assign visible_posts = 0 %}
         {% for post in topic_posts %}
           {% assign is_hidden = post.hidden | default: post.hide %}
@@ -31,16 +26,15 @@ lang: en-US
         {% endfor %}
         {% if visible_posts > 0 %}
           <li class="topic-index-item">
-            <a href="{{ topics_page_url }}?topic={{ key }}#topic-posts" class="topic-index-name" data-topic-key="{{ key }}">{{ topic.name }}</a>
+            <a href="#topic-{{ topic.key }}" class="topic-index-name">{{ topic.name }}</a>
           </li>
         {% endif %}
       {% endfor %}
     </ul>
 
-    <div class="topic-post-groups" id="topic-posts">
+    <div class="topic-post-groups">
       {% for topic in topics %}
-        {% assign key = topic.key %}
-        {% assign topic_posts = site.posts_en | where: "topic", key | sort: "date" | reverse %}
+        {% assign topic_posts = site.posts_en | where: "topic", topic.key | sort: "date" | reverse %}
         {% assign visible_posts = 0 %}
         {% for post in topic_posts %}
           {% assign is_hidden = post.hidden | default: post.hide %}
@@ -49,7 +43,7 @@ lang: en-US
           {% endif %}
         {% endfor %}
         {% if visible_posts > 0 %}
-          <section class="topic-post-group" id="topic-{{ key }}" data-topic-key="{{ key }}">
+          <section class="topic-post-group" id="topic-{{ topic.key }}">
             <h2 class="topic-post-title">{{ topic.name }}</h2>
             {% if topic.summary and topic.summary != "" %}
               <p class="topic-post-summary">{{ topic.summary }}</p>
@@ -73,40 +67,3 @@ lang: en-US
     <p>No topic definitions yet.</p>
   {% endif %}
 </div>
-
-<script>
-  (function () {
-    var params = new URLSearchParams(window.location.search);
-    var activeKey = (params.get('topic') || '').trim().toLowerCase();
-    var groups = Array.prototype.slice.call(document.querySelectorAll('.topic-post-group'));
-    var links = Array.prototype.slice.call(document.querySelectorAll('.topic-index-name[data-topic-key]'));
-    if (!groups.length || !links.length) return;
-
-    links.forEach(function (link) {
-      var key = (link.dataset.topicKey || '').toLowerCase();
-      if (activeKey === key) {
-        link.classList.add('active');
-      }
-    });
-
-    if (!activeKey) {
-      links[0] && links[0].classList.add('active');
-      return;
-    }
-
-    var hasMatch = false;
-    groups.forEach(function (group) {
-      var key = (group.dataset.topicKey || '').toLowerCase();
-      var visible = key === activeKey;
-      group.hidden = !visible;
-      if (visible) hasMatch = true;
-    });
-
-    if (!hasMatch) {
-      groups.forEach(function (group) {
-        group.hidden = false;
-      });
-      links[0] && links[0].classList.add('active');
-    }
-  })();
-</script>

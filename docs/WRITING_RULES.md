@@ -17,8 +17,9 @@ title: "文章标题"
 date: 2026-02-24 10:00:00 +0800
 summary: "一句话摘要（建议 60-140 字）"
 categories: Tech # Tech / Life
-topic: blog-engineering # blog-engineering / mac-workflow / life-notes
-tags: [关键词1, 关键词2, 关键词3]
+topic: tech-notes # life-essays / tech-notes / tool-sharing
+# tags 可选（不再作为主导航）
+# tags: [关键词1, 关键词2, 关键词3]
 translation_key: unique-key-for-this-post
 ---
 ```
@@ -32,8 +33,9 @@ title: "Post Title"
 date: 2026-02-24 10:00:00 +0800
 summary: "One-sentence summary (recommended 60-160 chars)."
 categories: Tech # Tech / Life
-topic: blog-engineering # blog-engineering / mac-workflow / life-notes
-tags: [keyword1, keyword2, keyword3]
+topic: tech-notes # life-essays / tech-notes / tool-sharing
+# tags optional (not used as primary navigation anymore)
+# tags: [keyword1, keyword2, keyword3]
 lang: en-US
 translation_key: unique-key-for-this-post
 ---
@@ -43,9 +45,9 @@ translation_key: unique-key-for-this-post
 
 - `date` 必须带时区 `+0800`，避免 URL 日期偏移。
 - 同一篇中英文文章必须共享同一个 `translation_key`。
-- 每篇文章至少 `3` 个 `tags`，避免关键词覆盖不足。
 - `topic` 必须填写且只能从固定专题中选择（避免一次性标签碎片化）。
 - `categories` 仅用 `Tech` / `Life` 两个一级分类，保持结构稳定。
+- `tags` 改为可选字段，仅作补充关键词，不再作为主导航和主聚合入口。
 
 ## 2. 文件命名规则
 
@@ -87,7 +89,7 @@ translation_key: unique-key-for-this-post
 
 ```txt
 请按 Jekyll 博客格式输出文章：
-1) 提供完整 Front Matter（layout/title/date(+0800)/summary/categories/topic/tags/translation_key，英文版加 lang: en-US）。
+1) 提供完整 Front Matter（layout/title/date(+0800)/summary/categories/topic/translation_key，英文版加 lang: en-US；`tags` 可选）。
 2) 正文分节清晰（至少 3 个 H2）。
 3) 如包含图片，只允许本地路径 /images/posts/<slug>/xxx.webp，并使用 <img> 标签且带 alt/width/height。
 4) 不要生成外链图床地址。

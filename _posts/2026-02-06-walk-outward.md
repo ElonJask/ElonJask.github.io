@@ -4,7 +4,7 @@ title: "向外走"
 date: 2026-02-06 10:00:00
 summary: "在历史与星空之间，我把目光从天上收回人间。"
 categories: Life
-topic: life-notes
+topic: life-essays
 tags: [生活随笔, 成长记录, 思考]
 translation_key: walk-outward
 ---

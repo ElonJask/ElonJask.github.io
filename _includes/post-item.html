@@ -26,7 +26,7 @@
           {% if post.topic and post.topic != "" %}
           <span>
             {% if is_en_post %}Topic{% else %}专题{% endif %}:
-            <a href="{{ topic_base | relative_url }}?topic={{ post.topic }}#topic-posts">{{ topic_name }}</a>
+            <a href="{{ topic_base | relative_url }}#topic-{{ post.topic }}">{{ topic_name }}</a>
           </span>
           {% endif %}
         </div>

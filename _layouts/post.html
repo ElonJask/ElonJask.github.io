@@ -26,23 +26,8 @@ body_id: post
       {% endfor %}
     {% endif %}
     <h4 class="page-info">
-      {% if page.categories and page.categories != "" %}
-      <span>{% if is_en_post %}Category{% else %}分类{% endif %}: {{ page.categories }}</span>
-      {% endif %}
       {% if page.topic and page.topic != "" %}
-      <span>{% if is_en_post %}Topic{% else %}专题{% endif %}: <a href="{{ topic_base | relative_url }}?topic={{ page.topic }}#topic-posts">{{ topic_name }}</a></span>
-      {% endif %}
-      {% if page.tags and page.tags.size > 0 %}
-      {% assign tag_base = '/tags' %}
-      {% if is_en_post %}
-        {% assign tag_base = '/en/tags' %}
-      {% endif %}
-      <span>
-        {% if is_en_post %}Tags{% else %}标签{% endif %}:
-        {% for tag in page.tags %}
-          <a href="{{ tag_base | relative_url }}?tag={{ tag | slugify }}#tag-posts">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-      </span>
+      <span>{% if is_en_post %}Topic{% else %}专题{% endif %}: <a href="{{ topic_base | relative_url }}#topic-{{ page.topic }}">{{ topic_name }}</a></span>
       {% endif %}
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
       {% comment %}
