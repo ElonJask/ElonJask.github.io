@@ -91,6 +91,15 @@
 </script>
 {% endif %}
 
+{% if site.umami and site.umami.website_id and site.umami.website_id != "" %}
+  {% assign umami_script = site.umami.script_url | default: "https://cloud.umami.is/script.js" %}
+<script defer src="{{ umami_script }}"
+  data-website-id="{{ site.umami.website_id }}"
+  {% if site.umami.domains and site.umami.domains != "" %}data-domains="{{ site.umami.domains }}"{% endif %}
+  {% if site.umami.data_host_url and site.umami.data_host_url != "" %}data-host-url="{{ site.umami.data_host_url }}"{% endif %}
+  {% if site.umami.do_not_track %}data-do-not-track="true"{% endif %}></script>
+{% endif %}
+
 {% if site.la51_id and site.la51_id != "" and site.la51_ck and site.la51_ck != "" %}
 <script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
 <script>

@@ -135,6 +135,15 @@
   {% if site.google_analytics and site.google_analytics != "" %}
   <link rel="preconnect" href="https://www.googletagmanager.com">
   {% endif %}
+  {% if site.umami and site.umami.website_id and site.umami.website_id != "" %}
+  {% assign umami_script = site.umami.script_url | default: "https://cloud.umami.is/script.js" %}
+  {% assign umami_parts = umami_script | split: "/" %}
+  {% if umami_parts.size > 2 %}
+  {% assign umami_host = umami_parts[2] %}
+  <link rel="preconnect" href="https://{{ umami_host }}" crossorigin>
+  <link rel="dns-prefetch" href="https://{{ umami_host }}">
+  {% endif %}
+  {% endif %}
   {% if enable_giscus %}
   <link rel="preconnect" href="https://giscus.app">
   <link rel="dns-prefetch" href="https://giscus.app">

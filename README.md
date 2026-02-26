@@ -155,6 +155,11 @@ repo: ElonJask/ElonJask.github.io
 google_analytics: ""
 la51_id: ""
 la51_ck: ""
+umami:
+  script_url: "https://cloud.umami.is/script.js"
+  website_id: ""
+  domains: "www.7fl.org,7fl.org"
+  do_not_track: true
 ```
 
 ### `google_analytics` 怎么填
@@ -182,6 +187,23 @@ la51_ck: ""
 ```yml
 la51_id: "3P7LtP2KotCouKTE"
 la51_ck: "3P7LtP2KotCouKTE"
+```
+
+### `umami` 怎么填
+
+- `script_url`：Umami 脚本地址（云版默认 `https://cloud.umami.is/script.js`）。
+- `website_id`：Umami 站点 ID（必填）。
+- `domains`：统计域名白名单（建议含 `www` 与裸域）。
+- `do_not_track`：是否尊重浏览器 DNT（建议 `true`）。
+
+示例：
+
+```yml
+umami:
+  script_url: "https://cloud.umami.is/script.js"
+  website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
+  domains: "www.7fl.org,7fl.org"
+  do_not_track: true
 ```
 
 ## 搜索引擎收录（建议按这个顺序）
