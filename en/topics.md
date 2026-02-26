@@ -12,24 +12,6 @@ lang: en-US
 
 <div class="topic-index">
   {% if topics and topics.size > 0 %}
-    <ul class="topic-index-list">
-      {% for topic in topics %}
-        {% assign topic_posts = site.posts_en | where: "topic", topic.key | sort: "date" | reverse %}
-        {% assign visible_posts = 0 %}
-        {% for post in topic_posts %}
-          {% assign is_hidden = post.hidden | default: post.hide %}
-          {% if is_hidden != true %}
-            {% assign visible_posts = visible_posts | plus: 1 %}
-          {% endif %}
-        {% endfor %}
-        {% if visible_posts > 0 %}
-          <li class="topic-index-item">
-            <a href="#topic-{{ topic.key }}" class="topic-index-name">{{ topic.name }}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-
     <div class="topic-post-groups">
       {% for topic in topics %}
         {% assign topic_posts = site.posts_en | where: "topic", topic.key | sort: "date" | reverse %}
