@@ -162,3 +162,7 @@
 - 已完成：移除专题页顶部索引列表与提示文案，并清理未使用的 `topic-index-*` 与 `archive-note` 样式，压缩 CSS 体积以优先性能与 SEO 稳定性。
 - 已完成：全仓清理未使用资源（移除 `js/ppt` 演示模块、`lazysizes` 脚本与无引用的 `giscus.json` 配置），减少无效体积与维护负担。
 - 已完成：新增博文《当增长像日志一样漂亮，人的告警却越来越多》（`2026-02-27`），从开发者视角讨论“无就业繁荣/减员式增长”与个人处境。
+
+## 2026-02-27
+- 已完成：新增英文对照博文《When Growth Looks Healthy but People Still Feel the Squeeze》，与中文文章建立双语映射（`translation_key: growth-and-jobs-decoupling-2026`）。
+- 已完成：修正该组中英文文章 `date` 时区为 `+0800`，避免构建后 URL 偏移到次日（`2026-02-28`）导致链接不一致。
