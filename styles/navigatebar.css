@@ -123,30 +123,21 @@
     font-weight: 500;
 }
 
-.lang-switch-icon {
+.lang-switch-text {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    transform: translateY(0.5px);
-}
-
-.lang-switch-icon svg {
-    width: 18px;
-    height: 18px;
-}
-
-.lang-switch-text {
-    display: none;
-}
-
-.navigatebar-about .lang-switch-icon {
     min-height: 36px;
+    padding: 0 6px;
+    color: #535353;
+    font-size: 18px;
+    line-height: 1.1;
+    text-decoration: none;
+    transition: color .12s ease;
 }
 
-.lang-switch-icon {
-    transition: color .12s ease;
+.lang-switch-text:hover {
+    color: #2f2f2f;
 }
 
 .navigatebar-actions {
