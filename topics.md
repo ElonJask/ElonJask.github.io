@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 专题分类
+title: 专题
 summary: 按固定专题查看文章：生活随笔、技术记录、工具分享。
 permalink: /topics
 comments: false
