@@ -1,0 +1,63 @@
+{% assign is_en_search = false %}
+{% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+  {% assign is_en_search = true %}
+{% endif %}
+
+{% if is_en_search %}
+  {% assign search_placeholder = 'Search posts...' %}
+  {% assign search_aria = 'Search posts' %}
+  {% assign search_close = 'Close search' %}
+  {% assign search_empty = 'Type to search posts' %}
+  {% assign search_loading = 'Loading search index...' %}
+  {% assign search_no_result = 'No matching posts found' %}
+  {% assign search_error = 'Failed to load search index' %}
+  {% assign search_result_suffix = 'results' %}
+  {% assign search_tips = '/ search   ESC close   ↑↓ navigate   Enter open' %}
+{% else %}
+  {% assign search_placeholder = '搜索文章标题、摘要、标签...' %}
+  {% assign search_aria = '搜索文章' %}
+  {% assign search_close = '关闭搜索' %}
+  {% assign search_empty = '输入关键词开始搜索' %}
+  {% assign search_loading = '正在加载搜索索引...' %}
+  {% assign search_no_result = '没有找到匹配的文章' %}
+  {% assign search_error = '搜索索引加载失败' %}
+  {% assign search_result_suffix = '条结果' %}
+  {% assign search_tips = '/ 搜索   ESC 关闭   ↑↓ 选择   Enter 打开' %}
+{% endif %}
+
+<div id="search-modal"
+  class="search-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-labelledby="search-title"
+  data-search-url="{{ '/search.json' | relative_url }}"
+  data-lang="{% if is_en_search %}en-US{% else %}zh-CN{% endif %}"
+  data-text-empty="{{ search_empty }}"
+  data-text-loading="{{ search_loading }}"
+  data-text-no-result="{{ search_no_result }}"
+  data-text-error="{{ search_error }}"
+  data-text-result-suffix="{{ search_result_suffix }}">
+  <div class="search-container" role="document">
+    <div class="search-header">
+      <h2 id="search-title" class="search-title sr-only">{{ search_aria }}</h2>
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="{{ search_placeholder }}"
+        aria-label="{{ search_aria }}"
+        autocomplete="off">
+      <button class="search-close" id="search-close" aria-label="{{ search_close }}" title="{{ search_close }}">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div id="search-results" class="search-results" role="listbox"></div>
+    <div class="search-footer">
+      <div class="search-tips">{{ search_tips }}</div>
+    </div>
+  </div>
+</div>
+
+<script defer src="{{ '/theme/search-modal.js' | relative_url }}"></script>

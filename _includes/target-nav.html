@@ -54,14 +54,20 @@
 {% assign lang_title = 'Switch Language' %}
 {% assign lang_aria = 'Switch language' %}
 {% assign mobile_switch_text = 'EN' %}
+{% assign search_title = 'Search' %}
+{% assign search_aria = 'Open search' %}
 {% if is_en_nav %}
   {% assign lang_title = '切换到中文' %}
   {% assign lang_aria = '切换到中文' %}
   {% assign mobile_switch_text = '中' %}
+  {% assign search_title = 'Search' %}
+  {% assign search_aria = 'Open search' %}
 {% else %}
   {% assign lang_title = 'Switch to English' %}
   {% assign lang_aria = 'Switch to English' %}
   {% assign mobile_switch_text = 'EN' %}
+  {% assign search_title = '搜索' %}
+  {% assign search_aria = '打开搜索' %}
 {% endif %}
 
 <div class="navigatebar{% unless is_en_nav %} is-zh{% endunless %}">
@@ -95,7 +101,15 @@
   </div>
 
   <div class="navigatebar-right">
-    <div class="navigatebar-button navigatebar-about">
+    <div class="navigatebar-button navigatebar-actions">
+      <button id="search-btn" class="search-open-btn" type="button" aria-label="{{ search_aria }}" title="{{ search_title }}">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M20 20L16.6 16.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="navigatebar-about">
       <a href="{{ switch_url | relative_url }}" class="lang-switch-icon" aria-label="{{ lang_aria }}" title="{{ lang_title }}">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/>
@@ -103,6 +117,9 @@
         </svg>
       </a>
       <a href="{{ switch_url | relative_url }}" class="lang-switch-text" aria-label="{{ lang_aria }}" title="{{ lang_title }}">{{ mobile_switch_text }}</a>
+      </div>
     </div>
   </div>
 </div>
+
+{% include search.html %}
