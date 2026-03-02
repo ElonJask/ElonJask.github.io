@@ -41,6 +41,24 @@
   {% include target-nav.html %}
 
   <main class="content" role="main">
+    {% if is_en_home %}
+      {% assign search_placeholder = 'Search posts...' %}
+      {% assign search_empty_text = 'Type a keyword to search all posts' %}
+      {% assign search_loading_text = 'Loading search index...' %}
+      {% assign search_no_result_text = 'No matching posts found' %}
+      {% assign search_result_text = 'results' %}
+      {% assign search_error_text = 'Search data failed to load, please retry' %}
+      {% assign search_clear_text = 'Clear search' %}
+    {% else %}
+      {% assign search_placeholder = '搜索文章标题、摘要、标签...' %}
+      {% assign search_empty_text = '输入关键词可搜索全部文章' %}
+      {% assign search_loading_text = '正在加载搜索索引...' %}
+      {% assign search_no_result_text = '没有找到匹配的文章' %}
+      {% assign search_result_text = '条结果' %}
+      {% assign search_error_text = '搜索数据加载失败，请重试' %}
+      {% assign search_clear_text = '清空搜索' %}
+    {% endif %}
+
     <div class="slogan">
       {% if page.hero_title and page.hero_title != '' %}
         {{ page.hero_title }}
@@ -51,18 +69,38 @@
       {% endif %}
     </div>
 
+    <div class="home-search-box"
+      data-lang="{% if is_en_home %}en{% else %}zh{% endif %}"
+      data-search-url="{{ '/search.json' | relative_url }}"
+      data-text-empty="{{ search_empty_text }}"
+      data-text-loading="{{ search_loading_text }}"
+      data-text-no-result="{{ search_no_result_text }}"
+      data-text-results="{{ search_result_text }}"
+      data-text-error="{{ search_error_text }}">
+      <label class="home-search-label" for="home-search-input">{% if is_en_home %}Search{% else %}搜索{% endif %}</label>
+      <div class="home-search-input-wrap">
+        <input id="home-search-input" class="home-search-input" type="search" placeholder="{{ search_placeholder }}" autocomplete="off" />
+        <button id="home-search-clear" class="home-search-clear" type="button" aria-label="{{ search_clear_text }}" title="{{ search_clear_text }}">×</button>
+      </div>
+      <div id="home-search-status" class="home-search-status" aria-live="polite">{{ search_empty_text }}</div>
+      <ul id="home-search-results" class="home-search-results" hidden></ul>
+    </div>
+
     <div class="char-total-counter">
       {{ post_count }}{% if is_en_home %} posts{% else %}篇文章{% endif %}
       {{ " " }}
       {% if is_en_home %}{{ total_words }} words{% else %}{{ total_chars }}字{% endif %}
     </div>
-    <ul>
+    <ul id="home-default-list">
       {% include post-item.html posts=listed_posts is_en=is_en_home %}
     </ul>
 
     {% unless is_en_home %}
-      {% include pagination.html %}
+      <div id="home-pagination">
+        {% include pagination.html %}
+      </div>
     {% endunless %}
   </main>
+  <script defer src="{{ '/theme/home-search.js' | relative_url }}"></script>
 </body>
 </html>

@@ -44,8 +44,8 @@ a:hover {
 }
 
 .post-line {
-    margin: 0 0 14px;
-    padding: 18px 8px 16px;
+    margin: 0 0 16px;
+    padding: 20px 8px 18px;
     border: none;
     border-radius: 0;
     background: transparent;
@@ -59,16 +59,16 @@ a:hover {
 .post-title {
     display: block;
     text-decoration: none;
-    font-size: 20px;
-    line-height: 1.45;
+    font-size: 24px;
+    line-height: 1.4;
     color: #000;
     margin: 0;
 }
 
 .post-summary {
     margin: 0;
-    font-size: 16px;
-    line-height: 1.82;
+    font-size: 17px;
+    line-height: 1.8;
     color: #4b4b4b;
 }
 
@@ -83,6 +83,105 @@ a:hover {
     text-align: center;
     color: #4f4f4f;
     margin-bottom: 44px;
+}
+
+.home-search-box {
+    margin: 0 auto 24px;
+    max-width: 740px;
+}
+
+.home-search-label {
+    display: none;
+}
+
+.home-search-input-wrap {
+    position: relative;
+}
+
+.home-search-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #dadada;
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 12px 42px 12px 14px;
+    outline: none;
+    transition: border-color .14s ease;
+}
+
+.home-search-input:focus {
+    border-color: #9a9a9a;
+}
+
+.home-search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #8d8d8d;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.home-search-clear:hover {
+    color: #666;
+    background: #f3f3f3;
+}
+
+.home-search-status {
+    margin-top: 8px;
+    color: #888;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.home-search-results {
+    margin-top: 12px;
+    padding: 0;
+    list-style: none;
+    border-top: 1px dashed #e4e4e4;
+}
+
+.home-search-item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px dashed #ececec;
+}
+
+.home-search-link {
+    display: block;
+    padding: 12px 2px;
+    color: inherit;
+}
+
+.home-search-title {
+    color: #222;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.home-search-summary {
+    color: #5b5b5b;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 4px;
+}
+
+.home-search-meta {
+    color: #919191;
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 .post-info {
