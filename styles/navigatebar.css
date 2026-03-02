@@ -8,6 +8,16 @@
     font-weight: 400;
 }
 
+html {
+    scrollbar-gutter: stable both-edges;
+}
+
+@supports not (scrollbar-gutter: stable) {
+    html {
+        overflow-y: scroll;
+    }
+}
+
 .navigatebar {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
