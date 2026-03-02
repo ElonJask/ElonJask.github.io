@@ -303,7 +303,7 @@
   - 移除布局中的 `styles/font.css`、`styles/custom.css` 引用；
   - 将字体定义合并进导航样式（桌面/移动）；
   - 将 About/Giscus 的局部样式下沉到对应页面样式文件。
-- 已完成：优化 Umami 加载时机为 `requestIdleCallback/load` 后注入，降低首屏竞争请求对 LCP/FCP 的影响。
+- 已完成：优化 Umami 加载时机为 `load + 3.5s` 延迟注入，降低首屏竞争请求对 LCP/FCP 的影响。
 - 已完成：移动端可点击区域优化（导航与语言切换最小触达高度提升至 40px+），改善交互可达性基线。
 - 已完成：本地全页面 Lighthouse 复测（mobile，10 个核心页面）：
   - Performance 全部 `100`；

@@ -39,10 +39,14 @@
       document.head.appendChild(s);
     };
 
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(injectUmami, { timeout: 2000 });
+    var scheduleUmami = function () {
+      window.setTimeout(injectUmami, 3500);
+    };
+
+    if (document.readyState === "complete") {
+      scheduleUmami();
     } else {
-      window.addEventListener("load", injectUmami, { once: true });
+      window.addEventListener("load", scheduleUmami, { once: true });
     }
   })();
 </script>
