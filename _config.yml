@@ -63,7 +63,8 @@ umami:
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
   data_host_url: "https://www.7fl.org/stats"
   domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
-  do_not_track: true
+  do_not_track: false
+  enable_in_dev: false
 
 # Build Settings
 paginate: 10
@@ -76,9 +77,6 @@ future: true
 highlighter: rouge
 markdown: kramdown
 permalink: /:year-:month-:day/:title.html
-sass:
-  sass_dir: _sass
-  style: compressed
 
 webrick:
   headers:
@@ -111,7 +109,6 @@ exclude:
 # Plugins
 plugins:
   - jekyll-paginate
-  - jekyll-pdf-embed
   - jekyll-sitemap
   - jekyll-feed
 
@@ -119,18 +116,6 @@ plugins:
 defaults:
   - scope:
       path: "images/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "js/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "css/**/*"
-    values:
-      sitemap: false
-  - scope:
-      path: "_sass/**/*"
     values:
       sitemap: false
   - scope:
@@ -154,13 +139,6 @@ defaults:
       sitemap:
         priority: 0.6
         changefreq: monthly
-
-# Custom Site Settings
-showBuyCoffee: false
-payImage: ""
-assetUrl: ""
-defaultImage: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-use_jinkai_font: false
 
 # Giscus Comments
 giscus:

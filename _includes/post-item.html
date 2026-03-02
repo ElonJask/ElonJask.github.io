@@ -1,13 +1,53 @@
+{% assign is_en_list = include.is_en | default: false %}
+{% assign topic_defs = site.topics_zh %}
+{% assign topic_base = '/topics' %}
+{% if is_en_list %}
+  {% assign topic_defs = site.topics_en %}
+  {% assign topic_base = '/en/topics' %}
+{% endif %}
+
 {% for post in include.posts %}
   {% assign is_hidden = post.hidden | default: post.hide %}
   {% if is_hidden != true %}
-    <a href="{{ post.url | relative_url }}" rel="bookmark" title="{{ post.title }}" itemprop="url" class="header-href">
-      <article class="hentry">
-        <h2 class="entry-title">{{ post.title }}</h2>
-        <div class="entry-content" data-nosnippet>
-          <span>【{{ post.date | date: "%Y-%m-%d" }}】</span>{{ post.summary }}
+    {% assign summary_text = post.summary | default: post.excerpt | strip_html | strip %}
+    {% assign plain = post.content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
+    {% assign char_count = plain | replace: " ", "" | split: "" | size %}
+    {% assign word_count = plain | split: " " | size %}
+
+    {% assign topic_name = post.topic %}
+    {% if post.topic and topic_defs and topic_defs.size > 0 %}
+      {% for topic in topic_defs %}
+        {% if topic.key == post.topic %}
+          {% assign topic_name = topic.name %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <li class="post-line">
+      <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+
+      {% if summary_text and summary_text != '' %}
+      <a href="{{ post.url | relative_url }}">
+        <div class="post-summary">{{ summary_text | truncate: 92, ' ...' }}</div>
+      </a>
+      {% endif %}
+
+      <div class="post-info">
+        <div class="category-area">
+          {% if post.topic and topic_name and topic_name != '' %}
+          <a href="{{ topic_base | relative_url }}#topic-{{ post.topic }}">
+            <div class="category">{{ topic_name }}</div>
+          </a>
+          {% endif %}
         </div>
-      </article>
-    </a>
+        <div class="right-info-area">
+          <div class="char-counter">
+            {% if is_en_list %}{{ word_count }} words{% else %}{{ char_count }}字{% endif %}
+          </div>
+          <div class="post-date">{{ post.date | date: "%Y-%m-%d" }}</div>
+        </div>
+      </div>
+    </li>
   {% endif %}
 {% endfor %}

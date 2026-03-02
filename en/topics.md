@@ -10,9 +10,8 @@ lang: en-US
 
 {% assign topics = site.topics_en %}
 
-<div class="topic-index">
-  {% if topics and topics.size > 0 %}
-    <div class="topic-post-groups">
+{% if topics and topics.size > 0 %}
+  <div class="topic-post-groups">
       {% for topic in topics %}
         {% assign topic_posts = site.posts_en | where: "topic", topic.key | sort: "date" | reverse %}
         {% assign visible_posts = 0 %}
@@ -42,8 +41,7 @@ lang: en-US
           </section>
         {% endif %}
       {% endfor %}
-    </div>
-  {% else %}
-    <p>No topic definitions yet.</p>
-  {% endif %}
-</div>
+  </div>
+{% else %}
+  <p>No topic definitions yet.</p>
+{% endif %}

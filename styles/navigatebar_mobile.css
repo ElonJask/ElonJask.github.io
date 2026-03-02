@@ -1,0 +1,212 @@
+.navigatebar {
+    display: grid;
+    grid-template-columns: minmax(108px, 1fr) auto minmax(36px, 1fr);
+    grid-template-areas: "left center right";
+    align-items: center;
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 18px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    box-sizing: border-box;
+    column-gap: 8px;
+    min-height: 42px;
+}
+
+.navigatebar-left,
+.navigatebar-center,
+.navigatebar-right {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.navigatebar-left {
+    grid-area: left;
+    justify-self: start;
+}
+
+.navigatebar-center {
+    grid-area: center;
+    justify-self: center;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 16px);
+    white-space: nowrap;
+}
+
+.navigatebar-right {
+    grid-area: right;
+    justify-self: end;
+    padding-right: 4px;
+}
+
+.navigatebar-button {
+    margin-left: 0;
+    margin-right: 0;
+    color: #3f3f3f;
+    font-size: 16px;
+    line-height: 1.15;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    letter-spacing: 0.05px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navigatebar.is-zh .navigatebar-button:not(.navigatebar-mine) {
+    font-family: "TsangerJinKai02", "STKaiti", "KaiTi", serif;
+}
+
+.navigatebar-button a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    transition: color .12s ease;
+}
+
+.navigatebar-button a:hover {
+    color: #2f2f2f;
+}
+
+.navigatebar-slogan {
+    display: none;
+}
+
+.navigatebar-mine {
+    flex: 0 0 auto;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 29px;
+    line-height: 1;
+    color: #3f3f3f;
+    font-weight: 400;
+    font-family: "angelinaFont", cursive;
+    font-synthesis: none;
+}
+
+.navigatebar-mine a {
+    color: #3f3f3f;
+    font-family: "angelinaFont", cursive;
+}
+
+.navigatebar-about {
+    margin-right: 0;
+    flex: 0 0 auto;
+    width: auto;
+    justify-content: flex-end;
+    font-size: 16px;
+}
+
+.lang-switch-icon {
+    display: none;
+}
+
+.lang-switch-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.lang-switch-text {
+    display: inline-flex;
+    align-items: center;
+    color: #4e4e4e;
+    text-decoration: none;
+    border-bottom: 0;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    padding: 0 2px;
+}
+
+.navigatebar-menu-item {
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+.navigatebar-menu-item a {
+    white-space: nowrap;
+    color: #535353;
+    padding: 0 1px;
+}
+
+.navigatebar-menu-item a.is-active {
+    color: #262626;
+    font-weight: 600;
+}
+
+.navigatebar.is-zh .navigatebar-menu-item a.is-active {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 430px) and (min-width: 381px) {
+    .navigatebar {
+        grid-template-columns: minmax(100px, 1fr) auto minmax(30px, 1fr);
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+    }
+
+    .navigatebar-center {
+        gap: 12px;
+    }
+
+    .navigatebar-button {
+        font-size: 15px;
+    }
+
+    .navigatebar-menu-item {
+        font-size: 16px;
+    }
+
+    .navigatebar-mine {
+        font-size: 27px;
+    }
+
+    .navigatebar-about {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .navigatebar {
+        grid-template-columns: minmax(90px, 1fr) auto minmax(24px, 1fr);
+        column-gap: 6px;
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+
+    .navigatebar-center {
+        gap: 9px;
+    }
+
+    .navigatebar-button {
+        font-size: 14px;
+    }
+
+    .navigatebar-mine {
+        font-size: 24px;
+    }
+
+    .navigatebar-menu-item {
+        font-size: 15px;
+    }
+
+    .navigatebar-about {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .navigatebar-center {
+        gap: 7px;
+    }
+
+    .navigatebar-menu-item {
+        font-size: 14px;
+    }
+
+    .navigatebar-mine {
+        font-size: 22px;
+    }
+}

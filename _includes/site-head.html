@@ -1,0 +1,33 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>{% if page.layout == 'home' and page.title %}{{ page.title }}{% elsif page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+{% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+{% if site.google_site_verification and site.google_site_verification != "" %}
+<meta name="google-site-verification" content="{{ site.google_site_verification }}">
+{% endif %}
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} Feed" href="{{ '/feed.xml' | relative_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.summary %}{{ page.summary | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta name="robots" content="{% if page.noindex or page.is404 %}noindex,follow{% else %}index,follow{% endif %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon.png' | relative_url }}">
+<link rel="shortcut icon" type="image/png" href="{{ '/images/favicon.png' | relative_url }}">
+<link rel="preload" href="{{ '/fonts/angelina.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+
+{% if (jekyll.environment == "production" or site.umami.enable_in_dev) and site.umami and site.umami.website_id and site.umami.website_id != "" %}
+{% assign umami_script = site.umami.script_url | default: "https://cloud.umami.is/script.js" %}
+{% assign umami_script_src = umami_script %}
+{% unless umami_script contains "://" %}
+{% assign umami_script_src = umami_script | relative_url %}
+{% endunless %}
+<script defer src="{{ umami_script_src }}"
+  data-website-id="{{ site.umami.website_id }}"
+  data-auto-track="true"
+  {% if site.umami.domains and site.umami.domains != "" %}data-domains="{{ site.umami.domains }}"{% endif %}
+  {% if site.umami.data_host_url and site.umami.data_host_url != "" %}data-host-url="{{ site.umami.data_host_url }}"{% endif %}
+  {% if site.umami.do_not_track %}data-do-not-track="true"{% endif %}></script>
+{% endif %}

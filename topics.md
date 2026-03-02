@@ -10,9 +10,8 @@ lang: zh-CN
 
 {% assign topics = site.topics_zh %}
 
-<div class="topic-index">
-  {% if topics and topics.size > 0 %}
-    <div class="topic-post-groups">
+{% if topics and topics.size > 0 %}
+  <div class="topic-post-groups">
       {% for topic in topics %}
         {% assign topic_posts = site.posts | where: "topic", topic.key | sort: "date" | reverse %}
         {% assign visible_posts = 0 %}
@@ -42,8 +41,7 @@ lang: zh-CN
           </section>
         {% endif %}
       {% endfor %}
-    </div>
-  {% else %}
-    <p>当前还没有配置专题。</p>
-  {% endif %}
-</div>
+  </div>
+{% else %}
+  <p>当前还没有配置专题。</p>
+{% endif %}

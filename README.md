@@ -16,6 +16,7 @@
 - `Liquid`（模板）
 - `Vercel`（生产部署）
 - `Giscus`（评论系统）
+- `Umami`（站点统计，第一方代理）
 
 ## 快速开始
 
@@ -69,11 +70,12 @@ rg -n "https?://.*\.(png|jpg|jpeg|webp|gif)" _posts _posts_en
 ├── _config.yml            # 全局配置（SEO、评论、域名等）
 ├── _posts/                # 中文文章
 ├── _posts_en/             # 英文文章
-├── _includes/             # 公共模板（head/footer/giscus）
+├── _includes/             # 公共模板（meta/nav/giscus）
 ├── _layouts/              # 页面布局
 ├── _plugins/              # 自定义插件
-├── css/                   # 样式
-├── js/                    # 脚本
+├── styles/                # 站点样式（home/post/page/nav）
+├── theme/                 # 代码高亮等主题资源
+├── fonts/                 # 字体资源（仅站点名手写体）
 ├── images/                # 本地图片资源
 ├── docs/WRITING_RULES.md  # 写作/SEO/性能规范（强烈建议先读）
 └── docs/progress.md       # 项目进展记录
@@ -136,6 +138,9 @@ bundle exec jekyll build
 - 项目根目录：`./`
 - Build Command：`bundle exec jekyll build`
 - Output Directory：`_site`
+- `vercel.json` 已配置 Umami 代理：
+  - `/stats/script.js -> https://cloud.umami.is/script.js`
+  - `/stats/api/send -> https://cloud.umami.is/api/send`
 
 ## 评论系统（Giscus）
 
@@ -162,10 +167,11 @@ repo: ElonJask/ElonJask.github.io
 # SEO and Analytics
 umami:
   script_url: "/stats/script.js"
-  website_id: ""
+  website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
   data_host_url: "https://www.7fl.org/stats"
   domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
-  do_not_track: true
+  do_not_track: false
+  enable_in_dev: false
 ```
 
 ### Google Search Console 验证（当前推荐）
@@ -179,7 +185,8 @@ umami:
 - `website_id`：Umami 站点 ID（必填）。
 - `data_host_url`：Umami 事件上报地址（当前为 `https://www.7fl.org/stats`）。
 - `domains`：统计域名白名单（建议含 `www` 与裸域）。
-- `do_not_track`：是否尊重浏览器 DNT（建议 `true`）。
+- `do_not_track`：是否尊重浏览器 DNT。
+- `enable_in_dev`：是否在本地开发环境也注入统计脚本（默认 `false`）。
 
 示例：
 
@@ -189,8 +196,29 @@ umami:
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"
   data_host_url: "https://www.7fl.org/stats"
   domains: "www.7fl.org,7fl.org,elon-jask-github-io.vercel.app,elonjask.github.io"
-  do_not_track: true
+  do_not_track: false
+  enable_in_dev: false
 ```
+
+### Umami 启动与自检（建议发布前执行）
+
+1. 生产构建验证（必须）：
+
+```bash
+JEKYLL_ENV=production bundle exec jekyll build
+rg -n "stats/script\\.js|data-website-id|data-host-url" _site/index.html _site/en/index.html
+```
+
+看到以下字段即为正常：
+- `src="/stats/script.js"`
+- `data-website-id="你的 umami website id"`
+- `data-host-url="https://www.7fl.org/stats"`
+
+2. 线上验证（部署后）：
+- 打开浏览器开发者工具 `Network`，访问 [https://www.7fl.org](https://www.7fl.org)；
+- 应出现请求：
+  - `https://www.7fl.org/stats/script.js`
+  - `https://www.7fl.org/stats/api/send`
 
 ## 搜索引擎收录（建议按这个顺序）
 

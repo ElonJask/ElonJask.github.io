@@ -1,14 +1,70 @@
----
-layout: base
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+<head>
+  {% include site-head.html %}
+  <link rel="stylesheet" href="{{ '/styles/font.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/navigatebar.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/navigatebar_mobile.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/home.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/home_mobile.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/styles/custom.css' | relative_url }}">
+</head>
+<body>
+  {% assign is_en_home = false %}
+  {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+    {% assign is_en_home = true %}
+  {% endif %}
+  {% if is_en_home %}
+    {% assign current_posts = site.posts_en | sort: 'date' | reverse %}
+    {% assign listed_posts = current_posts %}
+  {% else %}
+    {% assign current_posts = site.posts | sort: 'date' | reverse %}
+    {% assign listed_posts = paginator.posts %}
+    {% unless listed_posts %}
+      {% assign listed_posts = current_posts %}
+    {% endunless %}
+  {% endif %}
 
-{% if page.url contains '/en/' %}
-<!-- English articles: list all articles without pagination -->
-{% assign current_posts = site.posts_en | sort: 'date' | reverse %}
-{% include post-item.html posts=current_posts %}
-{% else %}
-<!-- Chinese articles: maintain original logic including pagination -->
-{% include post-item.html posts=paginator.posts %}
-{% include pagination.html %}
-{% endif %}
-{{ content }}
+  {% assign post_count = 0 %}
+  {% assign total_chars = 0 %}
+  {% assign total_words = 0 %}
+  {% for post in current_posts %}
+    {% assign is_hidden = post.hidden | default: post.hide %}
+    {% if is_hidden != true %}
+      {% assign post_count = post_count | plus: 1 %}
+      {% assign plain = post.content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
+      {% assign char_count = plain | replace: " ", "" | split: "" | size %}
+      {% assign word_count = plain | split: " " | size %}
+      {% assign total_chars = total_chars | plus: char_count %}
+      {% assign total_words = total_words | plus: word_count %}
+    {% endif %}
+  {% endfor %}
+
+  {% include target-nav.html %}
+
+  <main class="content" role="main">
+    <div class="slogan">
+      {% if page.hero_title and page.hero_title != '' %}
+        {{ page.hero_title }}
+      {% elsif is_en_home %}
+        Be yourself and don't go with the flow.
+      {% else %}
+        做自己，不随波逐流。
+      {% endif %}
+    </div>
+
+    <div class="char-total-counter">
+      {{ post_count }}{% if is_en_home %} posts{% else %}篇文章{% endif %}
+      {{ " " }}
+      {% if is_en_home %}{{ total_words }} words{% else %}{{ total_chars }}字{% endif %}
+    </div>
+    <ul>
+      {% include post-item.html posts=listed_posts is_en=is_en_home %}
+    </ul>
+
+    {% unless is_en_home %}
+      {% include pagination.html %}
+    {% endunless %}
+  </main>
+</body>
+</html>

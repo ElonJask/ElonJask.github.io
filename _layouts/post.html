@@ -1,67 +1,71 @@
----
-layout: base
-body_id: post
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang }}">
+<head>
+  {% include site-head.html %}
+  <link rel="stylesheet" href="{{ '/styles/font.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/post.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/post_mobile.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/navigatebar.css' | relative_url }}">
+  <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/navigatebar_mobile.css' | relative_url }}">
+  {% if content contains '<pre' or content contains 'highlighter-rouge' or content contains 'language-' %}
+  <link rel="stylesheet" href="{{ '/theme/highlight.css' | relative_url }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/styles/custom.css' | relative_url }}">
+</head>
+<body>
+  {% include target-nav.html %}
 
-<article class="hentry">
-  <div class="entry-content {% if page.url contains '/en/' %}{% else %}heti{% endif %}">
-    <h1 class="post-title entry-title">{{ page.title }}</h1>
-    {% assign is_en_post = false %}
-    {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
-      {% assign is_en_post = true %}
-    {% endif %}
-    {% assign topic_defs = site.topics_zh %}
-    {% assign topic_base = '/topics' %}
-    {% if is_en_post %}
-      {% assign topic_defs = site.topics_en %}
-      {% assign topic_base = '/en/topics' %}
-    {% endif %}
-    {% assign topic_name = page.topic %}
-    {% if page.topic and topic_defs and topic_defs.size > 0 %}
-      {% for topic in topic_defs %}
-        {% if topic.key == page.topic %}
-          {% assign topic_name = topic.name %}
-          {% break %}
+  {% assign is_en_post = false %}
+  {% if page.collection == 'posts_en' or page.lang == 'en-US' or page.lang == 'en' or page.url contains '/en/' %}
+    {% assign is_en_post = true %}
+  {% endif %}
+  {% assign topic_defs = site.topics_zh %}
+  {% assign topic_base = '/topics' %}
+  {% if is_en_post %}
+    {% assign topic_defs = site.topics_en %}
+    {% assign topic_base = '/en/topics' %}
+  {% endif %}
+  {% assign topic_name = page.topic %}
+  {% if page.topic and topic_defs and topic_defs.size > 0 %}
+    {% for topic in topic_defs %}
+      {% if topic.key == page.topic %}
+        {% assign topic_name = topic.name %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% assign plain = content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
+  {% assign char_count = plain | replace: " ", "" | split: "" | size %}
+  {% assign word_count = plain | split: " " | size %}
+
+  <main class="content-area" role="main">
+    <div class="title">{{ page.title }}</div>
+    <div class="post-meta">
+      <div class="category-area">
+        {% if page.topic and topic_name and topic_name != '' %}
+        <a href="{{ topic_base | relative_url }}#topic-{{ page.topic }}"><div class="category">{{ topic_name }}</div></a>
         {% endif %}
-      {% endfor %}
-    {% endif %}
-    <h4 class="page-info">
-      {% if page.topic and page.topic != "" %}
-      <span>{% if is_en_post %}Topic{% else %}专题{% endif %}: <a href="{{ topic_base | relative_url }}#topic-{{ page.topic }}">{{ topic_name }}</a></span>
-      {% endif %}
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
-      {% comment %}
-        number_of_words 在部分环境不可用，改用手工计算：
-        - 先得到纯文本 plain
-        - ascii_words: 按空格切分，适用于英文
-        - char_count: 去空格后按字符计数，适用于中文
-        - 如果英文词数很少（<50），视为中文内容，按字符数估算
-        - 阅读时间向上取整：(est_words + 299) / 300
-      {% endcomment %}
-      {% assign plain = content | strip_html | replace: "\r", " " | replace: "\n", " " | replace: "  ", " " %}
-      {% assign ascii_words = plain | split: " " | size %}
-      {% assign char_count = plain | replace: " ", "" | split: "" | size %}
-      {% assign est_words = ascii_words %}
-      {% if ascii_words < 50 %}
-        {% assign est_words = char_count %}
-      {% endif %}
-      {% assign reading_time = est_words | plus: 299 | divided_by: 300 %}
-      {% if page.lang == 'en-US' or page.lang == 'en' %}
-      <span class="reading-time">{{ reading_time }} min read</span>
-      {% else %}
-      <span class="reading-time">阅读时间: {{ reading_time }} 分钟</span>
-      {% endif %}
-      <div class="qr-text" id="J_qr_text">
-        <div id="J_qr_code" class="qr-code" aria-label="QR code for this page" role="img"></div>
+        {% if page.tags and page.tags.size > 0 %}
+          {% for tag in page.tags limit: 4 %}
+          <div class="category">{{ tag }}</div>
+          {% endfor %}
+        {% endif %}
       </div>
-    </h4>
-    <details class="post-toc" id="J_post_toc" hidden>
-      <summary>{% if is_en_post %}Contents{% else %}目录{% endif %}</summary>
-      <div class="post-toc-body" id="J_post_toc_body"></div>
-    </details>
-    {{ content | cdn_image_filter }}
-    {% include buy-me-coffee.html %}
-  </div>
-  {% include giscus.html %}
-  {% include read-more.html %}
-</article>
+      <div class="char-counter">
+        {{ page.date | date: "%Y-%m-%d" }}
+        {% if is_en_post %}
+          {{ word_count }} words
+        {% else %}
+          {{ char_count }}字
+        {% endif %}
+      </div>
+    </div>
+    <div class="content">
+      {{ content | cdn_image_filter }}
+    </div>
+
+    {% include giscus.html %}
+  </main>
+</body>
+</html>

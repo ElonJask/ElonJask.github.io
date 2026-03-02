@@ -1,10 +1,20 @@
-{% if page.comments != false %}
+{% if page.comments != false and site.giscus and site.giscus.repo_id and site.giscus.category_id %}
 <div class="giscus-container">
-  <script src="https://giscus.app/client.js" data-repo="{{ site.repo }}" data-repo-id="{{ site.giscus.repo_id }}"
-    data-category="{{ site.giscus.category }}" data-category-id="{{ site.giscus.category_id }}" data-mapping="specific" data-reactions-enabled="1"
-    data-emit-metadata="0" data-input-position="bottom"
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ site.repo }}"
+    data-repo-id="{{ site.giscus.repo_id }}"
+    data-category="{{ site.giscus.category | default: 'General' }}"
+    data-category-id="{{ site.giscus.category_id }}"
+    data-mapping="specific"
     data-term="{{ page.path | split: '/' | last | replace: '.md', '' }}"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
     data-lang="{% assign current_lang = page.lang | default: site.lang %}{% if current_lang == 'en-US' or current_lang == 'en' %}en{% else %}zh-CN{% endif %}"
-    data-loading="lazy" data-theme="{{ site.url }}/css/comment.css" crossorigin="anonymous" async></script>
+    crossorigin="anonymous"
+    async>
+  </script>
 </div>
 {% endif %}

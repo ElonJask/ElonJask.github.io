@@ -1,0 +1,202 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #FFF;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "TsangerJinKai02", "STKaiti", "KaiTi", serif;
+}
+
+.content-area {
+    box-sizing: border-box;
+    background-color: #FFF;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto 34px;
+    padding-top: 26px;
+    padding-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+@media screen and (max-width: 1000px) {
+    .content-area {
+        max-width: 920px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+a {
+    color: #57BF7D;
+    text-decoration: none;
+}
+
+p {
+    font-family: "TsangerJinKai02", "STKaiti", "KaiTi", serif;
+}
+
+.title {
+    color: #000;
+    font-size: 26px;
+    margin-bottom: 16px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.content {
+    line-height: 28px;
+    font-size: 20px;
+}
+
+.content a.post-image-link {
+    display: block;
+    margin: 0 auto;
+}
+
+.content p > a.post-image-link,
+.content li > a.post-image-link {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.content picture.post-image-picture {
+    display: block;
+}
+
+.content p img,
+.content li img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.content a.post-image-link img {
+    cursor: zoom-in;
+}
+
+pre {
+    white-space: pre;
+    overflow: auto;
+}
+
+div.highlighter-rouge {
+    margin: 0;
+}
+
+div.highlight,
+pre.highlight {
+    border-radius: 5px;
+}
+
+figure.highlight pre {
+    padding: 10px;
+}
+
+div.highlight pre.highlight {
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #AAA;
+    width: 100%;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #FAFAFA;
+}
+
+th {
+    border: 1px solid #AAA;
+    padding: 5px;
+    background-color: #F8F8F8;
+}
+
+td {
+    border: 1px solid #AAA;
+    padding: 5px;
+}
+
+.post-meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.category-area {
+    color: #666;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 34px;
+}
+
+.category {
+    color: #666;
+    font-size: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 5px;
+    background: #f2f2f2;
+    padding: 4px 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.char-counter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #666;
+    font-size: 15px;
+    min-height: 34px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+blockquote {
+    margin: 0;
+}
+
+blockquote p {
+    white-space: normal;
+    border-left: 4px solid #EAEAEA;
+    padding: 10px;
+    background-color: #F8F8F8;
+    margin-top: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 40px;
+}
