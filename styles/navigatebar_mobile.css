@@ -47,7 +47,7 @@
 .navigatebar-right {
     grid-area: right;
     justify-self: end;
-    padding-right: 4px;
+    padding-right: 2px;
 }
 
 .navigatebar-button {
@@ -130,7 +130,7 @@
     font-family: inherit;
     letter-spacing: inherit;
     min-height: 40px;
-    padding: 0 6px;
+    padding: 0 4px;
 }
 
 .navigatebar-menu-item {
@@ -156,12 +156,12 @@
 .navigatebar-actions {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
 }
 
 .search-open-btn {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border: 0;
     background: transparent;
     color: #5a5a5a;
@@ -173,8 +173,8 @@
 }
 
 .search-open-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .search-open-btn:hover {
@@ -374,8 +374,8 @@
     }
 
     .search-open-btn {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -404,7 +404,7 @@
     }
 
     .navigatebar-about {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .navigatebar-button a,
@@ -413,13 +413,13 @@
     }
 
     .search-open-btn {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
     }
 
     .search-open-btn svg {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
     }
 }
 

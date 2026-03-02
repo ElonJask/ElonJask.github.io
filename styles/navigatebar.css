@@ -39,7 +39,7 @@
 
 .navigatebar-right {
     justify-self: end;
-    padding-right: 6px;
+    padding-right: 2px;
 }
 
 .navigatebar-button {
@@ -128,7 +128,7 @@
     align-items: center;
     justify-content: center;
     min-height: 36px;
-    padding: 0 6px;
+    padding: 0 4px;
     color: #535353;
     font-size: 18px;
     line-height: 1.1;
@@ -143,7 +143,7 @@
 .navigatebar-actions {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
 }
 
 .search-open-btn {
