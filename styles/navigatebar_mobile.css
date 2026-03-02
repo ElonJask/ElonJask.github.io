@@ -265,6 +265,11 @@
     padding: 8px 10px 10px;
 }
 
+.search-results.is-empty {
+    padding: 0;
+    max-height: 0;
+}
+
 .search-result-count,
 .search-empty-state,
 .search-loading,

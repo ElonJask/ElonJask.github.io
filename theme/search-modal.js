@@ -71,14 +71,17 @@
   }
 
   function showEmpty() {
-    results.innerHTML = '<div class="search-empty-state">' + escapeHtml(textEmpty) + "</div>";
+    results.classList.add("is-empty");
+    results.innerHTML = "";
   }
 
   function showLoading() {
+    results.classList.remove("is-empty");
     results.innerHTML = '<div class="search-loading">' + escapeHtml(textLoading) + "</div>";
   }
 
   function showError() {
+    results.classList.remove("is-empty");
     results.innerHTML = '<div class="search-error">' + escapeHtml(textError) + "</div>";
   }
 
@@ -118,6 +121,7 @@
   }
 
   function render(list, query) {
+    results.classList.remove("is-empty");
     selectedIndex = -1;
     if (!list.length) {
       results.innerHTML = '<div class="search-no-results">' + escapeHtml(textNoResult) + "</div>";
