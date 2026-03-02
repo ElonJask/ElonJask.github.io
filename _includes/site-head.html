@@ -24,10 +24,26 @@
 {% unless umami_script contains "://" %}
 {% assign umami_script_src = umami_script | relative_url %}
 {% endunless %}
-<script defer src="{{ umami_script_src }}"
-  data-website-id="{{ site.umami.website_id }}"
-  data-auto-track="true"
-  {% if site.umami.domains and site.umami.domains != "" %}data-domains="{{ site.umami.domains }}"{% endif %}
-  {% if site.umami.data_host_url and site.umami.data_host_url != "" %}data-host-url="{{ site.umami.data_host_url }}"{% endif %}
-  {% if site.umami.do_not_track %}data-do-not-track="true"{% endif %}></script>
+<script>
+  (function () {
+    var injectUmami = function () {
+      if (document.querySelector('script[data-website-id="{{ site.umami.website_id }}"]')) return;
+      var s = document.createElement("script");
+      s.defer = true;
+      s.src = "{{ umami_script_src }}";
+      s.setAttribute("data-website-id", "{{ site.umami.website_id }}");
+      s.setAttribute("data-auto-track", "true");
+      {% if site.umami.domains and site.umami.domains != "" %}s.setAttribute("data-domains", "{{ site.umami.domains }}");{% endif %}
+      {% if site.umami.data_host_url and site.umami.data_host_url != "" %}s.setAttribute("data-host-url", "{{ site.umami.data_host_url }}");{% endif %}
+      {% if site.umami.do_not_track %}s.setAttribute("data-do-not-track", "true");{% endif %}
+      document.head.appendChild(s);
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(injectUmami, { timeout: 2000 });
+    } else {
+      window.addEventListener("load", injectUmami, { once: true });
+    }
+  })();
+</script>
 {% endif %}

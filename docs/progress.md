@@ -299,3 +299,13 @@
   - 增加“生产构建 + 线上 Network”两步校验方法。
 - 已完成：执行 Umami 生产注入核验：
   - `JEKYLL_ENV=production bundle exec jekyll build` 后，首页/文章页中均已出现 `/stats/script.js`、`data-website-id`、`data-host-url`。
+- 已完成：进一步压缩首屏阻塞请求，删除额外样式文件请求：
+  - 移除布局中的 `styles/font.css`、`styles/custom.css` 引用；
+  - 将字体定义合并进导航样式（桌面/移动）；
+  - 将 About/Giscus 的局部样式下沉到对应页面样式文件。
+- 已完成：优化 Umami 加载时机为 `requestIdleCallback/load` 后注入，降低首屏竞争请求对 LCP/FCP 的影响。
+- 已完成：移动端可点击区域优化（导航与语言切换最小触达高度提升至 40px+），改善交互可达性基线。
+- 已完成：本地全页面 Lighthouse 复测（mobile，10 个核心页面）：
+  - Performance 全部 `100`；
+  - SEO 全部 `100`；
+  - 最低 Accessibility `95`、最低 Best Practices `96`（与第三方脚本/触控目标审计项相关）。

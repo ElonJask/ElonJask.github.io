@@ -2,7 +2,6 @@
 <html lang="{{ page.lang | default: site.lang }}">
 <head>
   {% include site-head.html %}
-  <link rel="stylesheet" href="{{ '/styles/font.css' | relative_url }}">
   {% assign is_tag_page = false %}
   {% if page.url contains '/topics' or page.url contains '/archive' %}
     {% assign is_tag_page = true %}
@@ -16,7 +15,6 @@
   {% endif %}
   <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/navigatebar.css' | relative_url }}">
   <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/navigatebar_mobile.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/styles/custom.css' | relative_url }}">
 </head>
 <body>
   {% include target-nav.html %}

@@ -200,3 +200,9 @@ blockquote p {
 h1, h2, h3, h4, h5, h6 {
     margin-top: 40px;
 }
+
+.giscus-container {
+    margin-top: 40px;
+    border-top: 1px solid #ececec;
+    padding-top: 24px;
+}

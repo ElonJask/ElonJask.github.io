@@ -192,3 +192,9 @@ blockquote p {
 h1, h2, h3, h4, h5, h6 {
     margin-top: 32px;
 }
+
+.giscus-container {
+    margin-top: 30px;
+    border-top: 1px solid #ececec;
+    padding-top: 20px;
+}

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "angelinaFont";
+    src: local("Angelina"),
+         url("/fonts/angelina.woff2") format("woff2"),
+         url("/fonts/angelina.ttf") format("truetype");
+    font-display: optional;
+    font-style: normal;
+    font-weight: 400;
+}
+
 .navigatebar {
     display: grid;
     grid-template-columns: minmax(108px, 1fr) auto minmax(36px, 1fr);
@@ -59,9 +69,11 @@
 .navigatebar-button a {
     color: #3f3f3f;
     text-decoration: none;
+    white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    min-height: 34px;
+    min-height: 40px;
+    padding: 0 2px;
     transition: color .12s ease;
 }
 
@@ -117,7 +129,8 @@
     line-height: inherit;
     font-family: inherit;
     letter-spacing: inherit;
-    padding: 0 2px;
+    min-height: 40px;
+    padding: 0 6px;
 }
 
 .navigatebar-menu-item {
@@ -128,7 +141,7 @@
 .navigatebar-menu-item a {
     white-space: nowrap;
     color: #535353;
-    padding: 0 1px;
+    padding: 0 4px;
 }
 
 .navigatebar-menu-item a.is-active {
@@ -166,6 +179,11 @@
     .navigatebar-about {
         font-size: 15px;
     }
+
+    .navigatebar-button a,
+    .lang-switch-text {
+        min-height: 38px;
+    }
 }
 
 @media screen and (max-width: 380px) {
@@ -194,6 +212,11 @@
 
     .navigatebar-about {
         font-size: 13px;
+    }
+
+    .navigatebar-button a,
+    .lang-switch-text {
+        min-height: 36px;
     }
 }
 

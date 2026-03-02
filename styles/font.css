@@ -1,9 +1,0 @@
-@font-face {
-    font-family: "angelinaFont";
-    src: local("Angelina"),
-         url("/fonts/angelina.woff2") format("woff2"),
-         url("/fonts/angelina.ttf") format("truetype");
-    font-display: swap;
-    font-style: normal;
-    font-weight: 400;
-}
