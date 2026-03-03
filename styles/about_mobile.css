@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #FFF;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -25,17 +25,17 @@ li {
 }
 
 .about a {
-    color: #000;
+    color: var(--color-text-strong);
     text-decoration: none;
 }
 
 .about a:hover {
-    color: #73BC83;
+    color: var(--color-link-hover);
 }
 
 .about {
     box-sizing: border-box;
-    background-color: #FFF;
+    background-color: var(--color-bg);
     width: 100%;
     margin: 0 auto 24px;
     padding-top: 8px;
@@ -53,7 +53,7 @@ li {
 }
 
 .title {
-    color: #444;
+    color: var(--color-text-heading);
     font-size: 30px;
     font-weight: 600;
     text-align: center;
@@ -72,18 +72,18 @@ li {
     width: 56px;
     height: 2px;
     transform: translateX(-50%);
-    background: #b8b8b8;
+    background: var(--color-divider);
 }
 
 .name {
     text-align: center;
-    color: #666;
+    color: var(--color-text-muted);
     margin-bottom: 24px;
     font-size: 16px;
 }
 
 .segement {
-    color: #666;
+    color: var(--color-text-muted);
     font-size: 20px;
     margin-top: 26px;
 }
@@ -100,7 +100,7 @@ html[lang^="en"] .title {
 }
 
 .about h2 {
-    color: #888;
+    color: var(--color-text-subtle);
     font-size: 20px;
     margin-top: 24px;
     margin-bottom: 8px;
@@ -117,5 +117,5 @@ html[lang^="en"] .title {
 
 .about p,
 .about li {
-    color: #333;
+    color: var(--color-text);
 }

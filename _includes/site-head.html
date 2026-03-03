@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="color-scheme" content="light dark">
 <title>{% if page.layout == 'home' and page.title %}{{ page.title }}{% elsif page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
@@ -17,6 +18,22 @@
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon.png' | relative_url }}">
 <link rel="shortcut icon" type="image/png" href="{{ '/images/favicon.png' | relative_url }}">
 <link rel="preload" href="{{ '/fonts/angelina.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<script>
+  (function () {
+    var storageKey = "theme-preference";
+    var stored = null;
+    try {
+      stored = localStorage.getItem(storageKey);
+    } catch (e) {
+      stored = null;
+    }
+    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var theme = stored === "dark" || stored === "light" ? stored : (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.style.colorScheme = theme;
+  })();
+</script>
+<script defer src="{{ '/theme/theme-toggle.js' | relative_url }}"></script>
 
 {% if (jekyll.environment == "production" or site.umami.enable_in_dev) and site.umami and site.umami.website_id and site.umami.website_id != "" %}
 {% assign umami_script = site.umami.script_url | default: "https://cloud.umami.is/script.js" %}

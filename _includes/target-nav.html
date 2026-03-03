@@ -56,18 +56,24 @@
 {% assign mobile_switch_text = 'EN' %}
 {% assign search_title = 'Search' %}
 {% assign search_aria = 'Open search' %}
+{% assign theme_to_dark = 'Switch to dark mode' %}
+{% assign theme_to_light = 'Switch to light mode' %}
 {% if is_en_nav %}
   {% assign lang_title = '切换到中文' %}
   {% assign lang_aria = '切换到中文' %}
   {% assign mobile_switch_text = '中' %}
   {% assign search_title = 'Search' %}
   {% assign search_aria = 'Open search' %}
+  {% assign theme_to_dark = 'Switch to dark mode' %}
+  {% assign theme_to_light = 'Switch to light mode' %}
 {% else %}
   {% assign lang_title = 'Switch to English' %}
   {% assign lang_aria = 'Switch to English' %}
   {% assign mobile_switch_text = 'EN' %}
   {% assign search_title = '搜索' %}
   {% assign search_aria = '打开搜索' %}
+  {% assign theme_to_dark = '切换深色模式' %}
+  {% assign theme_to_light = '切换浅色模式' %}
 {% endif %}
 
 <div class="navigatebar{% unless is_en_nav %} is-zh{% endunless %}">
@@ -106,6 +112,22 @@
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
           <path d="M20 20L16.6 16.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button
+        id="theme-toggle-btn"
+        class="theme-toggle-btn"
+        type="button"
+        aria-label="{{ theme_to_dark }}"
+        title="{{ theme_to_dark }}"
+        data-label-dark="{{ theme_to_dark }}"
+        data-label-light="{{ theme_to_light }}">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M12 2.8V5.2M12 18.8V21.2M4.8 4.8L6.6 6.6M17.4 17.4L19.2 19.2M2.8 12H5.2M18.8 12H21.2M4.8 19.2L6.6 17.4M17.4 6.6L19.2 4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M19.4 14.7A8.4 8.4 0 1 1 9.3 4.6a7.1 7.1 0 0 0 10.1 10.1z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
         </svg>
       </button>
 

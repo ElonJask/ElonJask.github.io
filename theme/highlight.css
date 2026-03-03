@@ -74,3 +74,94 @@
 .highlight .ss {
   color: #859900;
 }
+
+/* Dark theme overrides */
+:root[data-theme="dark"] .highlight,
+:root[data-theme="dark"] .highlight .w {
+  color: #c8d4e2;
+  background-color: #121a23;
+}
+
+:root[data-theme="dark"] .highlight .err {
+  color: #ffb4a9;
+}
+
+:root[data-theme="dark"] .highlight .c,
+:root[data-theme="dark"] .highlight .ch,
+:root[data-theme="dark"] .highlight .cd,
+:root[data-theme="dark"] .highlight .cm,
+:root[data-theme="dark"] .highlight .cpf,
+:root[data-theme="dark"] .highlight .c1,
+:root[data-theme="dark"] .highlight .cs {
+  color: #74879a;
+}
+
+:root[data-theme="dark"] .highlight .cp,
+:root[data-theme="dark"] .highlight .nt,
+:root[data-theme="dark"] .highlight .nn,
+:root[data-theme="dark"] .highlight .nc,
+:root[data-theme="dark"] .highlight .no {
+  color: #e7c67a;
+}
+
+:root[data-theme="dark"] .highlight .o,
+:root[data-theme="dark"] .highlight .ow,
+:root[data-theme="dark"] .highlight .p,
+:root[data-theme="dark"] .highlight .pi {
+  color: #9bb0c4;
+}
+
+:root[data-theme="dark"] .highlight .gi,
+:root[data-theme="dark"] .highlight .s,
+:root[data-theme="dark"] .highlight .sa,
+:root[data-theme="dark"] .highlight .sb,
+:root[data-theme="dark"] .highlight .sc,
+:root[data-theme="dark"] .highlight .dl,
+:root[data-theme="dark"] .highlight .sd,
+:root[data-theme="dark"] .highlight .s2,
+:root[data-theme="dark"] .highlight .sh,
+:root[data-theme="dark"] .highlight .sx,
+:root[data-theme="dark"] .highlight .s1,
+:root[data-theme="dark"] .highlight .m,
+:root[data-theme="dark"] .highlight .mb,
+:root[data-theme="dark"] .highlight .mf,
+:root[data-theme="dark"] .highlight .mh,
+:root[data-theme="dark"] .highlight .mi,
+:root[data-theme="dark"] .highlight .il,
+:root[data-theme="dark"] .highlight .mo,
+:root[data-theme="dark"] .highlight .mx,
+:root[data-theme="dark"] .highlight .ss {
+  color: #8be29b;
+}
+
+:root[data-theme="dark"] .highlight .gd {
+  color: #ff8f83;
+}
+
+:root[data-theme="dark"] .highlight .gh,
+:root[data-theme="dark"] .highlight .na {
+  color: #79c0ff;
+}
+
+:root[data-theme="dark"] .highlight .k,
+:root[data-theme="dark"] .highlight .kn,
+:root[data-theme="dark"] .highlight .kp,
+:root[data-theme="dark"] .highlight .kr,
+:root[data-theme="dark"] .highlight .kv {
+  color: #bdafff;
+}
+
+:root[data-theme="dark"] .highlight .kc,
+:root[data-theme="dark"] .highlight .kt,
+:root[data-theme="dark"] .highlight .kd {
+  color: #f4be8f;
+}
+
+:root[data-theme="dark"] .highlight .sr {
+  color: #77d7d3;
+}
+
+:root[data-theme="dark"] .highlight .si,
+:root[data-theme="dark"] .highlight .se {
+  color: #f4a5d2;
+}

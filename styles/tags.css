@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #FFF;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -13,17 +13,17 @@ body {
 }
 
 a {
-    color: #333;
+    color: var(--color-text);
     text-decoration: none;
 }
 
 a:hover {
-    color: #57BF7D;
+    color: var(--color-link);
 }
 
 .page-shell {
     box-sizing: border-box;
-    background-color: #FFF;
+    background-color: var(--color-bg);
     width: 100%;
     max-width: 980px;
     margin: 0 auto 34px;
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .title {
-    color: #444;
+    color: var(--color-text-heading);
     font-size: 42px;
     font-weight: 600;
     text-align: center;
@@ -65,7 +65,7 @@ a:hover {
     width: 76px;
     height: 2px;
     transform: translateX(-50%);
-    background: #b8b8b8;
+    background: var(--color-divider);
 }
 
 .topic-post-groups,
@@ -85,12 +85,12 @@ a:hover {
     margin: 0 0 10px;
     font-size: 32px;
     line-height: 1.25;
-    color: #2f2f2f;
+    color: var(--color-text-title);
 }
 
 .topic-post-summary {
     margin: 0 0 12px;
-    color: #5e5e5e;
+    color: var(--color-text-soft);
     font-size: 18px;
     line-height: 1.75;
 }
@@ -109,7 +109,7 @@ a:hover {
     justify-content: space-between;
     gap: 14px;
     padding: 14px 0;
-    border-bottom: 1px dotted #ddd;
+    border-bottom: 1px dotted var(--color-border-dotted);
 }
 
 .topic-post-list li a,
@@ -118,12 +118,12 @@ a:hover {
     min-width: 0;
     font-size: 21px;
     line-height: 1.55;
-    color: #444;
+    color: var(--color-text-heading);
 }
 
 .topic-post-list li time,
 .archive-item time {
-    color: #5f5f5f;
+    color: var(--color-text-soft);
     font-size: 15px;
     white-space: nowrap;
     flex: 0 0 96px;
@@ -134,7 +134,7 @@ a:hover {
 
 .archive-year-group {
     margin-top: 8px;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--color-border-subtle);
     padding-top: 6px;
 }
 
@@ -161,7 +161,7 @@ a:hover {
     margin: 0;
     font-size: 30px;
     line-height: 1.25;
-    color: #2f2f2f;
+    color: var(--color-text-title);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -170,7 +170,7 @@ a:hover {
 .archive-year::after {
     content: "▾";
     font-size: 14px;
-    color: #aaa;
+    color: var(--color-text-faint);
     transform-origin: center;
     transition: transform .18s ease;
 }

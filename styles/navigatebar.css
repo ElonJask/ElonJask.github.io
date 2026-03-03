@@ -180,6 +180,30 @@ html {
     background: #f3f3f3;
 }
 
+.theme-toggle-btn {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    color: #5b5b5b;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color .12s ease, background-color .12s ease;
+}
+
+.theme-toggle-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-toggle-btn:hover {
+    color: #2f2f2f;
+    background: #f3f3f3;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;

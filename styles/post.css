@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #FFF;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@ body {
 
 .content-area {
     box-sizing: border-box;
-    background-color: #FFF;
+    background-color: var(--color-bg);
     border-radius: 5px;
     width: 100%;
     max-width: 980px;
@@ -44,7 +44,7 @@ ol {
 }
 
 a {
-    color: #57BF7D;
+    color: var(--color-link);
     text-decoration: none;
 }
 
@@ -53,7 +53,7 @@ p {
 }
 
 .title {
-    color: #000;
+    color: var(--color-text-strong);
     font-size: 26px;
     margin-bottom: 16px;
     text-align: center;
@@ -119,22 +119,22 @@ div.highlight pre.highlight {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    border: 1px solid #AAA;
+    border: 1px solid var(--color-border);
     width: 100%;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #FAFAFA;
+    background-color: var(--color-surface-muted);
 }
 
 th {
-    border: 1px solid #AAA;
+    border: 1px solid var(--color-border);
     padding: 5px;
-    background-color: #F8F8F8;
+    background-color: var(--color-surface-muted);
 }
 
 td {
-    border: 1px solid #AAA;
+    border: 1px solid var(--color-border);
     padding: 5px;
 }
 
@@ -149,7 +149,7 @@ td {
 }
 
 .category-area {
-    color: #666;
+    color: var(--color-text-muted);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -160,12 +160,12 @@ td {
 }
 
 .category {
-    color: #666;
+    color: var(--color-text-muted);
     font-size: 16px;
     margin-left: 0;
     margin-right: 0;
     border-radius: 5px;
-    background: #f2f2f2;
+    background: var(--color-chip-bg-strong);
     padding: 4px 10px;
 
     display: flex;
@@ -177,7 +177,7 @@ td {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    color: #666;
+    color: var(--color-text-muted);
     font-size: 15px;
     min-height: 34px;
     margin-top: 0;
@@ -191,9 +191,9 @@ blockquote {
 
 blockquote p {
     white-space: normal;
-    border-left: 4px solid #EAEAEA;
+    border-left: 4px solid var(--color-quote-border);
     padding: 10px;
-    background-color: #F8F8F8;
+    background-color: var(--color-surface-muted);
     margin-top: 40px;
 }
 
@@ -203,6 +203,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .giscus-container {
     margin-top: 40px;
-    border-top: 1px solid #ececec;
+    border-top: 1px solid var(--color-border-soft);
     padding-top: 24px;
 }
