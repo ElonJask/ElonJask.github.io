@@ -1,23 +1,185 @@
+{% assign page_url = page.url | default: '/' | replace: '/index.html', '/' %}
+{% if page_url == '' %}{% assign page_url = '/' %}{% endif %}
+{% assign canonical_url = site.url | append: page_url %}
+{% assign page_lang = page.lang | default: site.lang | downcase %}
+{% assign page_description = page.summary | default: site.description | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+{% assign og_locale = 'zh_CN' %}
+{% if page_lang contains 'en' %}
+  {% assign og_locale = 'en_US' %}
+{% endif %}
+
+{% assign zh_alt_url = page_url %}
+{% assign en_alt_url = page_url %}
+{% assign has_zh_alt = true %}
+{% assign has_en_alt = true %}
+
+{% if page.collection == 'posts' or page.collection == 'posts_en' %}
+  {% assign current_filename = page.path | split: '/' | last %}
+  {% assign target_post = nil %}
+  {% if page.collection == 'posts' %}
+    {% assign zh_alt_url = page.url %}
+    {% if page.translation_key %}
+      {% assign target_post = site.posts_en | where: 'translation_key', page.translation_key | first %}
+    {% endif %}
+    {% unless target_post %}
+      {% assign target_post = site.posts_en | where_exp: 'item', 'item.path contains current_filename' | first %}
+    {% endunless %}
+    {% if target_post %}
+      {% assign en_alt_url = target_post.url %}
+    {% else %}
+      {% assign has_en_alt = false %}
+    {% endif %}
+  {% else %}
+    {% assign en_alt_url = page.url %}
+    {% if page.translation_key %}
+      {% assign target_post = site.posts | where: 'translation_key', page.translation_key | first %}
+    {% endif %}
+    {% unless target_post %}
+      {% assign target_post = site.posts | where_exp: 'item', 'item.path contains current_filename' | first %}
+    {% endunless %}
+    {% if target_post %}
+      {% assign zh_alt_url = target_post.url %}
+    {% else %}
+      {% assign has_zh_alt = false %}
+    {% endif %}
+  {% endif %}
+{% else %}
+  {% if page_url contains '/en/' %}
+    {% assign en_alt_url = page_url %}
+    {% assign zh_alt_url = page_url | replace_first: '/en', '' %}
+    {% if zh_alt_url == '' %}{% assign zh_alt_url = '/' %}{% endif %}
+  {% else %}
+    {% assign zh_alt_url = page_url %}
+    {% if page_url == '/' %}
+      {% assign en_alt_url = '/en/' %}
+    {% else %}
+      {% assign en_alt_url = '/en' | append: page_url %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% capture same_as_raw %}
+{% if site.github and site.github != "" %}https://github.com/{{ site.github }}||{% endif %}
+{% if site.twitter and site.twitter != "" %}https://twitter.com/{{ site.twitter }}||{% endif %}
+{% if site.zhihu and site.zhihu != "" %}https://www.zhihu.com/people/{{ site.zhihu }}||{% endif %}
+{% if site.v2ex and site.v2ex != "" %}https://www.v2ex.com/member/{{ site.v2ex }}||{% endif %}
+{% endcapture %}
+{% assign same_as_urls = same_as_raw | split: '||' %}
+{% assign has_same_as = false %}
+{% for link in same_as_urls %}
+  {% assign item = link | strip %}
+  {% if item != '' %}
+    {% assign has_same_as = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign author_name = site.author.name | default: site.title %}
+{% assign author_url = site.author.url | default: site.url %}
+
+{% assign article_image = nil %}
+{% if page.image and page.image != '' %}
+  {% assign article_image = page.image %}
+{% elsif page.cover and page.cover != '' %}
+  {% assign article_image = page.cover %}
+{% endif %}
+{% assign article_image_url = article_image %}
+{% if article_image and article_image != '' %}
+  {% unless article_image contains '://' %}
+    {% assign first_char = article_image | slice: 0, 1 %}
+    {% if first_char == '/' %}
+      {% assign article_image_url = site.url | append: article_image %}
+    {% else %}
+      {% assign article_image_url = site.url | append: '/' | append: article_image %}
+    {% endif %}
+  {% endunless %}
+{% endif %}
+
+{% assign article_modified = page.last_modified_at | default: page.date %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="color-scheme" content="light dark">
 <title>{% if page.layout == 'home' and page.title %}{{ page.title }}{% elsif page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-<meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-{% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
+<meta name="description" content="{{ page_description | truncate: 160 }}">
 {% if site.google_site_verification and site.google_site_verification != "" %}
 <meta name="google-site-verification" content="{{ site.google_site_verification }}">
 {% endif %}
-<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="canonical" href="{{ canonical_url }}">
+{% if has_zh_alt %}<link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ zh_alt_url }}">{% endif %}
+{% if has_en_alt %}<link rel="alternate" hreflang="en-US" href="{{ site.url }}{{ en_alt_url }}">{% endif %}
+<link rel="alternate" hreflang="x-default" href="{% if has_zh_alt %}{{ site.url }}{{ zh_alt_url }}{% else %}{{ canonical_url }}{% endif %}">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }} Feed" href="{{ '/feed.xml' | relative_url }}">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}">
-<meta property="og:description" content="{% if page.summary %}{{ page.summary | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:description" content="{{ page_description | truncate: 160 }}">
+<meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:locale" content="{{ og_locale }}">
+{% if og_locale == 'zh_CN' and has_en_alt %}
+<meta property="og:locale:alternate" content="en_US">
+{% elsif og_locale == 'en_US' and has_zh_alt %}
+<meta property="og:locale:alternate" content="zh_CN">
+{% endif %}
 <meta name="robots" content="{% if page.noindex or page.is404 %}noindex,follow{% else %}index,follow{% endif %}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon.png' | relative_url }}">
 <link rel="shortcut icon" type="image/png" href="{{ '/images/favicon.png' | relative_url }}">
 <link rel="preload" href="{{ '/fonts/angelina.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": {{ site.url | append: "#website" | jsonify }},
+      "url": {{ site.url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "alternateName": "ElonJask Blog",
+      "description": {{ site.description | default: "" | jsonify }},
+      "inLanguage": ["zh-CN", "en-US"],
+      "publisher": {
+        "@id": {{ site.url | append: "#person" | jsonify }}
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": {{ site.url | append: "#person" | jsonify }},
+      "name": {{ author_name | jsonify }},
+      "url": {{ author_url | jsonify }}{% if has_same_as %},
+      "sameAs": [{% assign first_same_as = true %}{% for link in same_as_urls %}{% assign item = link | strip %}{% if item != '' %}{% unless first_same_as %}, {% endunless %}{{ item | jsonify }}{% assign first_same_as = false %}{% endif %}{% endfor %}]{% endif %}
+    }
+  ]
+}
+</script>
+
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": {{ canonical_url | append: "#article" | jsonify }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ canonical_url | jsonify }}
+  },
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page_description | jsonify }},
+  "url": {{ canonical_url | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ article_modified | date_to_xmlschema | jsonify }},
+  "inLanguage": {{ page.lang | default: site.lang | jsonify }},
+  "author": {
+    "@id": {{ site.url | append: "#person" | jsonify }}
+  },
+  "publisher": {
+    "@id": {{ site.url | append: "#person" | jsonify }}
+  }{% if page.tags and page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}{% if article_image_url and article_image_url != '' %},
+  "image": [{{ article_image_url | jsonify }}]{% endif %}
+}
+</script>
+{% endif %}
 <script>
   (function () {
     var storageKey = "theme-preference";
