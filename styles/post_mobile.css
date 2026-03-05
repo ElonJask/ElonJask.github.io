@@ -56,6 +56,11 @@ p {
     line-height: 1.85;
 }
 
+.content > * {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 240px;
+}
+
 .content a.post-image-link {
     display: block;
     margin: 0 auto;

@@ -65,6 +65,11 @@ p {
     font-size: 20px;
 }
 
+.content > * {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 260px;
+}
+
 .content a.post-image-link {
     display: block;
     margin: 0 auto;

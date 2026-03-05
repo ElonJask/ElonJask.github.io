@@ -7,7 +7,8 @@
   <link rel="stylesheet" media="screen and (min-width: 600px)" href="{{ '/styles/navigatebar.css' | relative_url }}">
   <link rel="stylesheet" media="screen and (max-width: 600px)" href="{{ '/styles/navigatebar_mobile.css' | relative_url }}">
   {% if content contains '<pre' or content contains 'highlighter-rouge' or content contains 'language-' %}
-  <link rel="stylesheet" href="{{ '/theme/highlight.css' | relative_url }}">
+  <link rel="preload" href="{{ '/theme/highlight.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ '/theme/highlight.css' | relative_url }}"></noscript>
   {% endif %}
   <link rel="stylesheet" href="{{ '/styles/theme.css' | relative_url }}">
 </head>
