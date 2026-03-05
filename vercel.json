@@ -16,15 +16,6 @@
       ]
     },
     {
-      "source": "/images/favicon.png",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
       "source": "/fonts/(.*)\\.(ttf|woff2)",
       "headers": [
         {

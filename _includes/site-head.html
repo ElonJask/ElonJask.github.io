@@ -123,9 +123,7 @@
 {% endif %}
 <meta name="robots" content="{% if page.noindex or page.is404 %}noindex,follow{% else %}index,follow{% endif %}">
 <link rel="icon" type="image/svg+xml" sizes="any" href="{{ '/ico.svg' | relative_url }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon.png' | relative_url }}">
-<link rel="apple-touch-icon" href="{{ '/images/favicon.png' | relative_url }}">
-<link rel="shortcut icon" type="image/png" href="{{ '/images/favicon.png' | relative_url }}">
+<link rel="shortcut icon" href="{{ '/ico.svg' | relative_url }}">
 <link rel="preload" href="{{ '/fonts/angelina.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 
 <script type="application/ld+json">

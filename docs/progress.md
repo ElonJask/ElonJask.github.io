@@ -79,7 +79,7 @@
   - 首页/英文首页不再加载 `jinkai.css`（仅中文文章页加载），移除首页字体级联阻塞。
   - `giscus.app`、`googletagmanager.com`、`gw.alipayobjects.com` 改为按需预连接，减少无效连接开销。
   - 关闭空 GA 配置下的脚本注入（避免无效第三方请求）。
-  - favicon 改为本地静态资源 `images/favicon.png`，减少首屏第三方依赖。
+  - favicon 改为本地静态资源 `ico.svg`，减少首屏第三方依赖。
   - 移除全局样式中未使用的 `_404.scss` 导入，缩减关键 CSS 体积。
   - 文章图片在构建阶段注入加载策略：统一 `loading=\"lazy\" + decoding=\"async\"`，降低首屏与长文并发图片请求压力。
 - 已完成：本地 Lighthouse 复测（mobile, localhost）得分提升至 `100`，指标约为 `FCP 0.9s / LCP 1.4s / TBT 0ms`。
