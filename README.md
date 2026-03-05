@@ -61,6 +61,9 @@ npm run build
 
 # 检查是否有外链图片（建议发布前执行）
 rg -n "https?://.*\.(png|jpg|jpeg|webp|gif)" _posts _posts_en
+
+# 生成文章图片多规格版本（640w/768w/960w）
+./scripts/generate_responsive_images.sh
 ```
 
 ## 目录结构
@@ -127,6 +130,7 @@ bundle exec jekyll build
 - 本地构建通过
 - `summary / categories / topic / translation_key` 填写完整（`tags` 可选）
 - 图片尽量使用本地 `webp`，并补齐 `alt + width + height`
+- 新增或替换文章配图后，执行 `./scripts/generate_responsive_images.sh`
 
 详细规则见：`docs/WRITING_RULES.md`
 
@@ -165,6 +169,7 @@ repo: ElonJask/ElonJask.github.io
 
 ```yml
 # SEO and Analytics
+social_image: "/images/social-cover.webp"
 umami:
   script_url: "/stats/script.js"
   website_id: "f23dd8f5-ee34-4395-8908-4c2e46adca76"

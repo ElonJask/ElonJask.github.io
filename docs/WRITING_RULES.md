@@ -68,6 +68,7 @@ translation_key: unique-key-for-this-post
 - 禁止使用外链图床（如 `https://xxx.com/xxx.jpg` 直接热链）。
 - 图片必须放在：`images/posts/<slug>/`。
 - 优先使用 `.webp`，推荐宽度不超过 `1280`。
+- 新增图片后必须执行：`./scripts/generate_responsive_images.sh`，生成 `640w/768w/960w` 版本供 `srcset` 自动使用。
 - Markdown 中图片使用 HTML 写法并带尺寸：
 
 ```html
@@ -101,6 +102,7 @@ translation_key: unique-key-for-this-post
 
 ```bash
 cd /Users/lianhua/Personal/Tw93Blog/tw93.github.io
+./scripts/generate_responsive_images.sh
 bundle exec jekyll build
 ```
 

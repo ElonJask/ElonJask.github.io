@@ -7,7 +7,7 @@
   },
   "headers": [
     {
-      "source": "/images/posts/(.*)\\.(webp|png|jpg|jpeg)",
+      "source": "/images/(.*)\\.(webp|png|jpg|jpeg|svg)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -17,6 +17,15 @@
     },
     {
       "source": "/fonts/(.*)\\.(ttf|woff2)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/ico\\.svg",
       "headers": [
         {
           "key": "Cache-Control",

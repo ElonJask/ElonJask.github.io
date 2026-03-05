@@ -22,6 +22,12 @@
   var textError = modal.getAttribute("data-text-error") || "";
   var textResultSuffix = modal.getAttribute("data-text-result-suffix") || "";
 
+  function setModalInert(enabled) {
+    modal.inert = enabled;
+    if (enabled) modal.setAttribute("inert", "");
+    else modal.removeAttribute("inert");
+  }
+
   function escapeHtml(str) {
     return String(str || "")
       .replace(/&/g, "&amp;")
@@ -47,6 +53,7 @@
   }
 
   function openSearch() {
+    setModalInert(false);
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -64,11 +71,14 @@
     if (document.activeElement === input) input.blur();
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
+    setModalInert(true);
     document.body.style.overflow = "";
     input.value = "";
     results.innerHTML = "";
     selectedIndex = -1;
   }
+
+  setModalInert(true);
 
   function showEmpty() {
     results.classList.add("is-empty");
@@ -95,6 +105,12 @@
       .then(function (rows) {
         data = (rows || []).filter(function (item) {
           return item && item.lang === pageLang;
+        }).map(function (item) {
+          var copy = item || {};
+          copy._searchText = buildSearchText(copy);
+          copy._titleNorm = normalize(copy.title);
+          copy._summaryNorm = normalize(copy.summary);
+          return copy;
         });
         isLoaded = true;
         if (normalize(input.value)) searchNow();
@@ -170,10 +186,10 @@
     var tokens = q.split(" ").filter(Boolean);
     var matched = data
       .map(function (item) {
-        var text = buildSearchText(item);
+        var text = item._searchText || buildSearchText(item);
         var score = 0;
-        var title = normalize(item.title);
-        var summary = normalize(item.summary);
+        var title = item._titleNorm || normalize(item.title);
+        var summary = item._summaryNorm || normalize(item.summary);
 
         for (var i = 0; i < tokens.length; i += 1) {
           var token = tokens[i];
