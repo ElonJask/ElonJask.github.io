@@ -10,3 +10,4 @@ _config.gh-pages.yml
 .vscode
 Gemfile.lock
 .jekyll.log
+.spec-workflow
