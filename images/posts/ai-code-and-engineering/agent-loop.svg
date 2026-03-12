@@ -1,18 +1,18 @@
-<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1400" height="900" fill="#0B1020"/>
-  <text x="90" y="110" fill="#F8FAFC" font-size="48" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">高效 Agent 工作流，不是放手不管，而是闭环更紧</text>
-  <rect x="90" y="280" width="250" height="120" rx="24" fill="#1E293B" stroke="#38BDF8"/>
-  <text x="145" y="350" fill="#E2E8F0" font-size="34" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">定义问题</text>
-  <rect x="420" y="280" width="250" height="120" rx="24" fill="#1E293B" stroke="#38BDF8"/>
-  <text x="490" y="350" fill="#E2E8F0" font-size="34" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">给约束</text>
-  <rect x="750" y="280" width="250" height="120" rx="24" fill="#1E293B" stroke="#38BDF8"/>
-  <text x="818" y="350" fill="#E2E8F0" font-size="34" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">Agent 执行</text>
-  <rect x="1080" y="280" width="250" height="120" rx="24" fill="#1E293B" stroke="#38BDF8"/>
-  <text x="1146" y="350" fill="#E2E8F0" font-size="34" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">自动验证</text>
-  <path d="M340 340H420" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
-  <path d="M670 340H750" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
-  <path d="M1000 340H1080" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
-  <path d="M1205 430C1205 600 830 680 590 640" stroke="#A78BFA" stroke-width="8" stroke-linecap="round"/>
-  <path d="M625 605L590 640L640 650" stroke="#A78BFA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="500" y="760" fill="#CBD5E1" font-size="34" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">核心不是让 AI 自由发挥，而是让它在闭环里高速迭代。</text>
+<svg width="1200" height="560" viewBox="0 0 1200 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="560" rx="24" fill="#F8FAFC"/>
+  <text x="56" y="86" fill="#0F172A" font-size="34" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">高效 Agent 工作流，不是放手不管，而是闭环更紧</text>
+  <rect x="56" y="210" width="230" height="96" rx="20" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <rect x="336" y="210" width="230" height="96" rx="20" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <rect x="616" y="210" width="230" height="96" rx="20" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <rect x="896" y="210" width="248" height="96" rx="20" fill="#FFFFFF" stroke="#DBEAFE"/>
+  <text x="120" y="268" fill="#334155" font-size="28" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">定义问题</text>
+  <text x="392" y="268" fill="#334155" font-size="28" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">给约束</text>
+  <text x="672" y="268" fill="#334155" font-size="28" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">Agent 执行</text>
+  <text x="952" y="268" fill="#334155" font-size="28" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">自动验证</text>
+  <path d="M286 258H336" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+  <path d="M566 258H616" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+  <path d="M846 258H896" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+  <path d="M1020 350C1020 430 792 468 598 444" stroke="#60A5FA" stroke-width="6" stroke-linecap="round"/>
+  <path d="M622 420L598 444L632 452" stroke="#60A5FA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="292" y="474" fill="#64748B" font-size="24" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">核心不是让 AI 自由发挥，而是让它在闭环里高速迭代。</text>
 </svg>
