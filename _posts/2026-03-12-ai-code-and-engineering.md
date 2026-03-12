@@ -9,7 +9,6 @@ tags: [AI, 软件工程, Agent, 编程效率]
 translation_key: ai-code-and-engineering-2026
 ---
 
-<img src="/images/posts/ai-code-and-engineering/cover-v2.svg" alt="当 AI 越来越会写代码，真正稀缺的是把方向说明白的人" width="1200" height="630" />
 
 这两个月我越来越强烈地感觉到一件事：
 
