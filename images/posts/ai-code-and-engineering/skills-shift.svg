@@ -1,0 +1,18 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#0F172A"/>
+  <text x="80" y="110" fill="#F8FAFC" font-size="48" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">工程师的价值，正在从“实现”转向“编排”</text>
+  <rect x="90" y="200" width="500" height="520" rx="28" fill="#111827" stroke="#334155"/>
+  <text x="130" y="270" fill="#93C5FD" font-size="38" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">过去更值钱</text>
+  <text x="130" y="350" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 手写代码速度</text>
+  <text x="130" y="420" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 多语言经验</text>
+  <text x="130" y="490" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 单点功能实现</text>
+  <text x="130" y="560" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 接需求后快速开干</text>
+  <rect x="810" y="200" width="500" height="520" rx="28" fill="#111827" stroke="#334155"/>
+  <text x="850" y="270" fill="#7DD3FC" font-size="38" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">未来更值钱</text>
+  <text x="850" y="350" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 定义问题边界</text>
+  <text x="850" y="420" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 设计验证闭环</text>
+  <text x="850" y="490" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 拆任务与管 Agent</text>
+  <text x="850" y="560" fill="#E5E7EB" font-size="32" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">• 做工程判断与取舍</text>
+  <path d="M640 460H760" stroke="#38BDF8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M730 430L760 460L730 490" stroke="#38BDF8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

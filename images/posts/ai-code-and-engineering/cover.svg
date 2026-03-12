@@ -1,0 +1,29 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1020"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 160) rotate(132.96) scale(506.281 365.195)">
+      <stop stop-color="#38BDF8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(300 760) rotate(52.1) scale(496.844 377.816)">
+      <stop stop-color="#A78BFA" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#glow2)"/>
+  <g opacity="0.16" stroke="#93C5FD"><path d="M1040 110H1460"/><path d="M1100 180H1520"/><path d="M980 250H1400"/><path d="M1080 320H1500"/><path d="M940 390H1360"/></g>
+  <g opacity="0.18" stroke="#C4B5FD"><path d="M120 700H640"/><path d="M180 760H700"/><path d="M80 820H600"/></g>
+  <rect x="110" y="120" width="180" height="42" rx="21" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.16)"/>
+  <text x="140" y="148" fill="#E5E7EB" font-size="24" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">AI / 软件工程</text>
+  <text x="110" y="290" fill="#F9FAFB" font-size="72" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">当 AI 越来越会写代码，</text>
+  <text x="110" y="390" fill="#F9FAFB" font-size="72" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">真正稀缺的是</text>
+  <text x="110" y="490" fill="#7DD3FC" font-size="84" font-weight="800" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">把方向说明白的人</text>
+  <text x="114" y="590" fill="#CBD5E1" font-size="30" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">写代码会越来越便宜，工程判断会越来越昂贵。</text>
+  <text x="114" y="640" fill="#94A3B8" font-size="24" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">7fl.org</text>
+</svg>
