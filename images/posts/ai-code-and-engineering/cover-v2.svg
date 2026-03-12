@@ -1,0 +1,11 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="112" y="120" width="6" height="320" rx="3" fill="#2563EB"/>
+  <text x="144" y="142" fill="#2563EB" font-size="18" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">TECH NOTES</text>
+  <text x="144" y="240" fill="#0F172A" font-size="54" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">当 AI 越来越会写代码，</text>
+  <text x="144" y="318" fill="#0F172A" font-size="54" font-weight="700" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">真正稀缺的是</text>
+  <text x="144" y="406" fill="#2563EB" font-size="60" font-weight="800" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">把方向说明白的人</text>
+  <text x="144" y="484" fill="#475569" font-size="24" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">写代码会越来越便宜，工程判断会越来越昂贵。</text>
+  <text x="144" y="524" fill="#94A3B8" font-size="18" font-family="Arial, PingFang SC, Microsoft YaHei, sans-serif">7fl.org</text>
+</svg>
