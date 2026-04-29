@@ -2,6 +2,7 @@
 layout: page
 title: Archive
 summary: Browse all posts by year.
+permalink: /en/archive.html
 comments: false
 hideHomeActive: true
 lang: en-US

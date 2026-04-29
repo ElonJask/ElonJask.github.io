@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "jekyll"
-gem "jekyll-paginate"
-gem "jekyll-sitemap"
-gem "jekyll-feed"
+gem "jekyll", "~> 4.3"
+gem "jekyll-paginate", "~> 1.1"
+gem "jekyll-sitemap", "~> 1.4"
+gem "jekyll-feed", "~> 0.17"
 
 # Node.js 22+ compatibility
-gem "webrick"
+gem "webrick", "~> 1.8"
